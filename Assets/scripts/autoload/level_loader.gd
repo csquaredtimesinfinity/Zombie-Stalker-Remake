@@ -62,7 +62,31 @@ static func apply_screen_to_layers(
 					var tile_id :int = int(tiles[y][x])
 					if tile_id >= 0:
 						tile_layer.set_cell(Vector2i(x,y), tile_id, Vector2i.ZERO)
-						
+		
+		if screen_data.has("entities"):
+			var entities = screen_data["entities"]
+			if _marker_layer:
+				for entity in entities:
+					var cell: Vector2i = str_to_vec2i(entity["cell"])
+					var type: int = int(entity["type"])
+					# use entity type enum mapping here if needed
+					_marker_layer.set_cell(cell, type, Vector2i.ZERO)
+			else:
+				for entity in entities:
+					var world_pos: Vector2i = cell_to_world(entity["cell"])
+					var type: int = int(entity["type"])
+					
+					match type:
+						LevelLoader.EntityType.PLAYER_START:
+							pass # spawn player?
+						LevelLoader.EntityType.HEALTH_PICKUP:
+							pass 
+						LevelLoader.EntityType.AMMO_PICKUP:
+							pass
+						LevelLoader.EntityType.KEY_PICKUP:
+							pass
+						LevelLoader.EntityType.END_OF_LEVEL:
+							pass
 		# Marker layer is only for editor visualization (optional in runtime)
 		if _marker_layer && screen_data.has("entities"):
 			for entity in screen_data["entities"]:
