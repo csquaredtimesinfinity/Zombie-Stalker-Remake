@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1uo70ah0av58"]
+
+[ext_resource type="Script" uid="uid://bf4gktxkarykh" path="res://Assets/scripts/pickup.gd" id="1_t04h1"]
+[ext_resource type="Texture2D" uid="uid://d1qejfrgnqgvd" path="res://Assets/sprites/pickups/health_pickup.png" id="2_oojn0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y56md"]
+size = Vector2(9, 12)
+
+[node name="PickupAmmo" type="Area2D"]
+script = ExtResource("1_t04h1")
+pickup_type = "health"
+amount = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_oojn0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1.19209e-07)
+shape = SubResource("RectangleShape2D_y56md")

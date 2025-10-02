@@ -1,0 +1,185 @@
+[gd_scene load_steps=18 format=3 uid="uid://qdsqyuhkot4q"]
+
+[ext_resource type="Script" uid="uid://d4a1n3u43ew2w" path="res://Assets/Scripts/level_editor.gd" id="1_arng6"]
+[ext_resource type="Texture2D" uid="uid://dpaj32vbge22a" path="res://Assets/Sprites/tiles.png" id="1_dymqp"]
+[ext_resource type="Texture2D" uid="uid://bhmfi2wjql7v4" path="res://Assets/Sprites/tiles/grey_wall.png" id="2_arng6"]
+[ext_resource type="Texture2D" uid="uid://cr0vlyc7xfytw" path="res://Assets/Sprites/tiles/blue_wall.png" id="3_21ir5"]
+[ext_resource type="Texture2D" uid="uid://flxyy20qw1ua" path="res://Assets/Sprites/tiles/bush.png" id="4_rnpc0"]
+[ext_resource type="Texture2D" uid="uid://dxntjpr8pgwpy" path="res://Assets/Sprites/tiles/door.png" id="5_21ir5"]
+[ext_resource type="Texture2D" uid="uid://d1thi7he8fq4x" path="res://Assets/Sprites/tiles/floor.png" id="5_p7mrj"]
+[ext_resource type="Texture2D" uid="uid://b6k52i0hyc6ig" path="res://Assets/Sprites/tiles/grass.png" id="6_olh06"]
+[ext_resource type="Texture2D" uid="uid://cc5k1bxanktbk" path="res://Assets/Sprites/tiles/health_regenerator.png" id="8_rnpc0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arng6"]
+texture = ExtResource("2_arng6")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rnpc0"]
+texture = ExtResource("3_21ir5")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p7mrj"]
+texture = ExtResource("4_rnpc0")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_olh06"]
+texture = ExtResource("5_21ir5")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vmkot"]
+texture = ExtResource("5_p7mrj")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3ngkp"]
+texture = ExtResource("6_olh06")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u2ius"]
+texture = ExtResource("8_rnpc0")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_21ir5"]
+sources/0 = SubResource("TileSetAtlasSource_arng6")
+sources/1 = SubResource("TileSetAtlasSource_rnpc0")
+sources/2 = SubResource("TileSetAtlasSource_p7mrj")
+sources/3 = SubResource("TileSetAtlasSource_olh06")
+sources/4 = SubResource("TileSetAtlasSource_vmkot")
+sources/5 = SubResource("TileSetAtlasSource_3ngkp")
+sources/6 = SubResource("TileSetAtlasSource_u2ius")
+
+[node name="LevelEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 200.0
+script = ExtResource("1_arng6")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_21ir5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MenuButton" type="MenuButton" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+item_count = 1
+popup/item_0/text = "Wall"
+popup/item_0/icon = ExtResource("1_dymqp")
+popup/item_0/id = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -40.0
+offset_right = 160.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 320.0
+offset_bottom = 200.0
+color = Color(0.100439, 0.337708, 1, 1)
+
+[node name="TileSelectorLabel" type="Label" parent="."]
+offset_left = 0.955887
+offset_top = 158.186
+offset_right = 62.9559
+offset_bottom = 195.186
+theme_override_font_sizes/font_size = 12
+text = "Tile
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TileSelector" type="OptionButton" parent="TileSelectorLabel"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 17.0
+offset_right = 57.0
+offset_bottom = 41.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 1
+item_count = 7
+popup/item_0/text = "Barriers"
+popup/item_0/id = 5
+popup/item_0/separator = true
+popup/item_1/text = "Grey Wall"
+popup/item_1/icon = ExtResource("2_arng6")
+popup/item_1/id = 1
+popup/item_2/text = "Blue Wall"
+popup/item_2/icon = ExtResource("3_21ir5")
+popup/item_2/id = 2
+popup/item_3/text = "Bush"
+popup/item_3/icon = ExtResource("4_rnpc0")
+popup/item_3/id = 3
+popup/item_4/text = "Ground"
+popup/item_4/id = 4
+popup/item_4/separator = true
+popup/item_5/text = "Tile Floor"
+popup/item_5/icon = ExtResource("5_p7mrj")
+popup/item_5/id = 4
+popup/item_6/text = "Grass"
+popup/item_6/icon = ExtResource("6_olh06")
+popup/item_6/id = 5
+
+[node name="PickupSelectorLabel2" type="Label" parent="."]
+offset_left = 68.3013
+offset_top = 157.547
+offset_right = 130.301
+offset_bottom = 194.547
+theme_override_font_sizes/font_size = 12
+text = "Pickup
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PickupSelector" type="OptionButton" parent="PickupSelectorLabel2"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 17.0
+offset_right = 57.0
+offset_bottom = 41.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 1
+item_count = 7
+popup/item_0/text = "Barriers"
+popup/item_0/id = 5
+popup/item_0/separator = true
+popup/item_1/text = "Grey Wall"
+popup/item_1/icon = ExtResource("2_arng6")
+popup/item_1/id = 1
+popup/item_2/text = "Blue Wall"
+popup/item_2/icon = ExtResource("3_21ir5")
+popup/item_2/id = 2
+popup/item_3/text = "Bush"
+popup/item_3/icon = ExtResource("4_rnpc0")
+popup/item_3/id = 3
+popup/item_4/text = "Ground"
+popup/item_4/id = 4
+popup/item_4/separator = true
+popup/item_5/text = "Tile Floor"
+popup/item_5/icon = ExtResource("5_p7mrj")
+popup/item_5/id = 4
+popup/item_6/text = "Grass"
+popup/item_6/icon = ExtResource("6_olh06")
+popup/item_6/id = 5
+
+[connection signal="item_selected" from="TileSelectorLabel/TileSelector" to="." method="_on_tile_selected"]
+[connection signal="item_selected" from="PickupSelectorLabel2/PickupSelector" to="." method="_on_pickup_selected"]

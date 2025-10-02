@@ -1,0 +1,15 @@
+Node2D
+TileMapLayer
+CollisionShape2D
+Sprite2D
+Area2D
+CharacterBody2D
+Button
+Label
+TextureRect
+CanvasLayer
+HBoxContainer
+FileDialog
+TabBar
+Control
+ColorRect

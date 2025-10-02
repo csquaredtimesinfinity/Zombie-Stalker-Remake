@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7wgho6jkmirr"]
+
+[ext_resource type="Texture2D" uid="uid://w3gpv7k2r8p" path="res://Assets/sprites/entities/end_tile.png" id="1_n004s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osg6s"]
+size = Vector2(16.6481, 17.3913)
+
+[node name="LevelEndPortal" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_n004s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.202903, -0.0334415)
+shape = SubResource("RectangleShape2D_osg6s")

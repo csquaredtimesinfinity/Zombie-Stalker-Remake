@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxdbwfwwb34tq"]
+
+[ext_resource type="Script" uid="uid://bf4gktxkarykh" path="res://Assets/scripts/pickup.gd" id="1_foe4r"]
+[ext_resource type="Texture2D" uid="uid://bhfv1rnk0u5sf" path="res://Assets/sprites/pickups/key_pickup.png" id="2_ywxcd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y56md"]
+size = Vector2(12, 9.29673)
+
+[node name="PickupAmmo" type="Area2D"]
+script = ExtResource("1_foe4r")
+pickup_type = "key"
+amount = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ywxcd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.96046e-08, 0.351637)
+shape = SubResource("RectangleShape2D_y56md")
