@@ -39,7 +39,7 @@ static func cell_to_world(cell: String):
 
 static func apply_screen_to_layers(
 	level_data :Dictionary, screen_key :String, 
-	tile_layer :TileMapLayer, _marker_layer :TileMapLayer = null) -> void:
+	tile_layer :TileMapLayer, _marker_layer :TileMapLayer = null, entities_parent :Node = null) -> void:
 		if not level_data.has("screens"):
 			push_error("apply_screen_to_layers: No 'screens' key in level_data")
 			return
@@ -75,18 +75,31 @@ static func apply_screen_to_layers(
 				for entity in entities:
 					var world_pos: Vector2i = cell_to_world(entity["cell"])
 					var type: int = int(entity["type"])
-					
+					# center in the cell
+					var half_tile = tile_layer.tile_set.tile_size / 2
+					world_pos += half_tile
 					match type:
 						LevelLoader.EntityType.PLAYER_START:
-							pass # spawn player?
+							var player = preload("res://Assets/scenes/player.tscn").instantiate()
+							player.position = world_pos
+							entities_parent.add_child(player)
 						LevelLoader.EntityType.HEALTH_PICKUP:
-							pass 
+							var health = preload("res://Assets/scenes/pickups/health.tscn").instantiate()
+							health.position = world_pos
+							entities_parent.add_child(health)
 						LevelLoader.EntityType.AMMO_PICKUP:
-							pass
+							var ammo = preload("res://Assets/scenes/pickups/ammo.tscn").instantiate()
+							ammo.position = world_pos
+							entities_parent.add_child(ammo)
 						LevelLoader.EntityType.KEY_PICKUP:
-							pass
+							var key = preload("res://Assets/scenes/pickups/key.tscn").instantiate()
+							key.position = world_pos
+							entities_parent.add_child(key)
 						LevelLoader.EntityType.END_OF_LEVEL:
-							pass
+							var end_of_level = preload("res://Assets/scenes/level_end_portal.tscn").instantiate()
+							end_of_level.position = world_pos
+							entities_parent.add_child(end_of_level)
+							
 		# Marker layer is only for editor visualization (optional in runtime)
 		if _marker_layer && screen_data.has("entities"):
 			for entity in screen_data["entities"]:

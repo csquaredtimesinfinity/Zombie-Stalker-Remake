@@ -1,6 +1,6 @@
+CollisionShape2D
 Node2D
 TileMapLayer
-CollisionShape2D
 Sprite2D
 Area2D
 CharacterBody2D
@@ -12,4 +12,3 @@ HBoxContainer
 FileDialog
 TabBar
 Control
-ColorRect

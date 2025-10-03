@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bblckldggbqt5"]
 
-[ext_resource type="Texture2D" uid="uid://cbbmhuj4iugno" path="res://Assets/sprites/player.png" id="1_wjjlv"]
+[ext_resource type="Texture2D" uid="uid://jgttjqs0ga6y" path="res://Assets/sprites/zombie.png" id="1_wjjlv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbjo7"]
 size = Vector2(9.35805, 19.3471)
@@ -9,6 +9,8 @@ size = Vector2(9.35805, 19.3471)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_wjjlv")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.439507, -0.326441)

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y56md"]
 size = Vector2(15.0267, 7.78032)
 
-[node name="PickupAmmo" type="Area2D"]
+[node name="PickupKey" type="Area2D"]
 script = ExtResource("1_svosg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,7 +1,7 @@
 {
 	"player_start": {
 		"cell": "(18, 4)",
-		"screen": "0,1"
+		"screen": "0,0"
 	},
 	"screens": {
 		"0,0": {

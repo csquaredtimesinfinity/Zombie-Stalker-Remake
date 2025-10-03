@@ -1,0 +1,52 @@
+[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://bmru7gp42os5g"]
+
+[ext_resource type="Texture2D" uid="uid://bhmfi2wjql7v4" path="res://Assets/sprites/tiles/grey_wall.png" id="1_v6vf6"]
+[ext_resource type="Texture2D" uid="uid://cr0vlyc7xfytw" path="res://Assets/sprites/tiles/blue_wall.png" id="2_xpm8t"]
+[ext_resource type="Texture2D" uid="uid://flxyy20qw1ua" path="res://Assets/sprites/tiles/bush.png" id="3_x0526"]
+[ext_resource type="Texture2D" uid="uid://dxntjpr8pgwpy" path="res://Assets/sprites/tiles/door.png" id="4_712t4"]
+[ext_resource type="Texture2D" uid="uid://d1thi7he8fq4x" path="res://Assets/sprites/tiles/floor.png" id="5_etdvl"]
+[ext_resource type="Texture2D" uid="uid://b6k52i0hyc6ig" path="res://Assets/sprites/tiles/grass.png" id="6_u14c7"]
+[ext_resource type="Texture2D" uid="uid://cc5k1bxanktbk" path="res://Assets/sprites/tiles/health_regenerator.png" id="7_fgvro"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arng6"]
+texture = ExtResource("1_v6vf6")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rnpc0"]
+texture = ExtResource("2_xpm8t")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p7mrj"]
+texture = ExtResource("3_x0526")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_olh06"]
+texture = ExtResource("4_712t4")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vmkot"]
+texture = ExtResource("5_etdvl")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3ngkp"]
+texture = ExtResource("6_u14c7")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u2ius"]
+texture = ExtResource("7_fgvro")
+0:0/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 256
+sources/0 = SubResource("TileSetAtlasSource_arng6")
+sources/1 = SubResource("TileSetAtlasSource_rnpc0")
+sources/2 = SubResource("TileSetAtlasSource_p7mrj")
+sources/3 = SubResource("TileSetAtlasSource_olh06")
+sources/4 = SubResource("TileSetAtlasSource_vmkot")
+sources/5 = SubResource("TileSetAtlasSource_3ngkp")
+sources/6 = SubResource("TileSetAtlasSource_u2ius")
