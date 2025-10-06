@@ -39,7 +39,9 @@ static func cell_to_world(cell: String):
 
 static func apply_screen_to_layers(
 	level_data :Dictionary, screen_key :String, 
-	tile_layer :TileMapLayer, _marker_layer :TileMapLayer = null, entities_parent :Node = null) -> void:
+	tile_layer :TileMapLayer, 
+	_marker_layer :TileMapLayer = null, 
+	entities_parent :Node = null, root_node :Node2D = null) -> void:
 		if not level_data.has("screens"):
 			push_error("apply_screen_to_layers: No 'screens' key in level_data")
 			return
@@ -82,7 +84,7 @@ static func apply_screen_to_layers(
 						LevelLoader.EntityType.PLAYER_START:
 							var player = preload("res://Assets/scenes/player.tscn").instantiate()
 							player.position = world_pos
-							entities_parent.add_child(player)
+							root_node.add_child(player)
 						LevelLoader.EntityType.HEALTH_PICKUP:
 							var health = preload("res://Assets/scenes/pickups/health.tscn").instantiate()
 							health.position = world_pos
@@ -100,13 +102,6 @@ static func apply_screen_to_layers(
 							end_of_level.position = world_pos
 							entities_parent.add_child(end_of_level)
 							
-		# Marker layer is only for editor visualization (optional in runtime)
-		if _marker_layer && screen_data.has("entities"):
-			for entity in screen_data["entities"]:
-				var cell: Vector2i = str_to_vec2i(entity["cell"])
-				var type: int = int(entity["type"])
-				# use entity type enum mapping here if needed
-				_marker_layer.set_cell(cell, type, Vector2i.ZERO)
 
 # -----------------------
 # Saving (used by editor)

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://wqxcwvlplk2"]
+[gd_scene load_steps=4 format=3 uid="uid://wqxcwvlplk2"]
 
 [ext_resource type="Script" uid="uid://chl88mwxh27hw" path="res://Assets/scenes/game.gd" id="1_5xcom"]
 [ext_resource type="TileSet" uid="uid://bmru7gp42os5g" path="res://Assets/scenes/tileset.tres" id="2_0rvm4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rvm4"]
+size = Vector2(17.21, 61.3739)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_5xcom")
@@ -10,3 +13,9 @@ script = ExtResource("1_5xcom")
 tile_set = ExtResource("2_0rvm4")
 
 [node name="Entities" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(8.45358, 30.2459)
+shape = SubResource("RectangleShape2D_0rvm4")

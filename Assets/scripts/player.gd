@@ -3,10 +3,17 @@ extends CharacterBody2D
 class_name PlayerController
 
 @export var speed: float = 120.0  # movement speed in pixels per second
+@export var max_health: int = 100
+
+const TILE_SIZE = 16
+const SCREEN_TILES = Vector2i(20, 10)
+const SCREEN_SIZE = SCREEN_TILES * TILE_SIZE
 
 enum Direction { LEFT, RIGHT, UP, DOWN }
 var player_direction = Direction.RIGHT
 var space_pressed = false
+
+signal screen_transition(direction: Vector2)
 
 func _physics_process(delta: float) -> void:
 	var input_vector = Vector2.ZERO
@@ -30,4 +37,18 @@ func _physics_process(delta: float) -> void:
 	
 	input_vector = input_vector.normalized()
 	velocity = input_vector * speed
+	
+	
+			
 	move_and_slide()
+	
+	# Edge check
+	if position.x < TILE_SIZE / 2:
+		emit_signal("screen_transition", Vector2.LEFT)
+	elif position.x >= SCREEN_SIZE.x - TILE_SIZE / 2:
+		emit_signal("screen_transition", Vector2.RIGHT)
+	elif position.y < TILE_SIZE / 2:
+		emit_signal("screen_transition", Vector2.UP)
+	elif position.y >= SCREEN_SIZE.y - TILE_SIZE / 2:
+		emit_signal("screen_transition", Vector2.DOWN)
+	

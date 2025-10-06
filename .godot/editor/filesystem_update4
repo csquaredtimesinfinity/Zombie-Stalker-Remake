@@ -1,4 +1,5 @@
 res://Assets/scenes/player.tscn
+res://Assets/scenes/tileset.tres
 res://Assets/tilesets/tile_set.tres
 res://Assets/scenes/level_editor.tscn
 res://Assets/scenes/pickups/ammo.tscn
@@ -8,7 +9,8 @@ res://Assets/scenes/enemies/zombie.tscn
 res://Assets/scenes/level_end_portal.tscn
 res://Assets/scenes/game.tscn
 res://Assets/scenes/level.tscn
+res://Assets/scripts/player.gd
 res://Assets/scenes/game.gd
-res://Assets/levels/Level1.json
 res://Assets/scripts/autoload/level_loader.gd
-res://Assets/scenes/tileset.tres
+res://Assets/scenes/main_menu.tscn
+res://Assets/scripts/main_menu.gd

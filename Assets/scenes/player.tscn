@@ -100,7 +100,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dd06"]
-size = Vector2(8.875, 7.67615)
+size = Vector2(8.875, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50d87"]
 size = Vector2(7, 16)
@@ -127,11 +127,12 @@ frame = 4
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionWithWorld" type="CollisionShape2D" parent="."]
-position = Vector2(-0.4375, 4.16193)
+position = Vector2(-0.4375, 5)
 shape = SubResource("RectangleShape2D_7dd06")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_50d87")
-disabled = true
-debug_color = Color(0.703861, 0.400376, 0.733355, 0.42)
+debug_color = Color(0.907973, 0.000119749, 0.738268, 0.42)
