@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://wqxcwvlplk2"]
 
-[ext_resource type="Script" uid="uid://chl88mwxh27hw" path="res://Assets/scenes/game.gd" id="1_5xcom"]
+[ext_resource type="Script" uid="uid://chl88mwxh27hw" path="res://Assets/scripts/game.gd" id="1_5xcom"]
 [ext_resource type="TileSet" uid="uid://bmru7gp42os5g" path="res://Assets/scenes/tileset.tres" id="2_0rvm4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rvm4"]

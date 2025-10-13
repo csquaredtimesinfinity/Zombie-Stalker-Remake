@@ -1,9 +1,14 @@
 extends Control
 
+# Menu Buttons
 @onready var playgame_button :Button = $CanvasLayer/VBoxContainer/PlayGameButton
 @onready var level_edit_button :Button = $CanvasLayer/VBoxContainer/LevelEditButton
 @onready var settings_button :Button = $CanvasLayer/VBoxContainer/SettingsButton
 @onready var exit_button :Button = $CanvasLayer/VBoxContainer/ExitButton
+
+# Packed Scenes
+@onready var main_game_scene :PackedScene = preload("res://Assets/scenes/level.tscn")
+@onready var level_editor :PackedScene = preload("res://Assets/scenes/level_editor.tscn")
 
 func _ready() -> void:
 	playgame_button.pressed.connect(_on_menu_button_pressed.bind("playgame"))
@@ -14,9 +19,11 @@ func _ready() -> void:
 func _on_menu_button_pressed(button: String) -> void:
 	match button:
 		"playgame":
-			get_tree().change_scene_to_file("res://Assets/scenes/level.tscn")
+			GameManager.change_scene(main_game_scene)
+			#get_tree().change_scene_to_packed(main_game_scene)
 		"leveledit":
-			get_tree().change_scene_to_file("res://Assets/scenes/level_editor.tscn")
+			GameManager.change_scene(level_editor)
+			#get_tree().change_scene_to_packed(level_editor)
 		"settings":
 			pass
 		"Exit":

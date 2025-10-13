@@ -1,6 +1,7 @@
+ColorRect
+CanvasLayer
 Button
 VBoxContainer
-CanvasLayer
 CollisionShape2D
 Area2D
 Node2D
@@ -11,4 +12,3 @@ Label
 TextureRect
 HBoxContainer
 FileDialog
-TabBar

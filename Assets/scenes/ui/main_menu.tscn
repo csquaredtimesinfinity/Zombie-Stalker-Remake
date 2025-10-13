@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgvwk1wegb2wh"]
+
+[ext_resource type="Script" uid="uid://b6glehh6amf5a" path="res://Assets/scripts/main_menu.gd" id="1_s6x37"]
+[ext_resource type="Texture2D" uid="uid://behdgnfd5ofyt" path="res://Assets/title.png" id="2_s6x37"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s6x37")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 199.0
+color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -124.0
+offset_right = 51.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PlayGameButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "PLAY GAME"
+
+[node name="LevelEditButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "LEVEL EDITOR"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "SETTINGS"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "EXIT"
+
+[node name="Title" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(160.552, 50.0096)
+texture = ExtResource("2_s6x37")

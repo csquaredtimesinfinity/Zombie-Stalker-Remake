@@ -6,6 +6,8 @@ extends Control
 @onready var markers_layer: TileMapLayer = $MarkersLayer
 @onready var current_screen_label: Label = $%CurrentScreenCoords
 
+var level_data_file :String = "res://Assets/levels/Level1.json"
+
 var current_screen := Vector2i(0, 0)
 const SCREEN_SIZE = Vector2i(20, 10)
 const MAP_SCREENS := Vector2i(4, 6)  # 6 across, 4 down
@@ -83,7 +85,7 @@ func _ready():
 	
 	current_tile_id = tile_selector.get_item_id(2)
 	# Connect dropdown changes
-	level_data = LevelLoader.load_level("res://testlevel.json")
+	level_data = LevelLoader.load_level(level_data_file)
 	LevelLoader.apply_screen_to_layers(
 		level_data, _get_current_screen_coords(), tilemap, markers_layer)
 

@@ -3,6 +3,7 @@ extends Node2D
 @onready var tilemap :TileMapLayer = $TileMapLayer
 @onready var entities :Node2D = $Entities
 @onready var game_scene_root :Node2D = $"."
+@onready var main_menu_scene :PackedScene = preload("res://Assets/scenes/ui/main_menu.tscn")
 var current_screen: Vector2 = Vector2.ZERO
 
 const TILE_SIZE = 16
@@ -18,6 +19,7 @@ func _ready() -> void:
 	LevelLoader.apply_screen_to_layers(
 		level_data, player_start["screen"], tilemap, null, $Entities, game_scene_root)
 	
+	# Spawn player controlled character
 	var player_position = LevelLoader.cell_to_world(player_start["cell"])
 	player = preload("res://Assets/scenes/player.tscn").instantiate()
 	player.position = player_position
@@ -27,6 +29,14 @@ func _ready() -> void:
 	# Connect player signal
 	player.screen_transition.connect(_on_player_screen_transition)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("quit"):
+		print("quit")
+		GameManager.change_scene(preload("res://Assets/scenes/ui/main_menu.tscn"))
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("quit"):
+		get_tree().change_scene_to_packed(main_menu_scene)
 
 func _on_player_screen_transition(direction: Vector2):
 	var new_screen = current_screen + direction
