@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://f8702suistek"]
+[gd_scene load_steps=14 format=3 uid="uid://f8702suistek"]
 
 [ext_resource type="Script" uid="uid://biyvhiq4bwjbn" path="res://Assets/scripts/player.gd" id="1_7dd06"]
 [ext_resource type="Texture2D" uid="uid://ck6v547n23qk6" path="res://Assets/sprites/player_anim.png" id="2_7dd06"]
@@ -105,8 +105,12 @@ size = Vector2(8.875, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50d87"]
 size = Vector2(7, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wyb7m"]
+size = Vector2(6, 7)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_7dd06")
+speed = 80.0
 
 [node name="PlayerAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player_controller", "animation_player", "sprite")]
 script = ExtResource("2_38rej")
@@ -131,8 +135,18 @@ position = Vector2(-0.4375, 5)
 shape = SubResource("RectangleShape2D_7dd06")
 
 [node name="HitBox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_50d87")
 debug_color = Color(0.907973, 0.000119749, 0.738268, 0.42)
+
+[node name="DetectPickups" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPickups"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_wyb7m")
+debug_color = Color(0.699859, 0.360334, 0.850746, 0.42)
+
+[connection signal="area_entered" from="DetectPickups" to="." method="_on_detect_pickups_area_entered"]

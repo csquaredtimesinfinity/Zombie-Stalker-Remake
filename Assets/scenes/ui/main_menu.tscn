@@ -28,33 +28,39 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -51.0
-offset_top = -124.0
+offset_top = -133.0
 offset_right = 51.0
-offset_bottom = -12.0
+offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="PlayGameButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 12
 text = "PLAY GAME"
 
 [node name="LevelEditButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 12
 text = "LEVEL EDITOR"
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 12
 text = "SETTINGS"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 12
 text = "EXIT"
 
 [node name="Title" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(160.552, 50.0096)
+position = Vector2(161.779, 41.5978)
+scale = Vector2(0.683461, 0.642497)
 texture = ExtResource("2_s6x37")
+metadata/_edit_group_ = true

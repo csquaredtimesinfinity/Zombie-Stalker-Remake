@@ -3,7 +3,8 @@ extends Node2D
 @onready var tilemap :TileMapLayer = $TileMapLayer
 @onready var entities :Node2D = $Entities
 @onready var game_scene_root :Node2D = $"."
-@onready var main_menu_scene :PackedScene = preload("res://Assets/scenes/ui/main_menu.tscn")
+@onready var hud :CanvasLayer = %HUD
+
 var current_screen: Vector2 = Vector2.ZERO
 
 const TILE_SIZE = 16
@@ -12,6 +13,7 @@ const SCREEN_SIZE = SCREEN_TILES * TILE_SIZE
 
 var level_data
 var player
+
 
 func _ready() -> void:
 	level_data = LevelLoader.load_level("res://Assets/levels/Level1.json")
@@ -28,15 +30,12 @@ func _ready() -> void:
 
 	# Connect player signal
 	player.screen_transition.connect(_on_player_screen_transition)
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("quit"):
-		print("quit")
-		GameManager.change_scene(preload("res://Assets/scenes/ui/main_menu.tscn"))
+	
+	
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("quit"):
-		get_tree().change_scene_to_packed(main_menu_scene)
+		GameManager.change_scene_to_main_menu()
 
 func _on_player_screen_transition(direction: Vector2):
 	var new_screen = current_screen + direction

@@ -91,7 +91,8 @@ func _ready():
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("quit"):
-		get_tree().quit()
+		GameManager.change_scene_to_main_menu()
+		
 	if event is InputEventMouseButton:
 		# Restrict painting to the tile area (exclude HUD)
 		if event.position.y < SCREEN_SIZE.y * 16 && event.position.x < SCREEN_SIZE.x * 16:
@@ -266,4 +267,4 @@ func _on_fill_screen_button_pressed() -> void:
 			tilemap.set_cell(Vector2i(x,y), current_tile_id, Vector2i(0,0))
 				
 func _on_save_level_pressed() -> void:
-	LevelLoader.save_level("res://testlevel.json", level_data)
+	LevelLoader.save_level("res://Assets/levels/Level1.json", level_data)

@@ -4,6 +4,21 @@ class_name PlayerController
 
 @export var speed: float = 120.0  # movement speed in pixels per second
 @export var max_health: int = 100
+@export var max_ammo: int = 300
+var health = 10 # max_health
+var ammo = 50
+var keys = 0
+
+@export var bullet_scene: PackedScene = preload("res://Assets/scenes/bullet.tscn")
+@export var fire_rate: float = 0.25
+var shoot_cooldown: float = 0.25
+var muzzle_offsets = {
+	Direction.UP: Vector2(0, -8),
+	Direction.DOWN: Vector2(0, 8),
+	Direction.LEFT: Vector2(-8, -2),
+	Direction.RIGHT: Vector2(8, -2)
+}
+
 
 const TILE_SIZE = 16
 const SCREEN_TILES = Vector2i(20, 10)
@@ -12,16 +27,32 @@ const SCREEN_SIZE = SCREEN_TILES * TILE_SIZE
 enum Direction { LEFT, RIGHT, UP, DOWN }
 var player_direction = Direction.RIGHT
 var space_pressed = false
+var can_shoot: bool = true
 
+signal health_changed(value)
+signal ammo_changed(value)
+signal keys_changed(value)
 signal screen_transition(direction: Vector2)
 
+
 func _physics_process(delta: float) -> void:
+	if Input.is_action_pressed("fire"):
+		shoot()
+		
+	handle_input()
+	
+	# Edge check
+	if position.x < TILE_SIZE / 2:
+		emit_signal("screen_transition", Vector2.LEFT)
+	elif position.x >= SCREEN_SIZE.x - TILE_SIZE / 2:
+		emit_signal("screen_transition", Vector2.RIGHT)
+	elif position.y < TILE_SIZE / 2:
+		emit_signal("screen_transition", Vector2.UP)
+	elif position.y >= SCREEN_SIZE.y - TILE_SIZE / 2:
+		emit_signal("screen_transition", Vector2.DOWN)
+
+func handle_input() -> void:
 	var input_vector = Vector2.ZERO
-	if Input.is_key_pressed(KEY_SPACE) && !space_pressed:
-		AudioManager.play("res://Assets/sound_effects/balloon_pop.wav")
-		space_pressed = true
-	else:
-		space_pressed = false
 	if Input.is_action_pressed("move_up"):
 		input_vector.y -= 1
 		player_direction = Direction.UP
@@ -37,18 +68,51 @@ func _physics_process(delta: float) -> void:
 	
 	input_vector = input_vector.normalized()
 	velocity = input_vector * speed
-	
-	
 			
 	move_and_slide()
+
+func shoot() -> void:
+	if not can_shoot:
+		return
 	
-	# Edge check
-	if position.x < TILE_SIZE / 2:
-		emit_signal("screen_transition", Vector2.LEFT)
-	elif position.x >= SCREEN_SIZE.x - TILE_SIZE / 2:
-		emit_signal("screen_transition", Vector2.RIGHT)
-	elif position.y < TILE_SIZE / 2:
-		emit_signal("screen_transition", Vector2.UP)
-	elif position.y >= SCREEN_SIZE.y - TILE_SIZE / 2:
-		emit_signal("screen_transition", Vector2.DOWN)
+	ammo -= 1
+	ammo_changed.emit(ammo)
+		
+	can_shoot = false
+	await get_tree().create_timer(shoot_cooldown).timeout
+	can_shoot = true
+
+	var bullet = bullet_scene.instantiate()
+	get_tree().current_scene.add_child(bullet)
+	var spawn_offset = muzzle_offsets.get(player_direction, Vector2.ZERO)
+	bullet.position = position + spawn_offset
+	AudioManager.play("res://Assets/sound_effects/balloon_pop.wav")
 	
+	match player_direction:
+		Direction.UP:
+			bullet.direction = Vector2.UP
+		Direction.DOWN:
+			bullet.direction = Vector2.DOWN
+		Direction.LEFT:
+			bullet.direction = Vector2.LEFT
+		Direction.RIGHT:
+			bullet.direction = Vector2.RIGHT
+		
+func add_health(amount: int) -> void:
+	health = clamp(health + amount, 0, max_health)
+	emit_signal("health_changed", health)
+
+func add_ammo(amount: int) -> void:
+	ammo = clamp(ammo + amount, 0, max_ammo)
+	emit_signal("ammo_changed", ammo)
+	
+func add_key() -> void:
+	keys += 1
+	emit_signal("keys_changed", keys)
+	
+func _on_detect_pickups_area_entered(area: Area2D) -> void:
+	if area.is_in_group("pickups"):
+		if area.has_method("apply_pickup"):
+			area.apply_pickup(self)
+			
+		area.queue_free()

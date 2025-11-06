@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3inxql4qwd84"]
+
+[ext_resource type="Script" uid="uid://dxbjvn0ynm8ao" path="res://Assets/scripts/hud.gd" id="1_5ipxi"]
+[ext_resource type="Script" uid="uid://c6og1b34wi3et" path="res://Assets/scripts/hud_control.gd" id="2_lnfkq"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_5ipxi")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 40.0
+script = ExtResource("2_lnfkq")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18359044, 0.18359044, 0.18359044, 1)
+
+[node name="HealthLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 88.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "Health: 100"
+
+[node name="AmmoLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Ammo: 300"
+
+[node name="KeyLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "Key(s): 1"
