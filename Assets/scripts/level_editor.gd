@@ -182,7 +182,8 @@ func _place_entity(mouse_pos: Vector2i) -> void:
 					"cell": str(cell),
 					"screen": screen_coords
 				}
-
+				entities.append(new_entity)
+				
 			_: # Default: normal entity
 				entities.append(new_entity)
 

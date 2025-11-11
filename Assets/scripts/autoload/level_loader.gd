@@ -87,14 +87,17 @@ static func apply_screen_to_layers(
 							root_node.add_child(player)
 						LevelLoader.EntityType.HEALTH_PICKUP:
 							var health = preload("res://Assets/scenes/pickups/health.tscn").instantiate()
+							health.pickup_id = entity["id"]
 							health.position = world_pos
 							entities_parent.add_child(health)
 						LevelLoader.EntityType.AMMO_PICKUP:
 							var ammo = preload("res://Assets/scenes/pickups/ammo.tscn").instantiate()
+							ammo.pickup_id = entity["id"]
 							ammo.position = world_pos
 							entities_parent.add_child(ammo)
 						LevelLoader.EntityType.KEY_PICKUP:
 							var key = preload("res://Assets/scenes/pickups/key.tscn").instantiate()
+							key.pickup_id = entity["id"]
 							key.position = world_pos
 							entities_parent.add_child(key)
 						LevelLoader.EntityType.END_OF_LEVEL:
@@ -111,10 +114,27 @@ static func apply_screen_to_layers(
 var current_level_data: Dictionary = {}
 
 func save_level(path: String, level_data: Dictionary) -> void:
+	# Inject unique IDs into entities before saving
+	for screen_key in level_data.get("screens", {}).keys():
+		var screen = level_data["screens"][screen_key]
+		if not screen.has("entities"):
+			continue
+		
+		for entity in screen["entities"]:
+			#if not entity.has("id") or entity["id"] == "":
+			entity["id"] = UUID4.uuid4()
+				#entity["id"] = _generate_entity_id(screen_key, entity)
+				
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify(level_data, "\t")) # with tabs
 		file.close()
+
+func _generate_entity_id(screen_key: String, entity: Dictionary) -> String:
+	var cell_str = entity.get("cell", "unknown")
+	var type_str = str(entity.get("type", "unknown"))
+	var timestamp = str(Time.get_ticks_msec()) # ensures uniqueness
+	return "%s_%s_%s_%s" % [screen_key, type_str, cell_str, timestamp]
 
 func _load_file(file_path: String):
 	var file = FileAccess.open(file_path, FileAccess.READ)

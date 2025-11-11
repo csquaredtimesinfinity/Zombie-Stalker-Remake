@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://qdsqyuhkot4q"]
+[gd_scene load_steps=21 format=3 uid="uid://qdsqyuhkot4q"]
 
 [ext_resource type="Script" uid="uid://d4a1n3u43ew2w" path="res://Assets/scripts/level_editor.gd" id="1_4mper"]
 [ext_resource type="TileSet" uid="uid://bmru7gp42os5g" path="res://Assets/scenes/tileset.tres" id="2_4mper"]
@@ -65,11 +65,9 @@ size_flags_horizontal = 8
 script = ExtResource("1_4mper")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAEAAQABAAAAAAAAAA=")
 tile_set = ExtResource("2_4mper")
 
 [node name="MarkersLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAABAAMAAgAAAAAAAAAEAAQAAQAAAAAAAAAGAAcABAAAAAAAAAACAAUAAwAAAAAAAAAHAAQAAAAAAAAAAAAJAAQAAwAAAAAAAAAIAAYAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_c4u8i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -93,7 +91,7 @@ uppercase = true
 
 [node name="TileSelector" type="OptionButton" parent="CanvasLayer/ColorRect/TileSelectorLabel"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
 offset_left = -10.6638
 offset_top = 13.7356
 offset_right = 46.3362
@@ -140,7 +138,7 @@ uppercase = true
 
 [node name="EntitySelector" type="OptionButton" parent="CanvasLayer/ColorRect/EntitySelectorLabel"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
 offset_left = 8.14405
 offset_top = 13.7407
 offset_right = 65.1441
@@ -243,6 +241,7 @@ offset_left = 177.808
 offset_top = 174.596
 offset_right = 212.808
 offset_bottom = 198.596
+focus_mode = 0
 theme_override_font_sizes/font_size = 11
 text = "SAVE"
 

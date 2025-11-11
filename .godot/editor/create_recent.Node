@@ -1,7 +1,8 @@
-RayCast2D
 ColorRect
-Sprite2D
 CollisionShape2D
+CharacterBody2D
+RayCast2D
+Sprite2D
 Area2D
 Label
 Control
@@ -11,5 +12,3 @@ Camera2D
 SubViewport
 CanvasModulate
 RichTextLabel
-Button
-VBoxContainer

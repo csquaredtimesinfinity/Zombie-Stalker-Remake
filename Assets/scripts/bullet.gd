@@ -1,21 +1,16 @@
-extends Area2D
+extends CharacterBody2D
 
-@export var speed: float = 40.0
+@export var speed: float = 400.0
 var direction: Vector2
 
 func _ready() -> void:
-	connect("area_entered", Callable(self, "_on_area_entered"))
-	connect("body_entered", Callable(self, "_on_body_entered"))
+	velocity = direction * speed
+	print(velocity)
 	
 func _physics_process(delta):
-	position += direction * speed * delta
-	if $RayCast2D.is_colliding():
-		queue_free()
+	var collision = move_and_collide(velocity * delta)
 	
-func _on_body_entered(body: Node) -> void:
-	if body.is_in_group("enemies"):
-		body.take_damage(1)
-	queue_free()
-
-func _on_area_entered(area):
-	queue_free() # destroy bullet
+	if collision || \
+			position.x < 0 || position.x > 320 || \
+			position.y < 0 || position.y > 160:
+		queue_free()  # destroy bullet on hit

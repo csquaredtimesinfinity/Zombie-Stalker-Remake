@@ -43,6 +43,9 @@ func _on_player_screen_transition(direction: Vector2):
 
 	if not level_data["screens"].has(screen_key):
 		return # hit boundary with no screen, ignore
+		
+	# Remove all transient entities at once
+	get_tree().call_group("temporary", "queue_free")
 
 	current_screen = new_screen
 	

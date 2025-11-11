@@ -14,7 +14,6 @@ tile_set = ExtResource("1_pfbgl")
 
 [node name="Player" parent="." instance=ExtResource("2_pfbgl")]
 position = Vector2(68, 114)
-speed = 80.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -30,32 +30,32 @@ anchor_bottom = 1.0
 offset_left = -51.0
 offset_top = -133.0
 offset_right = 51.0
-offset_bottom = -21.0
+offset_bottom = -33.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="PlayGameButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 10
 text = "PLAY GAME"
 
 [node name="LevelEditButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 10
 text = "LEVEL EDITOR"
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 10
 text = "SETTINGS"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 10
 text = "EXIT"
 
 [node name="Title" type="Sprite2D" parent="."]

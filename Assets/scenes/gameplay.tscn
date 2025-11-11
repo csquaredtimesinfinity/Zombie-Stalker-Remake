@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlsaga8slwfli"]
+[gd_scene load_steps=7 format=3 uid="uid://dlsaga8slwfli"]
 
 [ext_resource type="PackedScene" uid="uid://wqxcwvlplk2" path="res://Assets/scenes/level.tscn" id="1_6nqvx"]
-[ext_resource type="Script" uid="uid://iy2tnxdb6j5c" path="res://Assets/scripts/gameplay.gd" id="1_ssayu"]
+[ext_resource type="Script" uid="uid://iy2tnxdb6j5c" path="res://Assets/scripts/main.gd" id="1_ssayu"]
 [ext_resource type="Shader" uid="uid://bwb3ivg58dkut" path="res://Assets/shader/crt_effect.gdshader" id="2_bbet6"]
 [ext_resource type="PackedScene" uid="uid://d3inxql4qwd84" path="res://Assets/scenes/ui/hud.tscn" id="3_5g28f"]
 
@@ -13,11 +13,6 @@ shader_parameter/scanline_density = 2000.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bbet6"]
 viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5g28f"]
-shader = ExtResource("2_bbet6")
-shader_parameter/scanline_intensity = 0.15
-shader_parameter/scanline_density = 800.0
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_ssayu")
@@ -32,20 +27,13 @@ render_target_update_mode = 4
 
 [node name="Level" parent="SubViewport" instance=ExtResource("1_6nqvx")]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Screen" type="TextureRect" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_bbet6")
 offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("ViewportTexture_bbet6")
 stretch_mode = 5
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_5g28f")
-offset_right = 319.9628
-offset_bottom = 199.83957
-color = Color(1, 1, 1, 0.14901961)
 
 [node name="HUD" parent="." instance=ExtResource("3_5g28f")]
 unique_name_in_owner = true

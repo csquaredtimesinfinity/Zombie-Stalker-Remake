@@ -100,7 +100,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dd06"]
-size = Vector2(8.875, 6)
+size = Vector2(7.5, 6.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50d87"]
 size = Vector2(7, 16)
@@ -109,6 +109,7 @@ size = Vector2(7, 16)
 size = Vector2(6, 7)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 384
 script = ExtResource("1_7dd06")
 speed = 80.0
 
@@ -131,7 +132,7 @@ frame = 4
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionWithWorld" type="CollisionShape2D" parent="."]
-position = Vector2(-0.4375, 5)
+position = Vector2(-0.5, 4.375)
 shape = SubResource("RectangleShape2D_7dd06")
 
 [node name="HitBox" type="Area2D" parent="."]

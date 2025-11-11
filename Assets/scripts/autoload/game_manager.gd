@@ -8,13 +8,21 @@ extends Node
 @onready var level_editor_scene: PackedScene = preload("res://Assets/scenes/level_editor.tscn")
 @onready var settings_scene: PackedScene = preload("res://Assets/scenes/ui/settings.tscn")
 
+var collected_pickups: Dictionary = {}
+
 func _ready():
 	var test_scene = preload(
 	"res://Assets/scenes/pickups/health.tscn").instantiate()
-	#add_child(test_scene)
-	#add_child(transition_layer)
-	#get_tree().get_root().add_child(test_scene)
 	transition_layer.layer = 100  # ensure it's always on top
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_fullscreen"):
+		var current_mode = DisplayServer.window_get_mode()
+		if current_mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
 
 func change_scene_to_main_menu() -> void:
 	change_scene(main_menu_scene)
@@ -35,3 +43,9 @@ func change_scene(scene: PackedScene):
 	else:
 		push_error("Invalid PackedScene passed to change_scene")
 	# TODO: add transitions
+
+func is_pickup_collected(id: String) -> bool:
+	return collected_pickups.has(id)
+	
+func mark_pickup_collected(id: String) -> void:
+	collected_pickups[id] = true

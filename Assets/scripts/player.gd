@@ -19,7 +19,6 @@ var muzzle_offsets = {
 	Direction.RIGHT: Vector2(8, -2)
 }
 
-
 const TILE_SIZE = 16
 const SCREEN_TILES = Vector2i(20, 10)
 const SCREEN_SIZE = SCREEN_TILES * TILE_SIZE
@@ -33,7 +32,6 @@ signal health_changed(value)
 signal ammo_changed(value)
 signal keys_changed(value)
 signal screen_transition(direction: Vector2)
-
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("fire"):
@@ -50,6 +48,9 @@ func _physics_process(delta: float) -> void:
 		emit_signal("screen_transition", Vector2.UP)
 	elif position.y >= SCREEN_SIZE.y - TILE_SIZE / 2:
 		emit_signal("screen_transition", Vector2.DOWN)
+		
+	position.x = clamp(position.x, TILE_SIZE / 2, SCREEN_SIZE.x - TILE_SIZE / 2)
+	position.y = clamp(position.y, TILE_SIZE / 2, SCREEN_SIZE.y - TILE_SIZE / 2)
 
 func handle_input() -> void:
 	var input_vector = Vector2.ZERO
@@ -72,7 +73,7 @@ func handle_input() -> void:
 	move_and_slide()
 
 func shoot() -> void:
-	if not can_shoot:
+	if not can_shoot || ammo <= 0:
 		return
 	
 	ammo -= 1
@@ -81,12 +82,14 @@ func shoot() -> void:
 	can_shoot = false
 	await get_tree().create_timer(shoot_cooldown).timeout
 	can_shoot = true
-
+	
+	# Spawn bullet
 	var bullet = bullet_scene.instantiate()
-	get_tree().current_scene.add_child(bullet)
 	var spawn_offset = muzzle_offsets.get(player_direction, Vector2.ZERO)
 	bullet.position = position + spawn_offset
-	AudioManager.play("res://Assets/sound_effects/balloon_pop.wav")
+	
+	# Play gun fire sound effect
+	SoundFX.play_gun_fire_sound()
 	
 	match player_direction:
 		Direction.UP:
@@ -97,6 +100,9 @@ func shoot() -> void:
 			bullet.direction = Vector2.LEFT
 		Direction.RIGHT:
 			bullet.direction = Vector2.RIGHT
+			
+	# Add bullet to the scene by adding it to the parent node of the player
+	get_parent().add_child(bullet)
 		
 func add_health(amount: int) -> void:
 	health = clamp(health + amount, 0, max_health)
@@ -111,8 +117,10 @@ func add_key() -> void:
 	emit_signal("keys_changed", keys)
 	
 func _on_detect_pickups_area_entered(area: Area2D) -> void:
+	var should_pickup = false
 	if area.is_in_group("pickups"):
 		if area.has_method("apply_pickup"):
-			area.apply_pickup(self)
-			
-		area.queue_free()
+			should_pickup = area.apply_pickup(self)
+			# remove pickup if player was able to pickup item
+			if should_pickup:
+				area.queue_free()

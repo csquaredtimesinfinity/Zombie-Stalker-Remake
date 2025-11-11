@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var hud = $HUD
 @onready var player = $SubViewport/Level/Player
+@onready var screen: TextureRect = $Screen
 
 func _ready() -> void:
 	await get_tree().process_frame
