@@ -5,7 +5,7 @@ extends Node2D
 @export var sprite : Sprite2D
 
 func _process(delta: float) -> void:
-	if abs(player_controller.velocity.x) > 0 || abs(player_controller.velocity.y) > 0:
+	if player_controller.player_moving:
 		if player_controller.player_direction == player_controller.Direction.LEFT:
 			animation_player.play("move_left")
 		if player_controller.player_direction == player_controller.Direction.RIGHT:

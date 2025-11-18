@@ -25,6 +25,7 @@ const SCREEN_SIZE = SCREEN_TILES * TILE_SIZE
 
 enum Direction { LEFT, RIGHT, UP, DOWN }
 var player_direction = Direction.RIGHT
+var player_moving = false
 var space_pressed = false
 var can_shoot: bool = true
 
@@ -54,18 +55,23 @@ func _physics_process(delta: float) -> void:
 
 func handle_input() -> void:
 	var input_vector = Vector2.ZERO
+	player_moving = false
 	if Input.is_action_pressed("move_up"):
 		input_vector.y -= 1
 		player_direction = Direction.UP
+		player_moving = true
 	if Input.is_action_pressed("move_down"):
 		input_vector.y += 1
 		player_direction = Direction.DOWN
+		player_moving = true
 	if Input.is_action_pressed("move_left"):
 		input_vector.x -= 1
 		player_direction = Direction.LEFT
+		player_moving = true
 	if Input.is_action_pressed("move_right"):
 		input_vector.x += 1
 		player_direction = Direction.RIGHT
+		player_moving = true
 	
 	input_vector = input_vector.normalized()
 	velocity = input_vector * speed

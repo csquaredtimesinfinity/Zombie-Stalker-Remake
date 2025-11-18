@@ -5,15 +5,13 @@ extends Node2D
 @onready var game_scene_root :Node2D = $"."
 @onready var hud :CanvasLayer = %HUD
 
-var current_screen: Vector2 = Vector2.ZERO
-
 const TILE_SIZE = 16
 const SCREEN_TILES = Vector2i(20, 10)
 const SCREEN_SIZE = SCREEN_TILES * TILE_SIZE
 
+var current_screen: Vector2 = Vector2.ZERO
 var level_data
 var player
-
 
 func _ready() -> void:
 	level_data = LevelLoader.load_level("res://Assets/levels/Level1.json")
@@ -27,11 +25,12 @@ func _ready() -> void:
 	player.position = player_position
 	add_child(player)
 	level_data = LevelLoader.load_level("res://Assets/levels/Level1.json")
+	
+	# Initialize starting screen
+	current_screen = LevelLoader.str_to_vec2i(player_start["screen"])
 
 	# Connect player signal
 	player.screen_transition.connect(_on_player_screen_transition)
-	
-	
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("quit"):

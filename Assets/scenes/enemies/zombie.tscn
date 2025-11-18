@@ -1,17 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://bblckldggbqt5"]
+[gd_scene load_steps=5 format=3 uid="uid://bblckldggbqt5"]
 
+[ext_resource type="Script" uid="uid://bpmu2ko0nyfp5" path="res://Assets/scripts/zombie.gd" id="1_rbjo7"]
 [ext_resource type="Texture2D" uid="uid://jgttjqs0ga6y" path="res://Assets/sprites/zombie.png" id="1_wjjlv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbjo7"]
-size = Vector2(9.35805, 19.3471)
+size = Vector2(8.93425, 16.416681)
 
-[node name="Zombie (PLACE HOLDER__  NEED TO IMPLEMENT ZOMBIE AI BEHAVIOR)" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_wjjlv"]
+radius = 85.399574
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Zombie" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 391
+script = ExtResource("1_rbjo7")
+
+[node name="ZombieAnimator" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ZombieAnimator"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ZombieAnimator"]
 texture = ExtResource("1_wjjlv")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.439507, -0.326441)
+position = Vector2(-0.43139648, -0.09155768)
 shape = SubResource("RectangleShape2D_rbjo7")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wjjlv")
+
+[node name="Timer (for attacks)" type="Timer" parent="."]

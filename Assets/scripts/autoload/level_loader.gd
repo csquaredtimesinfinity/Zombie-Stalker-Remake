@@ -3,7 +3,7 @@ extends Node
 const TILE_SIZE = 16
 
 enum EntityType {
-	EMPTY = -1,
+	EMPTY = 99,
 	# Pickups
 	AMMO_PICKUP = 0,
 	HEALTH_PICKUP = 1,
@@ -81,25 +81,42 @@ static func apply_screen_to_layers(
 					var half_tile = tile_layer.tile_set.tile_size / 2
 					world_pos += half_tile
 					match type:
-						LevelLoader.EntityType.PLAYER_START:
-							var player = preload("res://Assets/scenes/player.tscn").instantiate()
-							player.position = world_pos
-							root_node.add_child(player)
+						
+						# PLAYER START
+						#LevelLoader.EntityType.PLAYER_START:
+							#var player = preload("res://Assets/scenes/player.tscn").instantiate()
+							#player.position = world_pos
+							#root_node.add_child(player)
+							
+						# PICKUPS
+						# HEALTH PICKUP ------------------------
 						LevelLoader.EntityType.HEALTH_PICKUP:
 							var health = preload("res://Assets/scenes/pickups/health.tscn").instantiate()
 							health.pickup_id = entity["id"]
 							health.position = world_pos
 							entities_parent.add_child(health)
+						# ---------------------------------------
+							
+						# AMMO PICKUP
 						LevelLoader.EntityType.AMMO_PICKUP:
 							var ammo = preload("res://Assets/scenes/pickups/ammo.tscn").instantiate()
 							ammo.pickup_id = entity["id"]
 							ammo.position = world_pos
 							entities_parent.add_child(ammo)
+							
+						# KEY PICKUP
 						LevelLoader.EntityType.KEY_PICKUP:
 							var key = preload("res://Assets/scenes/pickups/key.tscn").instantiate()
 							key.pickup_id = entity["id"]
 							key.position = world_pos
 							entities_parent.add_child(key)
+							
+						LevelLoader.EntityType.ENEMY:
+							var zombie = preload("res://Assets/scenes/enemies/zombie.tscn").instantiate()
+							zombie.position = world_pos
+							root_node.add_child(zombie)
+						
+						# END OF LEVEL PORTAL
 						LevelLoader.EntityType.END_OF_LEVEL:
 							var end_of_level = preload("res://Assets/scenes/level_end_portal.tscn").instantiate()
 							end_of_level.position = world_pos

@@ -108,7 +108,7 @@ size = Vector2(7, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wyb7m"]
 size = Vector2(6, 7)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 384
 script = ExtResource("1_7dd06")
 speed = 80.0

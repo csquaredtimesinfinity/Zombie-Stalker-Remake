@@ -8,8 +8,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bbet6"]
 resource_local_to_scene = true
 shader = ExtResource("2_bbet6")
-shader_parameter/scanline_intensity = 0.246000011685
-shader_parameter/scanline_density = 2000.0
+shader_parameter/scanline_intensity = 0.2310000109725
+shader_parameter/scanline_density = 240.00000665
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bbet6"]
 viewport_path = NodePath("SubViewport")

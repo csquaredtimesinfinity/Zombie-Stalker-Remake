@@ -7,7 +7,7 @@ radius = 1.3303614
 
 [node name="Bullet" type="CharacterBody2D" groups=["projectiles"]]
 collision_layer = 4
-collision_mask = 256
+collision_mask = 258
 motion_mode = 1
 script = ExtResource("1_vcxbl")
 
