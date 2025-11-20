@@ -1,0 +1,10 @@
+res://Assets/levels/Level1.json
+res://Assets/scenes/gameplay.tscn
+res://Assets/scenes/tileset.tres
+res://Assets/shader/crt_effect.gdshader
+res://Assets/tilesets/tile_set.tres
+res://Assets/scripts/game.gd
+res://Assets/scenes/player.tscn
+res://Assets/scripts/player.gd
+res://Assets/scripts/player_animator.gd
+res://Assets/scripts/level_editor.gd

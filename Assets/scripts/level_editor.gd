@@ -176,21 +176,6 @@ func _place_entity(mouse_pos: Vector2i) -> void:
 		match current_entity_type:
 			LevelLoader.EntityType.PLAYER_START:
 				set_player_start(screen_coords, cell)
-<<<<<<< HEAD
-=======
-				## Ensure uniqueness: remove old player start (if it was on this screen)
-				#if level_data.has("player_start") and level_data["player_start"]["screen"] == screen_coords:
-					#var old_cell = LevelLoader.str_to_vec2i(level_data["player_start"]["cell"])
-					#markers_layer.set_cell(old_cell)
-#
-				## Save new player start info
-				#level_data["starting_screen"] = screen_coords
-				#level_data["player_start"] = {
-					#"cell": str(cell),
-					#"screen": screen_coords
-				#}
-				entities.append(new_entity)
->>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c
 				
 			_: # Default: normal entity
 				entities.append(new_entity)
@@ -212,11 +197,8 @@ func set_player_start(screen_key: String, cell: Vector2i) -> void:
 		# 2. Remove old entity from its screen
 		if level_data["screens"].has(old_screen):
 			var entities: Array = level_data["screens"][old_screen].get("entities", [])
-<<<<<<< HEAD
-=======
 			
 			# remove any old player_start entity
->>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c
 			for i in range(entities.size() - 1, -1, -1):
 				if int(entities[i]["type"]) == LevelLoader.EntityType.PLAYER_START:
 					entities.remove_at(i)

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 [gd_scene load_steps=12 format=3 uid="uid://bblckldggbqt5"]
-=======
-[gd_scene load_steps=5 format=3 uid="uid://bblckldggbqt5"]
->>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c
 
 [ext_resource type="Script" uid="uid://bpmu2ko0nyfp5" path="res://Assets/scripts/zombie.gd" id="1_rbjo7"]
 [ext_resource type="Texture2D" uid="uid://jgttjqs0ga6y" path="res://Assets/sprites/zombie.png" id="1_wjjlv"]
@@ -98,7 +94,7 @@ size = Vector2(8.93425, 16.416681)
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjjlv"]
 radius = 85.399574
 
-<<<<<<< HEAD
+
 [node name="Zombie" type="CharacterBody2D" groups=["Enemies"]]
 y_sort_enabled = true
 collision_layer = 2
@@ -114,16 +110,6 @@ animation_player = NodePath("AnimationPlayer")
 libraries = {
 &"": SubResource("AnimationLibrary_5giut")
 }
-=======
-[node name="Zombie" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 391
-script = ExtResource("1_rbjo7")
-
-[node name="ZombieAnimator" type="Node2D" parent="."]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ZombieAnimator"]
->>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c
 
 [node name="Sprite2D" type="Sprite2D" parent="ZombieAnimator"]
 texture = ExtResource("1_wjjlv")

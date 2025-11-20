@@ -15,10 +15,7 @@ var player: Node2D = null
 
 enum Direction { LEFT, RIGHT, UP, DOWN }
 var zombie_direction = Direction.RIGHT
-<<<<<<< HEAD
 var zombie_moving = false
-=======
->>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c
 
 func _ready() -> void:
 	health = max_health
@@ -29,7 +26,6 @@ func _ready() -> void:
 	
 	
 func _physics_process(delta: float) -> void:
-<<<<<<< HEAD
 	zombie_moving = false
 	if player:
 		var direction = (player.global_position - global_position).normalized()
@@ -44,26 +40,6 @@ func _physics_process(delta: float) -> void:
 		elif direction.y > 0  && abs(direction.x) < abs(direction.y):
 			_set_zombie_moving(Direction.DOWN)
 		
-=======
-	
-	if player:
-		var direction = (player.global_position - global_position).normalized()
-		velocity = direction * move_speed
-		if direction.y < 0:
-			zombie_direction = Direction.UP
-		elif direction.y > 0:
-			zombie_direction = Direction.DOWN
-		elif direction.x < 0:
-			zombie_direction = Direction.LEFT
-		elif direction.x > 0:
-			zombie_direction = Direction.RIGHT
->>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c
-	else:
-		velocity = Vector2.ZERO
-	
-	move_and_slide()
-	
-<<<<<<< HEAD
 func _set_zombie_moving(direction) -> void:
 	zombie_direction = direction
 	zombie_moving = true
@@ -74,9 +50,7 @@ func spawn_blood(global_pos: Vector2) -> void:
 	blood.global_position = global_pos
 	get_tree().current_scene.add_child(blood)
 	blood.emitting = true
-	
-=======
->>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c
+
 func _on_body_entered(body: Node):
 	if body.is_in_group("player"):
 		player = body
