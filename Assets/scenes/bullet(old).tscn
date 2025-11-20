@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bduwf7mqsftxq"]
 
-[ext_resource type="Script" uid="uid://cytpsogxmfeqm" path="res://Assets/scripts/bullet.gd" id="1_vcxbl"]
+[ext_resource type="Script" uid="uid://b8t2sj8owfsj6" path="res://Assets/scripts/bullet(old).gd" id="1_b2oxt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uhfex"]
 radius = 1.2081648
@@ -8,7 +8,7 @@ radius = 1.2081648
 [node name="Bullet" type="Area2D"]
 collision_layer = 4
 collision_mask = 256
-script = ExtResource("1_vcxbl")
+script = ExtResource("1_b2oxt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uhfex")
@@ -22,6 +22,3 @@ offset_top = -1.5
 offset_right = 1.5
 offset_bottom = 1.5
 color = Color(0.6155012, 0.40256834, 0.24294794, 1)
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-collision_mask = 256

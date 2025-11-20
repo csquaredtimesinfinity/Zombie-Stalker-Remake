@@ -10,9 +10,8 @@ extends Node
 
 var collected_pickups: Dictionary = {}
 
+
 func _ready():
-	var test_scene = preload(
-	"res://Assets/scenes/pickups/health.tscn").instantiate()
 	transition_layer.layer = 100  # ensure it's always on top
 	
 func _input(event: InputEvent) -> void:
@@ -49,3 +48,6 @@ func is_pickup_collected(id: String) -> bool:
 	
 func mark_pickup_collected(id: String) -> void:
 	collected_pickups[id] = true
+	
+func clear_collected_pickups() -> void:
+	collected_pickups.clear()

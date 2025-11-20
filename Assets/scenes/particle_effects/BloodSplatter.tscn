@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfwv4pxbghmf7"]
+
+[sub_resource type="Gradient" id="Gradient_f40xk"]
+colors = PackedColorArray(1, 0, 0, 1, 0.46666667, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nuqey"]
+gradient = SubResource("Gradient_f40xk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ij4l2"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 1)
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 500, 0)
+scale_over_velocity_min = 0.14999999
+scale_over_velocity_max = 0.35
+color = Color(0.6666667, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_nuqey")
+
+[node name="BloodSplatter" type="GPUParticles2D"]
+emitting = false
+amount = 30
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+randomness = 0.8
+process_material = SubResource("ParticleProcessMaterial_ij4l2")

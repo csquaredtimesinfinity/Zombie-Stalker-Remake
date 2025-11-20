@@ -1,17 +1,145 @@
-[gd_scene load_steps=3 format=3 uid="uid://bblckldggbqt5"]
+<<<<<<< HEAD
+[gd_scene load_steps=12 format=3 uid="uid://bblckldggbqt5"]
+=======
+[gd_scene load_steps=5 format=3 uid="uid://bblckldggbqt5"]
+>>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c
 
+[ext_resource type="Script" uid="uid://bpmu2ko0nyfp5" path="res://Assets/scripts/zombie.gd" id="1_rbjo7"]
 [ext_resource type="Texture2D" uid="uid://jgttjqs0ga6y" path="res://Assets/sprites/zombie.png" id="1_wjjlv"]
+[ext_resource type="Script" uid="uid://tul1mfttl17l" path="res://Assets/scripts/zombie_animator.gd" id="2_k44hp"]
+
+[sub_resource type="Animation" id="Animation_k44hp"]
+resource_name = "move_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 13]
+}
+
+[sub_resource type="Animation" id="Animation_706vj"]
+resource_name = "move_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_j0wm1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gnciy"]
+resource_name = "move_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_5giut"]
+resource_name = "move_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [9, 8, 9, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5giut"]
+_data = {
+&"RESET": SubResource("Animation_j0wm1"),
+&"move_down": SubResource("Animation_706vj"),
+&"move_left": SubResource("Animation_k44hp"),
+&"move_right": SubResource("Animation_gnciy"),
+&"move_up": SubResource("Animation_5giut")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbjo7"]
-size = Vector2(9.35805, 19.3471)
+size = Vector2(8.93425, 16.416681)
 
-[node name="Zombie (PLACE HOLDER__  NEED TO IMPLEMENT ZOMBIE AI BEHAVIOR)" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_wjjlv"]
+radius = 85.399574
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+<<<<<<< HEAD
+[node name="Zombie" type="CharacterBody2D" groups=["Enemies"]]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 388
+script = ExtResource("1_rbjo7")
+
+[node name="ZombieAnimator" type="Node2D" parent="." node_paths=PackedStringArray("zombie", "animation_player")]
+script = ExtResource("2_k44hp")
+zombie = NodePath("..")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ZombieAnimator"]
+libraries = {
+&"": SubResource("AnimationLibrary_5giut")
+}
+=======
+[node name="Zombie" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 391
+script = ExtResource("1_rbjo7")
+
+[node name="ZombieAnimator" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ZombieAnimator"]
+>>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c
+
+[node name="Sprite2D" type="Sprite2D" parent="ZombieAnimator"]
 texture = ExtResource("1_wjjlv")
-region_enabled = true
+hframes = 16
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.439507, -0.326441)
+position = Vector2(-0.43139648, -0.09155768)
 shape = SubResource("RectangleShape2D_rbjo7")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wjjlv")
+
+[node name="Timer (for attacks)" type="Timer" parent="."]

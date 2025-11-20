@@ -6,12 +6,14 @@ extends Control
 @onready var markers_layer: TileMapLayer = $MarkersLayer
 @onready var current_screen_label: Label = $%CurrentScreenCoords
 
-var level_data_file :String = "res://Assets/levels/Level1.json"
-
-var current_screen := Vector2i(0, 0)
 const SCREEN_SIZE = Vector2i(20, 10)
 const MAP_SCREENS := Vector2i(4, 6)  # 6 across, 4 down
 
+var current_screen := Vector2i(0, 0)
+
+var level_data_file :String = "res://Assets/levels/Level1.json"
+
+# Level data dictionary
 var level_data = {
 	"screens": {
 		"(0,0)": {
@@ -20,22 +22,26 @@ var level_data = {
 	}
 }
 
-var brush_mode: String = "floor"
 var current_tile_id: int = 0
-var current_marker_id: int = 0
+var current_entity_type: LevelLoader.EntityType = LevelLoader.EntityType.EMPTY
+
+# Used to hold down mouse buttons to paint tiles or entities
 var is_painting_tiles := false
 var is_painting_entity := false
 
-var current_entity_type = LevelLoader.EntityType.EMPTY
 
+"""
+1. Initialize level editor dropdowns for selecting tiles and entities.
+2. Loads level data and updates the TileMapLayers for tiles and entities.
+"""
 func _ready():
 	%CurrentScreenCoords.text = _get_current_screen_coords()
 	update_screen_buttons()
-	
+		
 	# Initialize TileSelector dropdown control
 	tile_selector.clear()
-	tile_selector.add_item("Blank", 99)
 	tile_selector.add_separator("Barriers")
+	
 	tile_selector.add_icon_item(
 		preload("res://Assets/Sprites/tiles/grey_wall.png"), "Grey Wall", 0)
 	tile_selector.add_icon_item(
@@ -54,7 +60,6 @@ func _ready():
 		preload("res://Assets/Sprites/tiles/health_regenerator.png"), 
 		"Health Reg", 6)
 	
-
 	# Initialize PickupSelector dropdown control
 	entity_selector.clear()
 	entity_selector.add_item("Empty", LevelLoader.EntityType.EMPTY)
@@ -69,7 +74,6 @@ func _ready():
 		preload("res://Assets/Sprites/pickups/key_pickup.png"), 
 		"Key", LevelLoader.EntityType.KEY_PICKUP)
 	
-	
 	# Initialize EntitySelector dropdown control
 	entity_selector.add_separator("Entities")
 	#entity_selector.clear()
@@ -80,10 +84,10 @@ func _ready():
 		preload("res://Assets/sprites/entities/end_tile.png"), 
 		"Level End", LevelLoader.EntityType.END_OF_LEVEL)
 	entity_selector.add_icon_item(
-		preload("res://Assets/Sprites/player.png"), 
+		preload("res://Assets/Sprites/zombie2.png"), 
 		"Enemy", LevelLoader.EntityType.ENEMY)
 	
-	current_tile_id = tile_selector.get_item_id(2)
+	current_tile_id = tile_selector.get_item_id(1)
 	# Connect dropdown changes
 	level_data = LevelLoader.load_level(level_data_file)
 	LevelLoader.apply_screen_to_layers(
@@ -171,18 +175,22 @@ func _place_entity(mouse_pos: Vector2i) -> void:
 
 		match current_entity_type:
 			LevelLoader.EntityType.PLAYER_START:
-				# Ensure uniqueness: remove old player start (if it was on this screen)
-				if level_data.has("player_start") and level_data["player_start"]["screen"] == screen_coords:
-					var old_cell = LevelLoader.str_to_vec2i(level_data["player_start"]["cell"])
-					markers_layer.set_cell(old_cell)
-
-				# Save new player start info
-				level_data["starting_screen"] = screen_coords
-				level_data["player_start"] = {
-					"cell": str(cell),
-					"screen": screen_coords
-				}
+				set_player_start(screen_coords, cell)
+<<<<<<< HEAD
+=======
+				## Ensure uniqueness: remove old player start (if it was on this screen)
+				#if level_data.has("player_start") and level_data["player_start"]["screen"] == screen_coords:
+					#var old_cell = LevelLoader.str_to_vec2i(level_data["player_start"]["cell"])
+					#markers_layer.set_cell(old_cell)
+#
+				## Save new player start info
+				#level_data["starting_screen"] = screen_coords
+				#level_data["player_start"] = {
+					#"cell": str(cell),
+					#"screen": screen_coords
+				#}
 				entities.append(new_entity)
+>>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c
 				
 			_: # Default: normal entity
 				entities.append(new_entity)
@@ -190,6 +198,43 @@ func _place_entity(mouse_pos: Vector2i) -> void:
 		# Draw marker in layer
 		markers_layer.set_cell(cell, current_entity_type, Vector2i(0, 0))
 		print("Placed entity: ", new_entity)
+
+func set_player_start(screen_key: String, cell: Vector2i) -> void:
+	# Remove previous player start from its screen entities
+	if level_data.has("player_start"):
+		var old_screen = level_data["player_start"]["screen"]
+		var old_cell = LevelLoader.str_to_vec2i(level_data["player_start"]["cell"])
+		
+		# 1. Clear marker if same screenn
+		if level_data["player_start"]["screen"] == screen_key:
+			markers_layer.set_cell(old_cell)
+		
+		# 2. Remove old entity from its screen
+		if level_data["screens"].has(old_screen):
+			var entities: Array = level_data["screens"][old_screen].get("entities", [])
+<<<<<<< HEAD
+=======
+			
+			# remove any old player_start entity
+>>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c
+			for i in range(entities.size() - 1, -1, -1):
+				if int(entities[i]["type"]) == LevelLoader.EntityType.PLAYER_START:
+					entities.remove_at(i)
+
+	# Write new player_start to the dictionary
+	level_data["player_start"] = {
+		"screen": screen_key,
+		"cell": "%s,%s" % [cell.x, cell.y]   # keep format consistent with your JSON
+	}
+
+	# Add back into the new screen entity list
+	var new_entity = {
+		"type": LevelLoader.EntityType.PLAYER_START,
+		"cell": "%s,%s" % [cell.x, cell.y]
+	}
+
+	level_data["screens"][screen_key]["entities"].append(new_entity)
+
 
 func pickup_type_to_name(t: LevelLoader.EntityType) -> String:
 	match t:

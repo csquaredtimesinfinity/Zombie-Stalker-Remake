@@ -1,14 +1,22 @@
-ColorRect
+<<<<<<< HEAD
+GPUParticles2D
+=======
+>>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c
+Timer
+AnimationPlayer
+Node2D
 CollisionShape2D
+Area2D
+ColorRect
 CharacterBody2D
 RayCast2D
 Sprite2D
-Area2D
 Label
 Control
 CanvasLayer
 TextureRect
 Camera2D
+<<<<<<< HEAD
+=======
 SubViewport
-CanvasModulate
-RichTextLabel
+>>>>>>> 8d1fed58e16fde2f139eacff12a161731efb5a0c

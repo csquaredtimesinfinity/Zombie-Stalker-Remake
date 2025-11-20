@@ -7,9 +7,10 @@
 size = Vector2(17.21, 61.3739)
 
 [node name="Level" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_5xcom")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["bullet_block"]]
 tile_set = ExtResource("2_0rvm4")
 
 [node name="Entities" type="Node2D" parent="."]
