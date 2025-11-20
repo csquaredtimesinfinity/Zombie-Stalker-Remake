@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://kycbcnx5e4md"]
+
+[ext_resource type="Script" uid="uid://cytpsogxmfeqm" path="res://Assets/scripts/bullet(old version).gd" id="1_vcxbl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uhfex"]
+radius = 1.3303614
+
+[node name="Bullet" type="CharacterBody2D" groups=["projectiles"]]
+collision_layer = 4
+collision_mask = 258
+motion_mode = 1
+script = ExtResource("1_vcxbl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uhfex")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+color = Color(0.17305729, 0.084485285, 0.052044936, 1)

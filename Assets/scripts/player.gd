@@ -9,7 +9,7 @@ var health = 10 # max_health
 var ammo = 50
 var keys = 0
 
-@export var bullet_scene: PackedScene = preload("res://Assets/scenes/bullet(old).tscn")
+@export var bullet_scene: PackedScene = preload("res://Assets/scenes/bullet.tscn")
 @export var fire_rate: float = 0.25
 var shoot_cooldown: float = 0.25
 var muzzle_offsets = {
