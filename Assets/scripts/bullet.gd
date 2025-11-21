@@ -4,7 +4,7 @@ class_name Bullet
 
 @export var speed: float = 400.0
 @export var direction: Vector2 = Vector2.RIGHT
-@export var lifetime: float = 1.0
+@export var lifetime: float = 5.0
 
 var time_alive: float = 0.0
 

@@ -52,6 +52,11 @@ func _on_player_screen_transition(direction: Vector2):
 	var enemies = get_tree().get_nodes_in_group("Enemies")
 	for enemy in enemies:
 		enemy.queue_free()
+		
+	# Remove projectiles
+	var projectiles = get_tree().get_nodes_in_group("Projectiles")
+	for projectile in projectiles:
+		projectile.queue_free()
 	
 	var entities_to_remove = entities.get_children()
 	for entity in entities_to_remove:

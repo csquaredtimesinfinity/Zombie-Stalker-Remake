@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1763669119
+::res://::1763692275
 3JcHaO01.svg::CompressedTexture2D/CompressedTexture2D::3860653710748354334::1757866568::1757866597::1::::<><><>0<>0<>932232100a7379ab591b021bf2f2f3d7<>res://.godot/imported/3JcHaO01.svg-7a52286b53d75ce3764a119ea1f0966d.ctex::
 export_presets.cfg::TextFile::-1::1762368325::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::1595063552330164959::1755104659::1755104672::1::::<><><>0<>0<>292c160c698d14194dd9d0cd64efde4d<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
@@ -16,15 +16,15 @@ godotsteam.gdextension::GDExtension/GDExtension::7044556496785865601::1757613668
 ::res://addons/godotsteam/osx/libgodotsteam.macos.template_release.framework/::1759367658
 ::res://addons/godotsteam/osx/libgodotsteam.macos.template_release.framework/Resources/::1759367658
 ::res://addons/godotsteam/win32/::1759367658
-::res://addons/godotsteam/win64/::1763667089
+::res://addons/godotsteam/win64/::1763692266
 ::res://Assets/::1761961184
 splash.png::CompressedTexture2D/CompressedTexture2D::3810798308938311504::1757986331::1757986334::1::::<><><>0<>0<>f87d77b3e9a74b93908441fd00dd9814<>res://.godot/imported/splash.png-3a3aab2e3410d4942ca79c9050695a1b.ctex::
 title.png::CompressedTexture2D/CompressedTexture2D::2681820258969904967::1760059566::1760059569::1::::<><><>0<>0<>647612e3d2293f74cd14cc681037df6c<>res://.godot/imported/title.png-a9c43f00d2655a5d316eda51387dfbea.ctex::
 ::res://Assets/levels/::1763668451
 Level1.json::JSON::-1::1763668451::0::1::::<><><>0<>0<><>::
-::res://Assets/scenes/::1763669119
+::res://Assets/scenes/::1763669183
 bullet(old version).tscn::PackedScene::751556848471649967::1763669098::0::1::::<><><>0<>0<><>::uid://cytpsogxmfeqm::::res://Assets/scripts/bullet(old version).gd
-bullet(old).tscn::PackedScene::2639621172534878130::1763669105::0::1::::<><><>0<>0<><>::uid://b8t2sj8owfsj6::::res://Assets/scripts/bullet(old).gd
+bullet.tscn::PackedScene::2639621172534878130::1763669183::0::1::::<><><>0<>0<><>::uid://b8t2sj8owfsj6::::res://Assets/scripts/bullet.gd
 game.tscn::PackedScene::8584885147956022534::1762642226::0::1::::<><><>0<>0<><>::uid://y6d0qkqrlov8::::res://Assets/scripts/prototype_game.gd<>uid://cpihtc557373n::::res://Assets/tilesets/tile_set.tres<>uid://f8702suistek::::res://Assets/scenes/player.tscn<>uid://d18ak73wruahc::::res://Assets/scripts/autoload/steam/steam_avatar.gd
 gameplay.tscn::PackedScene::7968508897246118642::1763495328::0::1::::<><><>0<>0<><>::uid://wqxcwvlplk2::::res://Assets/scenes/level.tscn<>uid://iy2tnxdb6j5c::::res://Assets/scripts/main.gd<>uid://bwb3ivg58dkut::::res://Assets/shader/crt_effect.gdshader<>uid://d3inxql4qwd84::::res://Assets/scenes/ui/hud.tscn
 level.tscn::PackedScene::46428995735234787::1763582553::0::1::::<><><>0<>0<><>::uid://chl88mwxh27hw::::res://Assets/scripts/game.gd<>uid://bmru7gp42os5g::::res://Assets/scenes/tileset.tres
@@ -47,7 +47,7 @@ main_menu.tscn::PackedScene::2852260709919093703::1763606775::0::1::::<><><>0<>0
 settings.tscn::PackedScene::8507432349215352172::1762396972::0::1::::<><><>0<>0<><>::uid://1pwfumu4ohnn::::res://Assets/scripts/settings.gd
 transition_layer.tscn::PackedScene::2333184197566602265::1761183318::0::1::::<><><>0<>0<><>::uid://ctj5g31qec4ef::::res://Assets/scripts/transition_layer.gd
 ::res://Assets/scenes/weapons/::1760405225
-::res://Assets/scripts/::1763669105
+::res://Assets/scripts/::1763669144
 bullet(old version).gd::GDScript::6497540436864881156::1762628847::0::1::::<>CharacterBody2D<><>0<>0<><>::
 bullet.gd::GDScript::4743547728524698145::1763668451::0::1::::Bullet<>Area2D<><>0<>0<><>::
 game.gd::GDScript::5288934685428607660::1763578431::0::1::::<>Node2D<><>0<>0<><>::
@@ -57,7 +57,7 @@ level_editor.gd::GDScript::9196341876620054660::1763606106::0::1::::<>Control<><
 main.gd::GDScript::612729822563507146::1762641935::0::1::::<>Node2D<><>0<>0<><>::
 main_menu.gd::GDScript::4575336512978572816::1762879171::0::1::::<>Control<><>0<>0<><>::
 pickup.gd::GDScript::2797615050575849027::1762740233::0::1::::<>Area2D<><>0<>0<><>::
-player.gd::GDScript::2998764502523735347::1763582412::0::1::::PlayerController<>CharacterBody2D<><>0<>0<><>::
+player.gd::GDScript::2998764502523735347::1763669144::0::1::::PlayerController<>CharacterBody2D<><>0<>0<><>::
 player_animator.gd::GDScript::5136975961806651284::1763495565::0::1::::<>Node2D<><>0<>0<><>::
 prototype_game.gd::GDScript/GDScript::1748755610086332299::1758912990::0::1::::<>Node2D<><>0<>0<><>::
 settings.gd::GDScript::1857221373662802211::1762368612::0::1::::<>Control<><>0<>0<><>::
