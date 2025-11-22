@@ -38,6 +38,11 @@ window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 window/stretch/scale_mode="integer"
 
+[global_group]
+
+projectile=""
+enemy=""
+
 [input]
 
 move_left={

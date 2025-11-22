@@ -1,5 +1,5 @@
 res://Assets/scenes/bullet.tscn
 res://Assets/scenes/tileset.tres
-res://Assets/scripts/bullet.gd
-res://Assets/scripts/game.gd
 res://Assets/levels/Level1.json
+res://Assets/scenes/door.tscn
+res://Assets/scripts/autoload/level_loader.gd

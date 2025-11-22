@@ -4,19 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://jgttjqs0ga6y" path="res://Assets/sprites/zombie.png" id="1_wjjlv"]
 [ext_resource type="Script" uid="uid://tul1mfttl17l" path="res://Assets/scripts/zombie_animator.gd" id="2_k44hp"]
 
-[sub_resource type="Animation" id="Animation_k44hp"]
-resource_name = "move_left"
+[sub_resource type="Animation" id="Animation_j0wm1"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 0
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [12, 13, 14, 13]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_706vj"]
@@ -34,19 +34,19 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_j0wm1"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_k44hp"]
+resource_name = "move_left"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [12, 13, 14, 13]
 }
 
 [sub_resource type="Animation" id="Animation_gnciy"]
@@ -94,8 +94,7 @@ size = Vector2(8.93425, 16.416681)
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjjlv"]
 radius = 85.399574
 
-
-[node name="Zombie" type="CharacterBody2D" groups=["Enemies"]]
+[node name="Zombie" type="CharacterBody2D" groups=["enemies", "zombie"]]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 388

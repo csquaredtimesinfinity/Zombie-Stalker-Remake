@@ -8,24 +8,31 @@ enum EntityType {
 	AMMO_PICKUP = 0,
 	HEALTH_PICKUP = 1,
 	KEY_PICKUP = 2,
+	
+	# Door
+	DOOR = 10,
+	
 	# Entities
 	PLAYER_START = 20,
 	END_OF_LEVEL = 21,
 	ENEMY = 22
 }
 
-var entity_scenes := {
+static var entity_scenes := {
 	EntityType.HEALTH_PICKUP: preload("res://Assets/scenes/pickups/health.tscn"),
 	EntityType.AMMO_PICKUP: preload("res://Assets/scenes/pickups/ammo.tscn"),
 	EntityType.KEY_PICKUP: preload("res://Assets/scenes/pickups/key.tscn"),
+	EntityType.DOOR: preload("res://Assets/scenes/door.tscn"),
 	EntityType.PLAYER_START: preload("res://Assets/scenes/player.tscn"),
 	EntityType.END_OF_LEVEL: preload("res://Assets/scenes/level_end_portal.tscn"),
 	EntityType.ENEMY: preload("res://Assets/scenes/enemies/zombie.tscn")
 }
 
-# -----------------------
+var current_level_data: Dictionary = {}
+
+############################################################
 # Utility helpers
-# -----------------------
+############################################################
 static func vec2i_to_str(v: Vector2i) -> String:
 	return "%d,%d" % [v.x, v.y]
 
@@ -36,6 +43,7 @@ static func str_to_vec2i(s: String) -> Vector2i:
 static func cell_to_world(cell: String):
 	var vec: Vector2i = str_to_vec2i(cell)
 	return Vector2(vec.x * TILE_SIZE, vec.y * TILE_SIZE)
+############################################################
 
 static func apply_screen_to_layers(
 	level_data :Dictionary, screen_key :String, 
@@ -81,55 +89,64 @@ static func apply_screen_to_layers(
 					var half_tile = tile_layer.tile_set.tile_size / 2
 					world_pos += half_tile
 					match type:
-						
-						# PLAYER START
-						#LevelLoader.EntityType.PLAYER_START:
-							#var player = preload("res://Assets/scenes/player.tscn").instantiate()
-							#player.position = world_pos
-							#root_node.add_child(player)
-							
+						############################################################
 						# PICKUPS
-						# HEALTH PICKUP ------------------------
-						LevelLoader.EntityType.HEALTH_PICKUP:
-							var health = preload("res://Assets/scenes/pickups/health.tscn").instantiate()
+						############################################################
+						# HEALTH PICKUP 
+						############################################################
+						EntityType.HEALTH_PICKUP:
+							var health = entity_scenes[type].instantiate() #preload("res://Assets/scenes/pickups/health.tscn").instantiate()
 							health.pickup_id = entity["id"]
 							health.position = world_pos
 							entities_parent.add_child(health)
 						# ---------------------------------------
-							
+						
+						############################################################
 						# AMMO PICKUP
-						LevelLoader.EntityType.AMMO_PICKUP:
-							var ammo = preload("res://Assets/scenes/pickups/ammo.tscn").instantiate()
+						############################################################
+						EntityType.AMMO_PICKUP:
+							var ammo = entity_scenes[type].instantiate() #preload("res://Assets/scenes/pickups/ammo.tscn").instantiate()
 							ammo.pickup_id = entity["id"]
 							ammo.position = world_pos
 							entities_parent.add_child(ammo)
-							
+						
+						############################################################
 						# KEY PICKUP
-						LevelLoader.EntityType.KEY_PICKUP:
-							var key = preload("res://Assets/scenes/pickups/key.tscn").instantiate()
+						############################################################
+						EntityType.KEY_PICKUP:
+							var key = entity_scenes[type].instantiate() # preload("res://Assets/scenes/pickups/key.tscn").instantiate()
 							key.pickup_id = entity["id"]
 							key.position = world_pos
 							entities_parent.add_child(key)
+						
+						############################################################
+						# DOOR
+						############################################################
+						EntityType.DOOR:
+							var door = entity_scenes[type].instantiate()
+							door.position = world_pos
+							entities_parent.add_child(door)
 							
-						LevelLoader.EntityType.ENEMY:
-							var zombie = preload("res://Assets/scenes/enemies/zombie.tscn").instantiate()
+						############################################################
+						# ENEMY
+						############################################################
+						EntityType.ENEMY:
+							var zombie = entity_scenes[type].instantiate() #preload("res://Assets/scenes/enemies/zombie.tscn").instantiate()
 							zombie.position = world_pos
 							root_node.add_child(zombie)
 						
+						############################################################
 						# END OF LEVEL PORTAL
-						LevelLoader.EntityType.END_OF_LEVEL:
-							var end_of_level = preload("res://Assets/scenes/level_end_portal.tscn").instantiate()
+						############################################################
+						EntityType.END_OF_LEVEL:
+							var end_of_level = entity_scenes[type].instantiate() #preload("res://Assets/scenes/level_end_portal.tscn").instantiate()
 							end_of_level.position = world_pos
 							entities_parent.add_child(end_of_level)
 							
 
-# -----------------------
+#############################################################
 # Saving (used by editor)
-# -----------------------
-# LevelLoader.gd (autoload)
-
-var current_level_data: Dictionary = {}
-
+############################################################
 func save_level(path: String, level_data: Dictionary) -> void:
 	# Inject unique IDs into entities before saving
 	for screen_key in level_data.get("screens", {}).keys():
@@ -138,9 +155,7 @@ func save_level(path: String, level_data: Dictionary) -> void:
 			continue
 		
 		for entity in screen["entities"]:
-			#if not entity.has("id") or entity["id"] == "":
 			entity["id"] = UUID4.uuid4()
-				#entity["id"] = _generate_entity_id(screen_key, entity)
 				
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
@@ -169,9 +184,9 @@ func _load_file(file_path: String):
 
 	return json.get_data()
 
-# -----------------------
+############################################################
 # Loading (used by editor)
-# -----------------------
+############################################################
 func load_level_for_editor(file_path: String, tilemap: TileMapLayer, markers_layer: TileMapLayer) -> void:
 	var data = _load_file(file_path)
 	
@@ -190,9 +205,9 @@ func load_level_for_editor(file_path: String, tilemap: TileMapLayer, markers_lay
 		markers_layer.set_cell(pos, id, Vector2i(0, 0))
 	
 
-# -----------------------
+############################################################
 # Loading (used by game)
-# -----------------------
+############################################################
 func load_level(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):
 		push_error("Level file not found: %s" % path)

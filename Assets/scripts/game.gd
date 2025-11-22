@@ -49,12 +49,12 @@ func _on_player_screen_transition(direction: Vector2):
 	current_screen = new_screen
 	
 	# Remove Enemies from previous screen
-	var enemies = get_tree().get_nodes_in_group("Enemies")
+	var enemies = get_tree().get_nodes_in_group("Enemy")
 	for enemy in enemies:
 		enemy.queue_free()
 		
 	# Remove projectiles
-	var projectiles = get_tree().get_nodes_in_group("Projectiles")
+	var projectiles = get_tree().get_nodes_in_group("projectile")
 	for projectile in projectiles:
 		projectile.queue_free()
 	
