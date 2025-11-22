@@ -95,7 +95,7 @@ static func apply_screen_to_layers(
 						# HEALTH PICKUP 
 						############################################################
 						EntityType.HEALTH_PICKUP:
-							var health = entity_scenes[type].instantiate() #preload("res://Assets/scenes/pickups/health.tscn").instantiate()
+							var health = entity_scenes[type].instantiate()
 							health.pickup_id = entity["id"]
 							health.position = world_pos
 							entities_parent.add_child(health)
@@ -105,7 +105,7 @@ static func apply_screen_to_layers(
 						# AMMO PICKUP
 						############################################################
 						EntityType.AMMO_PICKUP:
-							var ammo = entity_scenes[type].instantiate() #preload("res://Assets/scenes/pickups/ammo.tscn").instantiate()
+							var ammo = entity_scenes[type].instantiate()
 							ammo.pickup_id = entity["id"]
 							ammo.position = world_pos
 							entities_parent.add_child(ammo)
@@ -114,7 +114,7 @@ static func apply_screen_to_layers(
 						# KEY PICKUP
 						############################################################
 						EntityType.KEY_PICKUP:
-							var key = entity_scenes[type].instantiate() # preload("res://Assets/scenes/pickups/key.tscn").instantiate()
+							var key = entity_scenes[type].instantiate()
 							key.pickup_id = entity["id"]
 							key.position = world_pos
 							entities_parent.add_child(key)
@@ -131,7 +131,7 @@ static func apply_screen_to_layers(
 						# ENEMY
 						############################################################
 						EntityType.ENEMY:
-							var zombie = entity_scenes[type].instantiate() #preload("res://Assets/scenes/enemies/zombie.tscn").instantiate()
+							var zombie = entity_scenes[type].instantiate()
 							zombie.position = world_pos
 							root_node.add_child(zombie)
 						
@@ -139,7 +139,7 @@ static func apply_screen_to_layers(
 						# END OF LEVEL PORTAL
 						############################################################
 						EntityType.END_OF_LEVEL:
-							var end_of_level = entity_scenes[type].instantiate() #preload("res://Assets/scenes/level_end_portal.tscn").instantiate()
+							var end_of_level = entity_scenes[type].instantiate()
 							end_of_level.position = world_pos
 							entities_parent.add_child(end_of_level)
 							
