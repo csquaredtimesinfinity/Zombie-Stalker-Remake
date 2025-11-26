@@ -9,9 +9,9 @@ extends Node
 @onready var settings_scene: PackedScene = preload("res://Assets/scenes/ui/settings.tscn")
 
 var collected_pickups: Dictionary = {}
+var doors_unlocked: Dictionary = {}
 
-
-func _ready():
+func _ready() -> void:
 	transition_layer.layer = 100  # ensure it's always on top
 	
 func _input(event: InputEvent) -> void:
@@ -35,7 +35,7 @@ func change_scene_to_level_editor() -> void:
 func change_scene_to_settings() -> void:
 	change_scene(settings_scene)
 
-func change_scene(scene: PackedScene):
+func change_scene(scene: PackedScene) -> void:
 	print("Changing scene to: ", scene.resource_path)
 	if scene and scene is PackedScene:
 		get_tree().change_scene_to_packed(scene)
@@ -51,3 +51,9 @@ func mark_pickup_collected(id: String) -> void:
 	
 func clear_collected_pickups() -> void:
 	collected_pickups.clear()
+
+func unlock_door(id: String) -> void:
+	doors_unlocked[id] = true
+
+func clear_doors_unlocked() -> void:
+	doors_unlocked.clear()

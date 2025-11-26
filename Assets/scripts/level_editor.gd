@@ -43,13 +43,16 @@ func _ready():
 	tile_selector.add_separator("Barriers")
 	
 	tile_selector.add_icon_item(
-		preload("res://Assets/Sprites/tiles/grey_wall.png"), "Grey Wall", 0)
+		preload("res://Assets/Sprites/tiles/grey_wall.png"), 
+		"Grey Wall", 0)
 	tile_selector.add_icon_item(
-		preload("res://Assets/Sprites/tiles/blue_wall.png"), "Blue Wall", 1)
+		preload("res://Assets/Sprites/tiles/blue_wall.png"), 
+		"Blue Wall", 1)
 	tile_selector.add_icon_item(
-		preload("res://Assets/Sprites/tiles/bush.png"), "Bush", 2)
-	tile_selector.add_icon_item(
-		preload("res://Assets/Sprites/tiles/door.png"), "Door", 3)
+		preload("res://Assets/Sprites/tiles/bush.png"), 
+		"Bush", 2)
+	#tile_selector.add_icon_item(
+	#	preload("res://Assets/Sprites/tiles/door.png"), "Door", 3)
 	
 	tile_selector.add_separator("Ground")
 	tile_selector.add_icon_item(
@@ -77,6 +80,9 @@ func _ready():
 	# Initialize EntitySelector dropdown control
 	entity_selector.add_separator("Entities")
 	#entity_selector.clear()
+	entity_selector.add_icon_item(
+		preload("res://Assets/sprites/tiles/door.png"), 
+		"Door", LevelLoader.EntityType.DOOR)
 	entity_selector.add_icon_item(
 		preload("res://Assets/sprites/entities/start_tile.png"), 
 		"Player Start", LevelLoader.EntityType.PLAYER_START)
@@ -170,7 +176,8 @@ func _place_entity(mouse_pos: Vector2i) -> void:
 	if current_entity_type != LevelLoader.EntityType.EMPTY:
 		var new_entity = {
 			"cell": str(cell),
-			"type": str(current_entity_type)
+			"type": str(current_entity_type),
+			"id": UUID4.uuid4()
 		}
 
 		match current_entity_type:

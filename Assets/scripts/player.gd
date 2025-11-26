@@ -122,6 +122,13 @@ func add_key() -> void:
 	keys += 1
 	emit_signal("keys_changed", keys)
 	
+func remove_key() -> void:
+	keys -= 1
+	emit_signal("keys_changed", keys)
+	
+func has_keys() -> bool:
+	return keys > 0
+	
 func _on_detect_pickups_area_entered(area: Area2D) -> void:
 	var should_pickup = false
 	if area.is_in_group("pickups"):

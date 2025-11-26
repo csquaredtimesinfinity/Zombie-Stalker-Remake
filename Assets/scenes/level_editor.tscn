@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://qdsqyuhkot4q"]
+[gd_scene load_steps=23 format=3 uid="uid://qdsqyuhkot4q"]
 
 [ext_resource type="Script" uid="uid://d4a1n3u43ew2w" path="res://Assets/scripts/level_editor.gd" id="1_4mper"]
 [ext_resource type="TileSet" uid="uid://bmru7gp42os5g" path="res://Assets/scenes/tileset.tres" id="2_4mper"]
 [ext_resource type="Texture2D" uid="uid://bhmfi2wjql7v4" path="res://Assets/sprites/tiles/grey_wall.png" id="2_38h5s"]
 [ext_resource type="Texture2D" uid="uid://cr0vlyc7xfytw" path="res://Assets/sprites/tiles/blue_wall.png" id="3_2w8ym"]
 [ext_resource type="Texture2D" uid="uid://flxyy20qw1ua" path="res://Assets/sprites/tiles/bush.png" id="4_y1rcd"]
+[ext_resource type="Texture2D" uid="uid://dxntjpr8pgwpy" path="res://Assets/sprites/tiles/door.png" id="5_38h5s"]
 [ext_resource type="Texture2D" uid="uid://d1thi7he8fq4x" path="res://Assets/sprites/tiles/floor.png" id="6_b4rox"]
 [ext_resource type="Texture2D" uid="uid://b6k52i0hyc6ig" path="res://Assets/sprites/tiles/grass.png" id="7_wg1se"]
 [ext_resource type="Texture2D" uid="uid://dsaomajis1lco" path="res://Assets/sprites/zombie2.png" id="8_4mper"]
@@ -22,6 +23,10 @@ texture = ExtResource("9_cniwo")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k5u3g"]
 resource_name = "health pickup"
 texture = ExtResource("10_tm3gx")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y1rcd"]
+texture = ExtResource("5_38h5s")
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0eccv"]
@@ -49,6 +54,7 @@ sources/2 = SubResource("TileSetAtlasSource_0eccv")
 sources/20 = SubResource("TileSetAtlasSource_c4u8i")
 sources/21 = SubResource("TileSetAtlasSource_sjsyj")
 sources/22 = SubResource("TileSetAtlasSource_2w8ym")
+sources/10 = SubResource("TileSetAtlasSource_y1rcd")
 
 [node name="LevelEditor" type="Control"]
 layout_mode = 3

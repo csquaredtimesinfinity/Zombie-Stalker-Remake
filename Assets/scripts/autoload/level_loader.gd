@@ -89,44 +89,9 @@ static func apply_screen_to_layers(
 					var half_tile = tile_layer.tile_set.tile_size / 2
 					world_pos += half_tile
 					match type:
-						############################################################
-						# PICKUPS
-						############################################################
-						# HEALTH PICKUP 
-						############################################################
-						EntityType.HEALTH_PICKUP:
-							var health = entity_scenes[type].instantiate()
-							health.pickup_id = entity["id"]
-							health.position = world_pos
-							entities_parent.add_child(health)
-						# ---------------------------------------
+						EntityType.PLAYER_START:
+							pass
 						
-						############################################################
-						# AMMO PICKUP
-						############################################################
-						EntityType.AMMO_PICKUP:
-							var ammo = entity_scenes[type].instantiate()
-							ammo.pickup_id = entity["id"]
-							ammo.position = world_pos
-							entities_parent.add_child(ammo)
-						
-						############################################################
-						# KEY PICKUP
-						############################################################
-						EntityType.KEY_PICKUP:
-							var key = entity_scenes[type].instantiate()
-							key.pickup_id = entity["id"]
-							key.position = world_pos
-							entities_parent.add_child(key)
-						
-						############################################################
-						# DOOR
-						############################################################
-						EntityType.DOOR:
-							var door = entity_scenes[type].instantiate()
-							door.position = world_pos
-							entities_parent.add_child(door)
-							
 						############################################################
 						# ENEMY
 						############################################################
@@ -134,15 +99,37 @@ static func apply_screen_to_layers(
 							var zombie = entity_scenes[type].instantiate()
 							zombie.position = world_pos
 							root_node.add_child(zombie)
+								
+						_:
+							_setup_entity(entity_scenes[type], entity, world_pos, entities_parent)	
 						
-						############################################################
-						# END OF LEVEL PORTAL
-						############################################################
-						EntityType.END_OF_LEVEL:
-							var end_of_level = entity_scenes[type].instantiate()
-							end_of_level.position = world_pos
-							entities_parent.add_child(end_of_level)
+						#############################################################
+						## DOOR
+						#############################################################
+						#EntityType.DOOR:
+							#var door = entity_scenes[type].instantiate()
+							#door.position = world_pos
+							#entities_parent.add_child(door)
+							#
+						#
+						#
+						#############################################################
+						## END OF LEVEL PORTAL
+						#############################################################
+						#EntityType.END_OF_LEVEL:
+							#var end_of_level = entity_scenes[type].instantiate() 
+							#end_of_level.position = world_pos
+							#entities_parent.add_child(end_of_level)
 							
+static func _setup_entity(scene: PackedScene, data: Dictionary, position: Vector2i, parent) -> void:
+	var instance = scene.instantiate()
+	instance.position = position
+	
+	if data.has("id"):
+		if "pickup_id" in instance:
+			instance.pickup_id = data["id"]
+			
+	parent.add_child(instance)
 
 #############################################################
 # Saving (used by editor)
