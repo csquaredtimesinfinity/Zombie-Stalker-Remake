@@ -92,6 +92,16 @@ static func apply_screen_to_layers(
 						EntityType.PLAYER_START:
 							pass
 						
+						EntityType.AMMO_PICKUP, \
+						EntityType.HEALTH_PICKUP, \
+						EntityType.KEY_PICKUP:
+							if not GameManager.is_pickup_collected(entity["id"]):
+								_setup_entity(entity_scenes[type], entity, world_pos, entities_parent)
+						
+						EntityType.DOOR:
+							if not GameManager.is_door_unlocked(entity["id"]):
+								_setup_entity(entity_scenes[type], entity, world_pos, entities_parent)
+						
 						############################################################
 						# ENEMY
 						############################################################
@@ -103,31 +113,17 @@ static func apply_screen_to_layers(
 						_:
 							_setup_entity(entity_scenes[type], entity, world_pos, entities_parent)	
 						
-						#############################################################
-						## DOOR
-						#############################################################
-						#EntityType.DOOR:
-							#var door = entity_scenes[type].instantiate()
-							#door.position = world_pos
-							#entities_parent.add_child(door)
-							#
-						#
-						#
-						#############################################################
-						## END OF LEVEL PORTAL
-						#############################################################
-						#EntityType.END_OF_LEVEL:
-							#var end_of_level = entity_scenes[type].instantiate() 
-							#end_of_level.position = world_pos
-							#entities_parent.add_child(end_of_level)
 							
 static func _setup_entity(scene: PackedScene, data: Dictionary, position: Vector2i, parent) -> void:
 	var instance = scene.instantiate()
 	instance.position = position
 	
 	if data.has("id"):
-		if "pickup_id" in instance:
+		if "id" in instance:
+			instance.id = data["id"]
+		elif "pickup_id" in instance:
 			instance.pickup_id = data["id"]
+			
 			
 	parent.add_child(instance)
 

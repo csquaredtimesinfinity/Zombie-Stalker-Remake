@@ -1,8 +1,6 @@
 res://Assets/scenes/door.tscn
 res://Assets/scenes/tileset.tres
-res://Assets/scripts/autoload/game_manager.gd
-res://Assets/scripts/level_editor.gd
-res://Assets/levels/Level1.json
-res://Assets/scenes/pickups/ammo.tscn
-res://Assets/scripts/autoload/level_loader.gd
 res://Assets/scripts/door.gd
+res://Assets/scripts/autoload/level_loader.gd
+res://Assets/scripts/autoload/game_manager.gd
+res://Assets/levels/Level1.json

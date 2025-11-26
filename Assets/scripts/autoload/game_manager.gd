@@ -51,6 +51,9 @@ func mark_pickup_collected(id: String) -> void:
 	
 func clear_collected_pickups() -> void:
 	collected_pickups.clear()
+	
+func is_door_unlocked(id: String) -> bool:
+	return doors_unlocked.has(id)
 
 func unlock_door(id: String) -> void:
 	doors_unlocked[id] = true
