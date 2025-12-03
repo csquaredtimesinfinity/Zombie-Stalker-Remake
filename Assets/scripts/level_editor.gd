@@ -177,7 +177,7 @@ func _place_entity(mouse_pos: Vector2i) -> void:
 		var new_entity = {
 			"cell": str(cell),
 			"type": str(current_entity_type),
-			"id": UUID4.uuid4()
+			"id": str(screen_coords) + "_" + str(cell) + "_" + "DOOR"
 		}
 
 		match current_entity_type:

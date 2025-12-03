@@ -99,6 +99,7 @@ static func apply_screen_to_layers(
 								_setup_entity(entity_scenes[type], entity, world_pos, entities_parent)
 						
 						EntityType.DOOR:
+							# DO NOT SHOW UNLOCKED DOORS!!! ALSO, FUCK YOU!!!
 							if not GameManager.is_door_unlocked(entity["id"]):
 								_setup_entity(entity_scenes[type], entity, world_pos, entities_parent)
 						
@@ -138,20 +139,28 @@ func save_level(path: String, level_data: Dictionary) -> void:
 			continue
 		
 		for entity in screen["entities"]:
-			entity["id"] = UUID4.uuid4()
+			entity["id"] = _clean_and_pad_2(str(screen_key)) + \
+			 _clean_and_pad_2(str(entity["cell"])) + str(entity["type"])
 				
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify(level_data, "\t")) # with tabs
 		file.close()
 
-func _generate_entity_id(screen_key: String, entity: Dictionary) -> String:
+static func _clean_and_pad_2(s: String) -> String:
+	var regex := RegEx.new()
+	regex.compile("[^0-9]")
+	var numbers := regex.sub(s, "", true)  # remove non-digits
+	var value := int(numbers) if numbers != "" else 0
+	return "%02d" % value
+
+static func _generate_entity_id(screen_key: String, entity: Dictionary) -> String:
 	var cell_str = entity.get("cell", "unknown")
 	var type_str = str(entity.get("type", "unknown"))
 	var timestamp = str(Time.get_ticks_msec()) # ensures uniqueness
 	return "%s_%s_%s_%s" % [screen_key, type_str, cell_str, timestamp]
 
-func _load_file(file_path: String):
+static func _load_file(file_path: String):
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	if not file:
 		push_error("Could not open level file: %s" % file_path)
@@ -191,7 +200,7 @@ func load_level_for_editor(file_path: String, tilemap: TileMapLayer, markers_lay
 ############################################################
 # Loading (used by game)
 ############################################################
-func load_level(path: String) -> Dictionary:
+static func load_level(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):
 		push_error("Level file not found: %s" % path)
 		return {}
@@ -206,3 +215,13 @@ func load_level(path: String) -> Dictionary:
 	else:
 		push_error("Failed to parse JSON: %s" % path)
 		return {}
+
+
+func serialize_grid_to_rows(grid: Array) -> Array[String]:
+	var rows: Array[String] = []
+	for row in grid:
+		var parts: Array[String] = []
+		for n in row:
+			parts.append("%02d" % int(n))
+		rows.append(",".join(parts))# as PackedStringArray))
+	return rows

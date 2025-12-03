@@ -25,6 +25,7 @@ func _on_menu_button_pressed(button: String) -> void:
 	match button:
 		"playgame":
 			GameManager.clear_collected_pickups()
+			GameManager.clear_doors_unlocked()
 			GameManager.change_scene_to_main_game()
 		"leveledit":
 			GameManager.change_scene_to_level_editor()
