@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://npkj5v44aavf"]
+
+[ext_resource type="Script" uid="uid://cbofwdbflvve7" path="res://Editor/CampaignEditor/CampaignEditorStart.gd" id="1_oluv4"]
+
+[node name="CampaignEditorStart" type="Control" unique_id=1197956774]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_oluv4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1276312438]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1999979787]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect" unique_id=964971430]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -182.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer" unique_id=1951458380]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Zombie Stalker 
+Campaign Launcher
+"
+horizontal_alignment = 1
+
+[node name="NewCampaignButton" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer" unique_id=1708715937]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "New Campaign"
+
+[node name="OpenCampaignButton" type="Button" parent="CanvasLayer/ColorRect/VBoxContainer" unique_id=368717715]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Open Existing Campaign"
+
+[connection signal="pressed" from="CanvasLayer/ColorRect/VBoxContainer/NewCampaignButton" to="." method="_on_new_campaign_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/VBoxContainer/OpenCampaignButton" to="." method="_on_open_campaign_button_pressed"]

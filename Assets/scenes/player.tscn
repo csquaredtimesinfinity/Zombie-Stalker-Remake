@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://f8702suistek"]
 
-[ext_resource type="Script" uid="uid://biyvhiq4bwjbn" path="res://Assets/scripts/player.gd" id="1_7dd06"]
-[ext_resource type="Texture2D" uid="uid://ck6v547n23qk6" path="res://Assets/sprites/player_anim.png" id="2_7dd06"]
-[ext_resource type="Script" uid="uid://cfgnijtir2yee" path="res://Assets/scripts/player_animator.gd" id="2_38rej"]
+[ext_resource type="Script" uid="uid://biyvhiq4bwjbn" path="res://Game/Entities/Player/PlayerController.gd" id="1_7dd06"]
+[ext_resource type="Texture2D" uid="uid://ck6v547n23qk6" path="res://Assets/Sprites/player_anim.png" id="2_7dd06"]
+[ext_resource type="Script" uid="uid://cfgnijtir2yee" path="res://Game/Entities/Player/PlayerAnimator.gd" id="2_38rej"]
 
 [sub_resource type="Animation" id="Animation_23lac"]
 length = 0.001

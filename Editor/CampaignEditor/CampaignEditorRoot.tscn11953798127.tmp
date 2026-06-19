@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://df4rer33lt6vo"]
+
+[ext_resource type="Script" uid="uid://dlx8fn6cnwrpx" path="res://Editor/CampaignEditor/CampaignData.gd" id="1_cdiew"]
+[ext_resource type="Script" uid="uid://ccveg1f13t2pi" path="res://Editor/CampaignEditor/CampaignEditorRoot.gd" id="1_hltr7"]
+
+[node name="CampaignEditorRoot" type="Node" unique_id=373451048]
+script = ExtResource("1_hltr7")
+
+[node name="ScreenContainer" type="Node" parent="." unique_id=1468581523]
+
+[node name="CampaignData" type="Node" parent="." unique_id=252296935]
+script = ExtResource("1_cdiew")

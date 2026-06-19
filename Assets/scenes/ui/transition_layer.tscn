@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://8ihg5q4xnkhl"]
+[gd_scene format=3 uid="uid://8ihg5q4xnkhl"]
 
 [ext_resource type="Script" uid="uid://ctj5g31qec4ef" path="res://Assets/scripts/transition_layer.gd" id="1_8b6dw"]
 
-[node name="TransitionLayer" type="CanvasLayer"]
+[node name="TransitionLayer" type="CanvasLayer" unique_id=1166775573]
 script = ExtResource("1_8b6dw")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1200619846]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

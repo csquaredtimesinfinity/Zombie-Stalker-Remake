@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://wqxcwvlplk2"]
+
+[ext_resource type="Script" uid="uid://chl88mwxh27hw" path="res://Game/LevelRuntime.gd" id="1_jmlx1"]
+[ext_resource type="TileSet" uid="uid://bmru7gp42os5g" path="res://Assets/scenes/tileset.tres" id="2_jwkpx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rvm4"]
+size = Vector2(17.21, 61.3739)
+
+[node name="Level" type="Node2D" unique_id=1580465020]
+y_sort_enabled = true
+script = ExtResource("1_jmlx1")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2100518937 groups=["bullet_block"]]
+tile_set = ExtResource("2_jwkpx")
+
+[node name="Entities" type="Node2D" parent="." unique_id=1992728482]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=345359831]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1329818467]
+position = Vector2(8.45358, 30.2459)
+shape = SubResource("RectangleShape2D_0rvm4")

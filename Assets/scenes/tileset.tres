@@ -1,12 +1,12 @@
-[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://bmru7gp42os5g"]
+[gd_resource type="TileSet" format=3 uid="uid://bmru7gp42os5g"]
 
-[ext_resource type="Texture2D" uid="uid://bhmfi2wjql7v4" path="res://Assets/sprites/tiles/grey_wall.png" id="1_v6vf6"]
-[ext_resource type="Texture2D" uid="uid://cr0vlyc7xfytw" path="res://Assets/sprites/tiles/blue_wall.png" id="2_xpm8t"]
-[ext_resource type="Texture2D" uid="uid://flxyy20qw1ua" path="res://Assets/sprites/tiles/bush.png" id="3_x0526"]
-[ext_resource type="Texture2D" uid="uid://dxntjpr8pgwpy" path="res://Assets/sprites/tiles/door.png" id="4_712t4"]
-[ext_resource type="Texture2D" uid="uid://d1thi7he8fq4x" path="res://Assets/sprites/tiles/floor.png" id="5_etdvl"]
-[ext_resource type="Texture2D" uid="uid://b6k52i0hyc6ig" path="res://Assets/sprites/tiles/grass.png" id="6_u14c7"]
-[ext_resource type="Texture2D" uid="uid://cc5k1bxanktbk" path="res://Assets/sprites/tiles/health_regenerator.png" id="7_fgvro"]
+[ext_resource type="Texture2D" uid="uid://bhmfi2wjql7v4" path="res://Assets/Sprites/Tiles/grey_wall.png" id="1_v6vf6"]
+[ext_resource type="Texture2D" uid="uid://cr0vlyc7xfytw" path="res://Assets/Sprites/Tiles/blue_wall.png" id="2_xpm8t"]
+[ext_resource type="Texture2D" uid="uid://flxyy20qw1ua" path="res://Assets/Sprites/Tiles/bush.png" id="3_x0526"]
+[ext_resource type="Texture2D" uid="uid://dxntjpr8pgwpy" path="res://Game/Entities/Door/door.png" id="4_712t4"]
+[ext_resource type="Texture2D" uid="uid://d1thi7he8fq4x" path="res://Assets/Sprites/Tiles/floor.png" id="5_etdvl"]
+[ext_resource type="Texture2D" uid="uid://b6k52i0hyc6ig" path="res://Assets/Sprites/Tiles/grass.png" id="6_u14c7"]
+[ext_resource type="Texture2D" uid="uid://cc5k1bxanktbk" path="res://Assets/Sprites/Tiles/health_regenerator.png" id="7_fgvro"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arng6"]
 texture = ExtResource("1_v6vf6")

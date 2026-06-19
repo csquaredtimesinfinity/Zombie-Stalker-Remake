@@ -8,29 +8,32 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="ZombieStalker"
 config/tags=PackedStringArray("topdown", "zombie")
 run/main_scene="uid://bgvwk1wegb2wh"
-config/features=PackedStringArray("4.5", "Forward Plus")
-boot_splash/fullsize=false
+config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/stretch_mode=0
 boot_splash/image="uid://buj8j53soallo"
 config/icon="uid://wywp085p45tj"
 config/windows_native_icon="res://title.ico"
 
 [autoload]
 
-AudioManager="*res://Assets/scripts/autoload/audio_manager.gd"
-SteamController="*res://Assets/scripts/autoload/steam/steam_controller.gd"
-LevelLoader="*res://Assets/scripts/autoload/level_loader.gd"
-GameManager="*res://Assets/scripts/autoload/game_manager.gd"
+AudioManager="*res://Core/Audio/AudioManager.gd"
+SteamController="*res://Core/Steam/SteamController.gd"
+LevelSystem="*res://Core/Level/LevelSystem.gd"
+GameManager="*res://Core/GameManager.gd"
 
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=200
-window/size/mode=3
+window/size/viewport_width=1280
+window/size/viewport_height=800
 window/size/window_width_override=1280
 window/size/window_height_override=800
 window/subwindows/embed_subwindows=false
