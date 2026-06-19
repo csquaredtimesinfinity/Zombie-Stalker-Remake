@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1781839902
+::res://::1781880098
 3JcHaO01.svg::CompressedTexture2D::3860653710748354334::1757866568::1781215416::1::::<><><>0<>0<>acbab6c940176ce05a41552402e499ad<>res://.godot/imported/3JcHaO01.svg-7a52286b53d75ce3764a119ea1f0966d.ctex::
 export_presets.cfg::TextFile::-1::1762368325::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D::1595063552330164959::1755104659::1781215416::1::::<><><>0<>0<>013aac02b478f93a1675dfd9ecba1479<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
@@ -23,7 +23,7 @@ godotsteam.gdextension::GDExtension::7044556496785865601::1757613668::0::1::::<>
 ::res://addons/godotsteam/osx/libgodotsteam.macos.template_release.framework/::1759367658
 ::res://addons/godotsteam/osx/libgodotsteam.macos.template_release.framework/Resources/::1759367658
 ::res://addons/godotsteam/win32/::1759367658
-::res://addons/godotsteam/win64/::1781830002
+::res://addons/godotsteam/win64/::1781880091
 ::res://Assets/::1781293089
 ::res://Assets/Audio/::1781188796
 ::res://Assets/Audio/SoundEffects/::1781215416
@@ -70,7 +70,7 @@ health_regenerator.png::CompressedTexture2D::4975804075924891224::1757002710::17
 ::res://Assets/Tiles/::1780886963
 ::res://Assets/tilesets/::1781212444
 tile_set.tres::TileSet::5842648145820521061::1781212444::0::1::::<><><>0<>0<><>::uid://dpaj32vbge22a::::res://Assets/Sprites/tiles.png
-::res://Core/::1781839760
+::res://Core/::1781839924
 EntityDatabase.gd::GDScript::3649757738967032695::1781839493::0::1::::EntityDatabase<>Node<><>0<>0<><>::
 GameManager.gd::GDScript::2338521280370563874::1781839924::0::1::::<>Node<><>0<>0<><>::
 MusicManager.gd::GDScript::5846448919928049915::1762880026::0::1::::MusicManager<>Node<><>0<>0<><>::
@@ -91,13 +91,14 @@ SteamController.gd::GDScript::8241563923650691309::1757616856::0::1::::<>Node<><
 ::res://Editor/::1781839725
 LevelEditor.gd::GDScript::9196341876620054660::1781578598::0::1::::<>Control<><>0<>0<><>::
 LevelEditor.tscn::PackedScene::1130337401831448486::1781578598::0::1::::<><><>0<>0<><>::uid://d4a1n3u43ew2w::::res://Editor/LevelEditor.gd<>uid://bmru7gp42os5g::::res://Assets/scenes/tileset.tres<>uid://b0jvato78q0d::::res://Game/Entities/Pickups/Ammo/AmmoPickup.png<>uid://d1qejfrgnqgvd::::res://Game/Entities/Pickups/Health/HealthPickup.png<>uid://dxntjpr8pgwpy::::res://Game/Entities/Door/door.png<>uid://bhfv1rnk0u5sf::::res://Game/Entities/Pickups/Key/KeyPickup.png<>uid://c5s1grc76n4oc::::res://Game/LevelMarkers/PlayerStart/start_tile.png<>uid://w3gpv7k2r8p::::res://Game/LevelMarkers/EndOfLevel/end_tile.png<>uid://dsaomajis1lco::::res://Assets/Sprites/zombie2.png<>uid://bhmfi2wjql7v4::::res://Assets/Sprites/Tiles/grey_wall.png<>uid://cr0vlyc7xfytw::::res://Assets/Sprites/Tiles/blue_wall.png<>uid://flxyy20qw1ua::::res://Assets/Sprites/Tiles/bush.png<>uid://d1thi7he8fq4x::::res://Assets/Sprites/Tiles/floor.png<>uid://b6k52i0hyc6ig::::res://Assets/Sprites/Tiles/grass.png
-::res://Editor/CampaignEditor/::1781839902
-CampaignData.gd::GDScript::7980833339973468889::1781839415::0::1::::CampaignData<>RefCounted<><>0<>0<><>::
-CampaignEditorMenu.gd::GDScript::4872274531368392884::1781797671::0::1::::<>Control<><>0<>0<><>::
-CampaignEditorRoot.tscn::PackedScene::7571113493628999068::1781839493::0::1::::<><><>0<>0<><>::uid://dlx8fn6cnwrpx::::res://Editor/CampaignEditor/CampaignData.gd
-CampaignEditorsStart.tscn::PackedScene::944045485175905151::1781839924::0::1::::<><><>0<>0<><>::uid://cbofwdbflvve7::::res://Editor/CampaignEditor/CampaignEditorMenu.gd
-NewCampaign.gd::GDScript::2635633587996374583::1781800046::0::1::::<>Control<><>0<>0<><>::
-NewCampaign.tscn::PackedScene::3074832719944948802::1781839725::0::1::::<><><>0<>0<><>::uid://bdsyrae36mmqx::::res://Editor/CampaignEditor/NewCampaign.gd
+::res://Editor/CampaignEditor/::1781841983
+CampaignData.gd::GDScript::7980833339973468889::1781841959::0::1::::CampaignData<>Node<><>0<>0<><>::
+CampaignEditorRoot.gd::GDScript::4956825944782660170::1781841881::0::1::::<>Node<><>0<>0<><>::
+CampaignEditorRoot.tscn::PackedScene::7571113493628999068::1781841983::0::1::::<><><>0<>0<><>::uid://dlx8fn6cnwrpx::::res://Editor/CampaignEditor/CampaignData.gd<>uid://ccveg1f13t2pi::::res://Editor/CampaignEditor/CampaignEditorRoot.gd
+CampaignEditorsStart.tscn::PackedScene::944045485175905151::1781840108::0::1::::<><><>0<>0<><>::uid://cbofwdbflvve7::::res://Editor/CampaignEditor/CampaignEditorStart.gd
+CampaignEditorStart.gd::GDScript::4872274531368392884::1781840108::0::1::::<>Control<><>0<>0<><>::
+NewCampaign.gd::GDScript::2635633587996374583::1781841983::0::1::::<>Control<><>0<>0<><>::
+NewCampaign.tscn::PackedScene::3074832719944948802::1781840687::0::1::::<><><>0<>0<><>::uid://bdsyrae36mmqx::::res://Editor/CampaignEditor/NewCampaign.gd
 ::res://Export/::1762368325
 ::res://Game/::1781496589
 GameSession.gd::GDScript::612729822563507146::1781214711::0::1::::<>Node2D<><>0<>0<><>::

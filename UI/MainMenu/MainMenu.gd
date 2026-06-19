@@ -25,7 +25,7 @@ func _on_menu_button_pressed(button: String) -> void:
 			GameManager.clear_doors_unlocked()
 			GameManager.change_scene_to_main_game()
 		"campaigneditor":
-			GameManager.change_scene_to_campaign_editor_menu()
+			GameManager.change_scene_to_campaign_editor()
 		"settings":
 			GameManager.change_scene_to_settings()
 		"exit":

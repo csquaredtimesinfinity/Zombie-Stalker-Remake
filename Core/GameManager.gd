@@ -21,6 +21,8 @@ const MAIN_MENU_SCENE: PackedScene = preload("res://UI/MainMenu/MainMenu.tscn")
 const LEVEL_EDITOR_SCENE: PackedScene = preload("res://Editor/LevelEditor.tscn")
 const SETTINGS_SCENE: PackedScene = preload("res://UI/Settings/Settings.tscn")
 
+const CAMPAIGN_EDITOR_ROOT_SCENE: PackedScene = preload("res://Editor/CampaignEditor/CampaignEditorRoot.tscn")
+
 
 # Track pickups and doors unlocked
 var collected_pickups: Dictionary = {}
@@ -48,6 +50,9 @@ func change_scene_to_level_editor() -> void:
 
 func change_scene_to_settings() -> void:
 	change_scene(SETTINGS_SCENE)
+
+func change_scene_to_campaign_editor() -> void:
+	change_scene(CAMPAIGN_EDITOR_ROOT_SCENE)
 
 func change_scene(scene: PackedScene) -> void:
 	print("Changing scene to: ", scene.resource_path)
