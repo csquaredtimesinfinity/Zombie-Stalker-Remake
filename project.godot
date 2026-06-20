@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="ZombieStalker"
 config/tags=PackedStringArray("topdown", "zombie")
-run/main_scene="uid://bgvwk1wegb2wh"
+run/main_scene="uid://bm7lw5dr7qvm0"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/stretch_mode=0
 boot_splash/image="uid://buj8j53soallo"

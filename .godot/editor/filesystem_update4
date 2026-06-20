@@ -1,9 +1,4 @@
-res://Assets/scenes/tileset.tres
 res://SplashScreen/SplashScreen.tscn
+res://Assets/scenes/tileset.tres
 res://SplashScreen/SplashScreen.gd
-res://SplashScreen/splash_screen.gd
-res://SplashScreen/logo_root.gd
-res://Core/GameManager.gd
-res://UI/MainMenu/MainMenu.gd
-res://Editor/CampaignEditor/CampaignEditorsStart.tscn
-res://Editor/CampaignEditor/CampaignEditorStart.gd
+res://Core/Level/LevelBuilder.gd
