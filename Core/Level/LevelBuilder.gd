@@ -85,4 +85,5 @@ static func apply_screen_to_layers(
 						continue
 				
 				if EntityDatabase.is_entity_in_category(type, "prop"):
-					_setup_entity(scene, entity, world_pos, entities_parent)
+					if not GameManager.is_door_unlocked(LevelUtils.id_for_entity(screen_key, str(entity['cell']), str(type))):
+						_setup_entity(scene, entity, world_pos, entities_parent)

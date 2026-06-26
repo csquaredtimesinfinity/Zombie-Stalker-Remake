@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dxbjvn0ynm8ao" path="res://UI/HUD/HUD.gd" id="1_5ipxi"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1421738320]
+layer = -1
 script = ExtResource("1_5ipxi")
 
 [node name="Control" type="Control" parent="." unique_id=1407156921]

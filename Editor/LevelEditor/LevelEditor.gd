@@ -1,10 +1,9 @@
 extends Control
 
-@onready var tile_selector: OptionButton = %TileSelector
-@onready var entity_selector: OptionButton = %EntitySelector
 @onready var tilemap: TileMapLayer = $TileMapLayer
 @onready var markers_layer: TileMapLayer = $MarkersLayer
-@onready var current_screen_label: Label = $%CurrentScreenCoords
+@onready var ui: CanvasLayer = $LevelEditorUI
+
 
 const SCREEN_SIZE = Vector2i(20, 10)
 const MAP_SCREENS := Vector2i(4, 6)  # 6 across, 4 down
@@ -35,56 +34,14 @@ var is_painting_entity := false
 2. Loads level data and updates the TileMapLayers for tiles and entities.
 """
 func _ready():
-	%CurrentScreenCoords.text = _get_current_screen_coords()
-	update_screen_buttons()
-	var categories = {}
-	# Initialize TileSelector dropdown control
-	tile_selector.clear()
-	# group everything by category
-	for type in TileDatabase.DATA:
-		var entity = TileDatabase.DATA[type]
-		var category = entity.get("category", "uncategorized")
-		
-		if not categories.has(category):
-			categories[category] = []
-			
-		categories[category].append({"type": type, "data": entity})
+	ui.tile_selected.connect(_on_tile_selected)
+	ui.entity_selected.connect(_on_entity_selected)
+	ui.move_screen.connect(_on_move_screen)
+	ui.save_level.connect(_on_save_level)
 	
-	# build UI
-	for category in categories.keys():
-		tile_selector.add_separator(category.capitalize())
-		
-		for entry in categories[category]:
-			tile_selector.add_icon_item(entry.data.icon, entry.data.name, entry.type)
+#	%CurrentScreenCoords.text = _get_current_screen_coords()
+	_update_screen_buttons()
 	
-	# Initialize PickupSelector dropdown control
-	entity_selector.clear()
-	entity_selector.add_item("Empty", EntityDatabase.EntityType.EMPTY)
-	
-	categories = {}
-	
-	# group everything by category
-	for type in EntityDatabase.DATA:
-		var entity = EntityDatabase.DATA[type]
-		var category = entity.get("category", "uncategorized")
-		
-		if not categories.has(category):
-			categories[category] = []
-			
-		categories[category].append({"type": type, "data": entity})
-	
-	# build UI
-	for category in categories.keys():
-		entity_selector.add_separator(category.capitalize())
-		
-		for entry in categories[category]:
-			entity_selector.add_icon_item(entry.data.icon, entry.data.name, entry.type)
-	
-	#entity_selector.add_icon_item(
-		#preload("res://Assets/Sprites/zombie2.png"), 
-		#"Enemy", EntityDatabase.EntityType.ENEMY)
-	
-	current_tile_id = tile_selector.get_item_id(1)
 	# Connect dropdown changes
 	level_data = LevelSystem.load_level(level_data_file)
 	LevelBuilder.apply_screen_to_layers(
@@ -227,11 +184,8 @@ func pickup_type_to_name(t: EntityDatabase.EntityType) -> String:
 		EntityDatabase.EntityType.KEY_PICKUP: return "key"
 		_: return "unknown"
 
-func update_screen_buttons() -> void:
-	%LeftButton.disabled = current_screen.x <= 0
-	%RightButton.disabled = current_screen.x >= MAP_SCREENS.x - 1
-	%UpButton.disabled = current_screen.y <= 0
-	%DownButton.disabled = current_screen.y >= MAP_SCREENS.y - 1		
+func _update_screen_buttons() -> void:
+	ui.set_screen_button_states(current_screen, MAP_SCREENS)	
 
 func _get_current_screen_coords() -> String:
 	return str(current_screen.x) + "," + str(current_screen.y)
@@ -240,42 +194,27 @@ func _load_current_screen() -> void:
 	var screen_coords = _get_current_screen_coords()
 	LevelBuilder.apply_screen_to_layers(level_data, screen_coords, tilemap, markers_layer)
 	
-func _on_tile_selected(index: int) -> void:
+func _on_tile_selected(id: int) -> void:
 	# store which tile the user picked
-	current_tile_id = tile_selector.get_item_id(index)
+	current_tile_id = id
 	is_painting_tiles = false
 	
-func _on_pickup_selected(index: int) -> void:
-	current_entity_type = entity_selector.get_item_id(index)
+func _on_entity_selected(id: int) -> void:
+	current_entity_type = id
 	is_painting_tiles = false
-				
-func _on_left_pressed() -> void:
-	if current_screen.x > 0:
-		current_screen.x -= 1
-		current_screen_label.text = _get_current_screen_coords()
-		_load_current_screen()
-	update_screen_buttons()
+			
+func _on_move_screen(dir: Vector2i) -> void:
+	var new_screen = current_screen + dir
 
-func _on_right_pressed() -> void:
-	if current_screen.x < SCREEN_SIZE.x - 1:
-		current_screen.x += 1
-		current_screen_label.text = _get_current_screen_coords()
-		_load_current_screen()
-	update_screen_buttons()
+	if new_screen.x < 0 or new_screen.x >= SCREEN_SIZE.x:
+		return
+	if new_screen.y < 0 or new_screen.y >= SCREEN_SIZE.y:
+		return
 
-func _on_up_pressed() -> void:
-	if current_screen.y > 0:
-		current_screen.y -= 1
-		current_screen_label.text = _get_current_screen_coords()
-		_load_current_screen()
-	update_screen_buttons()
+	current_screen = new_screen
 
-func _on_down_pressed() -> void:
-	if current_screen.y < MAP_SCREENS.y - 1:
-		current_screen.y += 1
-		current_screen_label.text = _get_current_screen_coords()
-		_load_current_screen()
-	update_screen_buttons()
+	_load_current_screen()
+	_update_screen_buttons()
 	
 func _on_fill_screen_button_pressed() -> void:
 	if current_tile_id == -1:
@@ -296,5 +235,5 @@ func _on_fill_screen_button_pressed() -> void:
 		for x in range(SCREEN_SIZE.x):
 			tilemap.set_cell(Vector2i(x,y), current_tile_id, Vector2i(0,0))
 				
-func _on_save_level_pressed() -> void:
+func _on_save_level() -> void:
 	LevelSerializer.save_level("res://Assets/levels/Level1.json", level_data)

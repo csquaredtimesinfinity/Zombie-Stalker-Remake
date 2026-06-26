@@ -1,6 +1,8 @@
 extends Node2D
 
-const MAIN_MENU_SCENE := "res://scenes/main_menu/main_menu.tscn"
+const GLITCH_STRIPE_HEIGHT := 400
+
+@onready var fade_rect: ColorRect = $/root/SceneTransition/ColorRect
 
 var c1_points: PackedVector2Array
 var c2_points: PackedVector2Array
@@ -15,17 +17,64 @@ var center := Vector2.ZERO
 
 var time := 0.0
 
+var can_skip := false
+var skipped := false
+
 func _ready():
+	fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	center = get_viewport_rect().size / 2.0
 
 	_build_geometry()
-
+	get_tree().create_timer(1.0).timeout.connect(
+		func(): can_skip = true)
+	
 	await _play_animation()
+	
+	if skipped:
+		return
 
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(1.8).timeout
+	
+	if skipped:
+		return
+	
+	await GameManager.change_scene_to_main_menu()
 
-	GameManager.change_scene_to_main_menu()
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if not can_skip:
+		return
+		
+	if skipped:
+		return
+		
+	if event.is_pressed():
+		_skip_intro()
 
+func _skip_intro() -> void:
+	if skipped:
+		return
+		
+	skipped = true
+	
+	await GameManager.change_scene_to_main_menu()
+	
+
+func _get_glitch_strength() -> float:
+	
+	# early chaos (strong while C’s are forming)
+	var early : float = 1.0 - max(c1_progress, c2_progress)
+
+	# mid chaos (drops when X appears)
+	var mid := 1.0 - x_progress
+
+	# final stabilization (kills glitch during infinity draw)
+	var final := 1.0 - infinity_progress
+
+	# weighted behavior:
+	var strength := early * 1.2 + mid * 0.6 + final * 2.5
+
+	return clamp(strength, 0.0, 3.0)
 
 func _build_geometry():
 
@@ -40,7 +89,7 @@ func _process(delta):
 	queue_redraw()
 
 func _jitter(p: Vector2, intensity: float) -> Vector2:
-	var t := time * 6.0
+	var t := time * 2.0
 
 	# layered noise (gives "machine struggling to stabilize" feel)
 	var n1 := sin(p.x * 0.08 + t) * cos(p.y * 0.06 - t * 1.3)
@@ -53,23 +102,54 @@ func _jitter(p: Vector2, intensity: float) -> Vector2:
 
 	return p + dir * n * intensity
 
+func _glitch_color(y: float, base: Color, strength: float) -> Color:
+	var t := time * 25.0
+
+	# pseudo-random per scanline
+	var n := sin(y * 0.15 + t) * cos(y * 0.07 - t * 0.8)
+
+	# flicker amount
+	var flicker := n * strength * 0.25
+
+	# RGB channel drift (slightly desynced channels)
+	var r := base.r + flicker
+	var g := base.g + flicker * sin(t * 1.3)
+	var b := base.b + flicker * cos(t * 1.7)
+
+	return Color(r, g, b, base.a)
+
 func _draw():
 
-	# background
-	draw_rect(Rect2(Vector2.ZERO, get_viewport_rect().size), Color(0.03, 0.03, 0.04), true)
-	
-	var col := Color(0.75, 0.95, 1.0)
-	var w := 4.0
-	
-	var breathe := 1.0 + sin(time * 100.5) * 0.02
-	col *= breathe
+	var size := get_viewport_rect().size
 
-	_draw_partial(c1_points, c1_progress, col, w)
-	_draw_partial(c2_points, c2_progress, col, w)
-	_draw_x(col, w)
-	_draw_partial(infinity_points, infinity_progress, col, w)
+	draw_rect(Rect2(Vector2.ZERO, size), Color(0.03, 0.03, 0.04), true)
+
+	var base_glitch := 0.25
+	var startup_glitch : float = (1.0 - max(c1_progress, infinity_progress)) * 1.5
+
+	var glitch_strength : float = clamp(_get_glitch_strength(), 0.0, 0.25)
+
+	for y in range(0, int(size.y), GLITCH_STRIPE_HEIGHT):
+
+		# horizontal offset (your existing glitch idea)
+		var n := sin(y * 0.1 + time * 20.0)
+		var offset_x := n * glitch_strength * 10.0
+
+		# color flicker per line
+		var base_col := _glitch_color(y, Color(1, 1, 1), glitch_strength)
+
+		draw_set_transform(Vector2(offset_x, 0))
+
+		_draw_logo(y, base_col)
+
+		draw_set_transform(Vector2.ZERO)
+
+	# final text stays stable (contrast moment)
+	if infinity_progress >= 1.0:
+		glitch_strength = _get_glitch_strength()
 
 	if infinity_progress >= 1.0:
+		glitch_strength = 0.0
 		draw_string(
 			ThemeDB.fallback_font,
 			center + Vector2(-90, 140),
@@ -79,16 +159,20 @@ func _draw():
 			32,
 			Color.WHITE
 		)
+	
+	if can_skip:
+		draw_string(
+			ThemeDB.fallback_font,
+			Vector2(
+				20,
+				get_viewport_rect().size.y - 20
+			),
+			"Press Any Key To Skip",
+			HORIZONTAL_ALIGNMENT_CENTER,
+			-1,
+			16,
+			Color(1,1,1,0.5))
 		
-	for y in range(0, int(get_viewport_rect().size.y), 6):
-		var alpha := 0.02 + sin(y * 0.1 + time * 5.0) * 0.01
-		draw_line(
-			Vector2(0, y),
-			Vector2(get_viewport_rect().size.x, y),
-			Color(1, 1, 1, alpha),
-			1.0
-		)
-
 
 func _play_animation():
 
@@ -157,6 +241,13 @@ func _build_c(pos: Vector2, radius: float) -> PackedVector2Array:
 
 	return pts
 
+func _draw_logo(offset_y: float = 0.0, color_mod: Color = Color.WHITE):
+	var base := Color(0.75, 0.95, 1.0) * color_mod
+
+	_draw_partial(c1_points, c1_progress, base, 4.0)
+	_draw_partial(c2_points, c2_progress, base, 4.0)
+	_draw_x(base, 4.0)
+	_draw_partial(infinity_points, infinity_progress, base, 4.0)
 
 func _build_infinity(pos: Vector2, w: float, h: float) -> PackedVector2Array:
 

@@ -1,4 +1,1 @@
-res://SplashScreen/SplashScreen.tscn
-res://Assets/scenes/tileset.tres
-res://SplashScreen/SplashScreen.gd
-res://Core/Level/LevelBuilder.gd
+res://Assets/Levels/Level1.json

@@ -18,7 +18,7 @@ extends Node
 # PRELOAD SCENES
 const MAIN_GAME_SCENE: PackedScene = preload("res://Game/GameSession.tscn")
 const MAIN_MENU_SCENE: PackedScene = preload("res://UI/MainMenu/MainMenu.tscn")
-const LEVEL_EDITOR_SCENE: PackedScene = preload("res://Editor/LevelEditor.tscn")
+const LEVEL_EDITOR_SCENE: PackedScene = preload("res://Editor/LevelEditor/LevelEditor.tscn")
 const SETTINGS_SCENE: PackedScene = preload("res://UI/Settings/Settings.tscn")
 
 const CAMPAIGN_EDITOR_ROOT_SCENE: PackedScene = preload("res://Editor/CampaignEditor/CampaignEditorRoot.tscn")
@@ -40,10 +40,10 @@ func _input(event: InputEvent) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func change_scene_to_main_menu() -> void:
-	change_scene(MAIN_MENU_SCENE)
-
+	await SceneTransition.change_scene(MAIN_MENU_SCENE, 0.35)
+	
 func change_scene_to_main_game() -> void:
-	change_scene(MAIN_GAME_SCENE)
+	await SceneTransition.change_scene(MAIN_GAME_SCENE, 0.35)
 	
 func change_scene_to_level_editor() -> void:
 	change_scene(LEVEL_EDITOR_SCENE)

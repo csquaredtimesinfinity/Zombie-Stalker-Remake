@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://bfxvlomkte58w"]
+
+[ext_resource type="Script" uid="uid://bpt1xjxv8mmwh" path="res://Editor/LevelEditor/LevelEditorUI.gd" id="1_q0sek"]
+[ext_resource type="Texture2D" uid="uid://bhmfi2wjql7v4" path="res://Assets/Sprites/Tiles/grey_wall.png" id="2_j6dda"]
+[ext_resource type="Texture2D" uid="uid://cr0vlyc7xfytw" path="res://Assets/Sprites/Tiles/blue_wall.png" id="3_gpu0f"]
+[ext_resource type="Texture2D" uid="uid://flxyy20qw1ua" path="res://Assets/Sprites/Tiles/bush.png" id="4_pbrno"]
+[ext_resource type="Texture2D" uid="uid://d1thi7he8fq4x" path="res://Assets/Sprites/Tiles/floor.png" id="5_rhl1y"]
+[ext_resource type="Texture2D" uid="uid://b6k52i0hyc6ig" path="res://Assets/Sprites/Tiles/grass.png" id="6_s4kwl"]
+
+[node name="LevelEditorUI" type="CanvasLayer" unique_id=394713096]
+script = ExtResource("1_q0sek")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1390162355]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.100439, 0.337708, 1, 1)
+
+[node name="SaveLevel" type="Button" parent="ColorRect" unique_id=1883669836]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 36.0
+offset_right = 830.0
+offset_bottom = 86.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+text = "SAVE"
+
+[node name="TileSelectorLabel" type="Label" parent="ColorRect" unique_id=567910968]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 10.000004
+offset_right = 112.0
+offset_bottom = 52.000004
+theme_override_font_sizes/font_size = 30
+text = "Tile"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="TileSelector" type="OptionButton" parent="ColorRect/TileSelectorLabel" unique_id=87571935]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 69.683304
+offset_top = 7.517952
+offset_right = 214.6833
+offset_bottom = 43.517952
+size_flags_horizontal = 0
+size_flags_vertical = 8
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+item_count = 7
+popup/item_0/text = "Barriers"
+popup/item_0/id = 5
+popup/item_0/separator = true
+popup/item_1/text = "Grey Wall"
+popup/item_1/icon = ExtResource("2_j6dda")
+popup/item_1/id = 1
+popup/item_2/text = "Blue Wall"
+popup/item_2/icon = ExtResource("3_gpu0f")
+popup/item_2/id = 2
+popup/item_3/text = "Bush"
+popup/item_3/icon = ExtResource("4_pbrno")
+popup/item_3/id = 3
+popup/item_4/text = "Ground"
+popup/item_4/id = 4
+popup/item_4/separator = true
+popup/item_5/text = "Tile Floor"
+popup/item_5/icon = ExtResource("5_rhl1y")
+popup/item_5/id = 4
+popup/item_6/text = "Grass"
+popup/item_6/icon = ExtResource("6_s4kwl")
+popup/item_6/id = 5
+
+[node name="EntitySelectorLabel" type="Label" parent="ColorRect" unique_id=1012180512]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 64.999985
+offset_right = 113.0
+offset_bottom = 106.999985
+scale = Vector2(1.04268, 1.02895)
+theme_override_font_sizes/font_size = 30
+text = "Entity"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="EntitySelector" type="OptionButton" parent="ColorRect/EntitySelectorLabel" unique_id=1846692669]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 107.415535
+offset_top = 5.831191
+offset_right = 252.41553
+offset_bottom = 41.831192
+size_flags_horizontal = 0
+size_flags_vertical = 8
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+item_count = 7
+popup/item_0/text = "Barriers"
+popup/item_0/id = 5
+popup/item_0/separator = true
+popup/item_1/text = "Grey Wall"
+popup/item_1/icon = ExtResource("2_j6dda")
+popup/item_1/id = 1
+popup/item_2/text = "Blue Wall"
+popup/item_2/icon = ExtResource("3_gpu0f")
+popup/item_2/id = 2
+popup/item_3/text = "Bush"
+popup/item_3/icon = ExtResource("4_pbrno")
+popup/item_3/id = 3
+popup/item_4/text = "Ground"
+popup/item_4/id = 4
+popup/item_4/separator = true
+popup/item_5/text = "Tile Floor"
+popup/item_5/icon = ExtResource("5_rhl1y")
+popup/item_5/id = 4
+popup/item_6/text = "Grass"
+popup/item_6/icon = ExtResource("6_s4kwl")
+popup/item_6/id = 5
+
+[node name="CurrentScreenCoords" type="Label" parent="ColorRect" unique_id=1489846184]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1195.0
+offset_top = 11.999985
+offset_right = 1245.0
+offset_bottom = 57.999985
+theme_override_font_sizes/font_size = 33
+text = "0,0"
+horizontal_alignment = 1
+
+[node name="ChangeScreemButtons" type="HBoxContainer" parent="ColorRect/CurrentScreenCoords" unique_id=678756119]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -151.0
+offset_top = 7.0000305
+offset_right = 3.0
+offset_bottom = 84.00003
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 2
+
+[node name="LeftButton" type="Button" parent="ColorRect/CurrentScreenCoords/ChangeScreemButtons" unique_id=1271359848]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+text = "˂"
+
+[node name="RightButton" type="Button" parent="ColorRect/CurrentScreenCoords/ChangeScreemButtons" unique_id=2012094023]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+text = "˃"
+
+[node name="UpButton" type="Button" parent="ColorRect/CurrentScreenCoords/ChangeScreemButtons" unique_id=2077365736]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+text = "˄"
+
+[node name="DownButton" type="Button" parent="ColorRect/CurrentScreenCoords/ChangeScreemButtons" unique_id=1467463357]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+text = "˅"
+
+[node name="FillScreenButton" type="Button" parent="ColorRect" unique_id=867056475]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 9.0
+offset_right = 503.0
+offset_bottom = 59.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+text = "FILL
+"
+
+[connection signal="pressed" from="ColorRect/SaveLevel" to="." method="_on_save_level_pressed"]
+[connection signal="item_selected" from="ColorRect/TileSelectorLabel/TileSelector" to="." method="_on_tile_selector_item_selected"]
+[connection signal="item_selected" from="ColorRect/EntitySelectorLabel/EntitySelector" to="." method="_on_entity_selector_item_selected"]
+[connection signal="pressed" from="ColorRect/CurrentScreenCoords/ChangeScreemButtons/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="ColorRect/CurrentScreenCoords/ChangeScreemButtons/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="ColorRect/CurrentScreenCoords/ChangeScreemButtons/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="pressed" from="ColorRect/CurrentScreenCoords/ChangeScreemButtons/DownButton" to="." method="_on_down_button_pressed"]

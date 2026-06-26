@@ -24,6 +24,13 @@ color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1938882179]
 
+[node name="Title" type="Sprite2D" parent="CanvasLayer" unique_id=61647477]
+z_index = -1
+position = Vector2(641, 152.00002)
+scale = Vector2(1.957148, 2.3026352)
+texture = ExtResource("2_fvlai")
+metadata/_edit_group_ = true
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=773996563]
 anchors_preset = -1
 anchor_left = 0.5
@@ -37,30 +44,28 @@ grow_vertical = 0
 [node name="PlayGameButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=900155559]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 50
 text = "PLAY GAME"
 
 [node name="CampaignEditorButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=812101563]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 50
 text = "CAMPAIGN EDITOR"
+
+[node name="LevelEditorButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=860204115]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "LEVEL EDITOR"
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1228053192]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 50
 text = "SETTINGS"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=714590106]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 50
 text = "EXIT"
-
-[node name="Title" type="Sprite2D" parent="." unique_id=61647477]
-z_index = -1
-position = Vector2(641, 152.00002)
-scale = Vector2(1.957148, 2.3026352)
-texture = ExtResource("2_fvlai")
-metadata/_edit_group_ = true

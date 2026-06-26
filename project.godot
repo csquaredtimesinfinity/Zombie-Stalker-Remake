@@ -17,7 +17,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="ZombieStalker"
 config/tags=PackedStringArray("topdown", "zombie")
 run/main_scene="uid://bm7lw5dr7qvm0"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/stretch_mode=0
 boot_splash/image="uid://buj8j53soallo"
 config/icon="uid://wywp085p45tj"
@@ -25,6 +25,8 @@ config/windows_native_icon="res://title.ico"
 
 [autoload]
 
+PathManager="*uid://be2fav8ica5lb"
+SceneTransition="*uid://cpb4r5ll42eel"
 AudioManager="*res://Core/Audio/AudioManager.gd"
 SteamController="*res://Core/Steam/SteamController.gd"
 LevelSystem="*res://Core/Level/LevelSystem.gd"
@@ -34,6 +36,7 @@ GameManager="*res://Core/GameManager.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=800
+window/size/mode=3
 window/size/window_width_override=1280
 window/size/window_height_override=800
 window/subwindows/embed_subwindows=false

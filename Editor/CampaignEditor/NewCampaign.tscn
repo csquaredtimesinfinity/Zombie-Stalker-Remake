@@ -36,54 +36,55 @@ text = "New Campaign
 
 [node name="CampaignNameLabel" type="Label" parent="CanvasLayer/ColorRect" unique_id=823864590]
 layout_mode = 0
-offset_left = 460.0
+offset_left = 291.0
 offset_top = 207.0
-offset_right = 597.0
+offset_right = 428.0
 offset_bottom = 230.0
 text = "Name: "
 horizontal_alignment = 2
 
 [node name="CampaignNameTextEdit" type="TextEdit" parent="CanvasLayer/ColorRect" unique_id=410303579]
 layout_mode = 0
-offset_left = 599.5
+offset_left = 430.5
 offset_top = 203.0
-offset_right = 811.5
+offset_right = 911.0
 offset_bottom = 239.0
 placeholder_text = "enter text here"
 
 [node name="AuthorLabel" type="Label" parent="CanvasLayer/ColorRect" unique_id=825976270]
 layout_mode = 0
-offset_left = 452.0
+offset_left = 283.0
 offset_top = 252.0
-offset_right = 592.0
+offset_right = 423.0
 offset_bottom = 275.0
 text = "Author:"
 horizontal_alignment = 2
 
 [node name="DescriptionLabel" type="Label" parent="CanvasLayer/ColorRect" unique_id=2059655433]
 layout_mode = 0
-offset_left = 456.0
+offset_left = 287.0
 offset_top = 296.0
-offset_right = 593.0
+offset_right = 424.0
 offset_bottom = 319.0
 text = "Description:"
 horizontal_alignment = 2
 
 [node name="AuthorTextEdit" type="TextEdit" parent="CanvasLayer/ColorRect" unique_id=1215915130]
 layout_mode = 0
-offset_left = 600.0
+offset_left = 431.0
 offset_top = 248.0
-offset_right = 812.0
+offset_right = 911.0
 offset_bottom = 284.0
 placeholder_text = "enter text here"
 
 [node name="DescriptionTextEdit" type="TextEdit" parent="CanvasLayer/ColorRect" unique_id=2027542060]
 layout_mode = 0
-offset_left = 600.0
+offset_left = 431.0
 offset_top = 296.0
-offset_right = 812.0
+offset_right = 911.0
 offset_bottom = 488.0
 placeholder_text = "enter text here"
+wrap_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect" unique_id=486437745]
 layout_mode = 1
@@ -110,5 +111,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Cancel"
 
+[node name="FileNamePreviewLabel" type="Label" parent="CanvasLayer/ColorRect" unique_id=761994535]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 520.0
+offset_right = 896.0
+offset_bottom = 543.0
+horizontal_alignment = 1
+
+[connection signal="text_changed" from="CanvasLayer/ColorRect/CampaignNameTextEdit" to="." method="_on_campaign_name_text_edit_text_changed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/HBoxContainer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]

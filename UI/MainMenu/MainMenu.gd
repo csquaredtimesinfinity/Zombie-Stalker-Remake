@@ -3,6 +3,7 @@ extends Control
 # Menu Buttons
 @onready var playgame_button :Button = $CanvasLayer/VBoxContainer/PlayGameButton
 @onready var campaign_editor_button :Button = $CanvasLayer/VBoxContainer/CampaignEditorButton
+@onready var level_editor_button: Button = $CanvasLayer/VBoxContainer/LevelEditorButton
 @onready var settings_button :Button = $CanvasLayer/VBoxContainer/SettingsButton
 @onready var exit_button :Button = $CanvasLayer/VBoxContainer/ExitButton
 
@@ -11,6 +12,7 @@ extends Control
 func _ready() -> void:
 	playgame_button.pressed.connect(_on_menu_button_pressed.bind("playgame"))
 	campaign_editor_button.pressed.connect(_on_menu_button_pressed.bind("campaigneditor"))
+	level_editor_button.pressed.connect(_on_menu_button_pressed.bind("leveleditor"))
 	settings_button.pressed.connect(_on_menu_button_pressed.bind("settings"))
 	exit_button.pressed.connect(_on_menu_button_pressed.bind("exit"))
 
@@ -23,11 +25,13 @@ func _on_menu_button_pressed(button: String) -> void:
 		"playgame":
 			GameManager.clear_collected_pickups()
 			GameManager.clear_doors_unlocked()
-			GameManager.change_scene_to_main_game()
+			await GameManager.change_scene_to_main_game()
 		"campaigneditor":
-			GameManager.change_scene_to_campaign_editor()
+			await GameManager.change_scene_to_campaign_editor()
+		"leveleditor":
+			await GameManager.change_scene_to_level_editor()
 		"settings":
-			GameManager.change_scene_to_settings()
+			await GameManager.change_scene_to_settings()
 		"exit":
 			print("exit")
 			get_tree().quit()

@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://qdsqyuhkot4q"]
+
+[ext_resource type="Script" uid="uid://d4a1n3u43ew2w" path="res://Editor/LevelEditor/LevelEditor.gd" id="1_luwim"]
+[ext_resource type="TileSet" uid="uid://bmru7gp42os5g" path="res://Assets/scenes/tileset.tres" id="2_1fl8k"]
+[ext_resource type="Texture2D" uid="uid://b0jvato78q0d" path="res://Game/Entities/Pickups/Ammo/AmmoPickup.png" id="3_fr8fl"]
+[ext_resource type="Texture2D" uid="uid://d1qejfrgnqgvd" path="res://Game/Entities/Pickups/Health/HealthPickup.png" id="4_sryu2"]
+[ext_resource type="Texture2D" uid="uid://dxntjpr8pgwpy" path="res://Game/Entities/Door/door.png" id="5_jsqct"]
+[ext_resource type="Texture2D" uid="uid://bhfv1rnk0u5sf" path="res://Game/Entities/Pickups/Key/KeyPickup.png" id="6_b8eqj"]
+[ext_resource type="Texture2D" uid="uid://c5s1grc76n4oc" path="res://Game/LevelMarkers/PlayerStart/start_tile.png" id="7_xgboj"]
+[ext_resource type="Texture2D" uid="uid://w3gpv7k2r8p" path="res://Game/LevelMarkers/EndOfLevel/end_tile.png" id="8_tk6fe"]
+[ext_resource type="Texture2D" uid="uid://dsaomajis1lco" path="res://Assets/Sprites/zombie2.png" id="9_bgf25"]
+[ext_resource type="PackedScene" uid="uid://bfxvlomkte58w" path="res://Editor/LevelEditor/LevelEditorUI.tscn" id="10_luwim"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3ipa"]
+resource_name = "ammo pickup"
+texture = ExtResource("3_fr8fl")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k5u3g"]
+resource_name = "health pickup"
+texture = ExtResource("4_sryu2")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y1rcd"]
+texture = ExtResource("5_jsqct")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0eccv"]
+resource_name = "key pickup"
+texture = ExtResource("6_b8eqj")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c4u8i"]
+texture = ExtResource("7_xgboj")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sjsyj"]
+texture = ExtResource("8_tk6fe")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2w8ym"]
+resource_name = "enemy"
+texture = ExtResource("9_bgf25")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_c4u8i"]
+sources/0 = SubResource("TileSetAtlasSource_p3ipa")
+sources/1 = SubResource("TileSetAtlasSource_k5u3g")
+sources/2 = SubResource("TileSetAtlasSource_0eccv")
+sources/20 = SubResource("TileSetAtlasSource_c4u8i")
+sources/21 = SubResource("TileSetAtlasSource_sjsyj")
+sources/22 = SubResource("TileSetAtlasSource_2w8ym")
+sources/10 = SubResource("TileSetAtlasSource_y1rcd")
+
+[node name="LevelEditor" type="Control" unique_id=115029890]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+script = ExtResource("1_luwim")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1057473492]
+scale = Vector2(4, 4)
+tile_set = ExtResource("2_1fl8k")
+
+[node name="MarkersLayer" type="TileMapLayer" parent="." unique_id=1846379164]
+scale = Vector2(4, 4)
+tile_set = SubResource("TileSet_c4u8i")
+
+[node name="LevelEditorUI" parent="." unique_id=394713096 instance=ExtResource("10_luwim")]

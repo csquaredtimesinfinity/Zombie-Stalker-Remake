@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cpb4r5ll42eel"]
+
+[ext_resource type="Script" uid="uid://cddi80e2s6xpr" path="res://Core/Transitions/SceneTransition.gd" id="1_kkbld"]
+
+[sub_resource type="GDScript" id="GDScript_kkbld"]
+script/source = "extends ColorRect
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="SceneTransition" type="CanvasLayer" unique_id=540173364]
+layer = 100
+script = ExtResource("1_kkbld")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1735777636]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = SubResource("GDScript_kkbld")
