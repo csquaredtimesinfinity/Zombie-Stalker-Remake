@@ -23,8 +23,8 @@ func _input(event: InputEvent) -> void:
 func _on_menu_button_pressed(button: String) -> void:
 	match button:
 		"playgame":
-			GameManager.clear_collected_pickups()
-			GameManager.clear_doors_unlocked()
+			WorldState.clear_collected_pickups()
+			WorldState.clear_doors_unlocked()
 			await GameManager.change_scene_to_main_game()
 		"campaigneditor":
 			await GameManager.change_scene_to_campaign_editor()

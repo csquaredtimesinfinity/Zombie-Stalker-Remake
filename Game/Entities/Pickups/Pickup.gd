@@ -23,7 +23,7 @@ func apply_pickup(player: PlayerController) -> bool:
 	if _can_pickup(player):
 		_do_pickup(player)
 		
-		GameManager.mark_pickup_collected(pickup_id)
+		WorldState.mark_pickup_collected(pickup_id)
 		return true
 		
 	return false

@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1782446078
+::res://::1782611510
 3JcHaO01.svg::CompressedTexture2D::3860653710748354334::1757866568::1781215416::1::::<><><>0<>0<>acbab6c940176ce05a41552402e499ad<>res://.godot/imported/3JcHaO01.svg-7a52286b53d75ce3764a119ea1f0966d.ctex::
 export_presets.cfg::TextFile::-1::1762368325::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D::1595063552330164959::1755104659::1781215416::1::::<><><>0<>0<>013aac02b478f93a1675dfd9ecba1479<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
@@ -23,7 +23,7 @@ godotsteam.gdextension::GDExtension::7044556496785865601::1757613668::0::1::::<>
 ::res://addons/godotsteam/osx/libgodotsteam.macos.template_release.framework/::1759367658
 ::res://addons/godotsteam/osx/libgodotsteam.macos.template_release.framework/Resources/::1759367658
 ::res://addons/godotsteam/win32/::1759367658
-::res://addons/godotsteam/win64/::1782446063
+::res://addons/godotsteam/win64/::1782611501
 ::res://Assets/::1782097749
 ::res://Assets/Audio/::1781188796
 ::res://Assets/Audio/SoundEffects/::1781215416
@@ -38,7 +38,7 @@ MyCampaignFuckYouBitchAssMotherFucker.json::JSON::-1::1782163300::0::1::::<><><>
 TheHardestCampaignEver!!!!.json::JSON::-1::1782101326::0::1::::<><><>0<>0<><>::
 ToughZombieCampaign.json::JSON::-1::1782163389::0::1::::<><><>0<>0<><>::
 ::res://Assets/Levels/::1781574542
-Level1.json::JSON::-1::1782273379::0::1::::<><><>0<>0<><>::
+Level1.json::JSON::-1::1782446411::0::1::::<><><>0<>0<><>::
 ::res://Assets/scenes/::1782267888
 player.tscn::PackedScene::421057719547345902::1781213092::0::1::::<><><>0<>0<><>::uid://biyvhiq4bwjbn::::res://Game/Entities/Player/PlayerController.gd<>uid://ck6v547n23qk6::::res://Assets/Sprites/player_anim.png<>uid://cfgnijtir2yee::::res://Game/Entities/Player/PlayerAnimator.gd
 tileset.tres::TileSet::3265053054095239370::1782267888::0::1::::<><><>0<>0<><>::uid://bhmfi2wjql7v4::::res://Assets/Sprites/Tiles/grey_wall.png<>uid://cr0vlyc7xfytw::::res://Assets/Sprites/Tiles/blue_wall.png<>uid://flxyy20qw1ua::::res://Assets/Sprites/Tiles/bush.png<>uid://dxntjpr8pgwpy::::res://Game/Entities/Door/door.png<>uid://d1thi7he8fq4x::::res://Assets/Sprites/Tiles/floor.png<>uid://b6k52i0hyc6ig::::res://Assets/Sprites/Tiles/grass.png<>uid://cc5k1bxanktbk::::res://Assets/Sprites/Tiles/health_regenerator.png

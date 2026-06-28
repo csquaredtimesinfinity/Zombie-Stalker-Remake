@@ -80,10 +80,10 @@ static func apply_screen_to_layers(
 					
 				# Entities
 				if EntityDatabase.is_entity_in_category(type, "pickup"):
-					if not GameManager.is_pickup_collected(LevelUtils.id_for_entity(screen_key, str(entity["cell"]), str(type))):
+					if not WorldState.is_pickup_collected(LevelUtils.id_for_entity(screen_key, str(entity["cell"]), str(type))):
 						_setup_entity(scene, entity, world_pos, entities_parent)
 						continue
 				
 				if EntityDatabase.is_entity_in_category(type, "prop"):
-					if not GameManager.is_door_unlocked(LevelUtils.id_for_entity(screen_key, str(entity['cell']), str(type))):
+					if not WorldState.is_door_unlocked(LevelUtils.id_for_entity(screen_key, str(entity['cell']), str(type))):
 						_setup_entity(scene, entity, world_pos, entities_parent)

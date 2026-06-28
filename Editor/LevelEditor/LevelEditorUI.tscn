@@ -22,10 +22,10 @@ color = Color(0.100439, 0.337708, 1, 1)
 
 [node name="SaveLevel" type="Button" parent="ColorRect" unique_id=1883669836]
 layout_mode = 0
-offset_left = 750.0
-offset_top = 36.0
-offset_right = 830.0
-offset_bottom = 86.0
+offset_left = 616.0
+offset_top = 94.0
+offset_right = 696.0
+offset_bottom = 144.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 30
 text = "SAVE"

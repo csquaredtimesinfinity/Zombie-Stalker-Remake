@@ -31,12 +31,12 @@ AudioManager="*res://Core/Audio/AudioManager.gd"
 SteamController="*res://Core/Steam/SteamController.gd"
 LevelSystem="*res://Core/Level/LevelSystem.gd"
 GameManager="*res://Core/GameManager.gd"
+WorldState="*uid://dqo1orqdxy2ea"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=800
-window/size/mode=3
 window/size/window_width_override=1280
 window/size/window_height_override=800
 window/subwindows/embed_subwindows=false

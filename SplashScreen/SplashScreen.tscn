@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://bm7lw5dr7qvm0"]
 
-[ext_resource type="Script" uid="uid://dffs8ah2wnthu" path="res://SplashScreen/splash_screen.gd" id="1_preeg"]
 [ext_resource type="Script" uid="uid://cqn1ni1qkvp13" path="res://SplashScreen/SplashScreen.gd" id="2_57vay"]
 
 [node name="SplashScreen" type="Control" unique_id=215105724]
@@ -10,7 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_preeg")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1872791267]
 layout_mode = 1
