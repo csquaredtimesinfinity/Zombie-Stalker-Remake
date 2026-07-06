@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://y6d0qkqrlov8" path="res://_Temp (Testing stuff)/prototype_game.gd" id="1_lcp10"]
 [ext_resource type="TileSet" uid="uid://cpihtc557373n" path="res://Assets/tilesets/tile_set.tres" id="1_pfbgl"]
-[ext_resource type="PackedScene" uid="uid://f8702suistek" path="res://Assets/scenes/player.tscn" id="2_pfbgl"]
+[ext_resource type="PackedScene" uid="uid://f8702suistek" path="res://Game/Entities/Player/Player.tscn" id="2_pfbgl"]
 [ext_resource type="Script" uid="uid://d18ak73wruahc" path="res://Core/Steam/SteamAvatar.gd" id="4_pb48a"]
 
 [node name="PrototypeGame" type="Node2D"]

@@ -44,8 +44,8 @@ const DATA := {
 	EntityType.DOOR: {
 		&"name": "Door",
 		&"category": "prop",
-		&"icon": preload("res://Game/Entities/Door/door.png"),
-		&"scene": preload("res://Game/Entities/Door/door.tscn")
+		&"icon": preload("res://Game/Entities/Door/Door.png"),
+		&"scene": preload("res://Game/Entities/Door/Door.tscn")
 	},
 	
 	EntityType.PLAYER_START: {
@@ -58,8 +58,8 @@ const DATA := {
 	EntityType.END_OF_LEVEL: {
 		&"name": "EndOfLevel",
 		&"category": "marker",
-		&"icon": preload("res://Game/LevelMarkers/EndOfLevel/end_tile.png"),
-		&"scene": preload("res://Game/LevelMarkers/EndOfLevel/level_end_portal.tscn")
+		&"icon": preload("res://Game/LevelMarkers/EndOfLevel/EndOfLevel.png"),
+		&"scene": preload("res://Game/LevelMarkers/EndOfLevel/EndOfLevel.tscn")
 	},
 	
 	EntityType.ENEMY: {

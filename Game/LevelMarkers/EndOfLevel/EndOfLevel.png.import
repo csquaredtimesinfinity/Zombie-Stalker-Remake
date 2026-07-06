@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://w3gpv7k2r8p"
-path="res://.godot/imported/end_tile.png-8194a1bf64e1a97db0f3a44d5e6d5144.ctex"
+path="res://.godot/imported/EndOfLevel.png-f99ad7c104f4ec0249a4996f4975c845.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/LevelMarkers/EndOfLevel/end_tile.png"
-dest_files=["res://.godot/imported/end_tile.png-8194a1bf64e1a97db0f3a44d5e6d5144.ctex"]
+source_file="res://Game/LevelMarkers/EndOfLevel/EndOfLevel.png"
+dest_files=["res://.godot/imported/EndOfLevel.png-f99ad7c104f4ec0249a4996f4975c845.ctex"]
 
 [params]
 

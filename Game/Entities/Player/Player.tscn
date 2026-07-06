@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://f8702suistek"]
+[gd_scene format=3 uid="uid://f8702suistek"]
 
 [ext_resource type="Script" uid="uid://biyvhiq4bwjbn" path="res://Game/Entities/Player/PlayerController.gd" id="1_7dd06"]
 [ext_resource type="Texture2D" uid="uid://ck6v547n23qk6" path="res://Assets/Sprites/player_anim.png" id="2_7dd06"]
 [ext_resource type="Script" uid="uid://cfgnijtir2yee" path="res://Game/Entities/Player/PlayerAnimator.gd" id="2_38rej"]
+[ext_resource type="Script" uid="uid://dy3ho5fogdxki" path="res://Game/Entities/Player/InteractRay.gd" id="4_onl36"]
 
 [sub_resource type="Animation" id="Animation_23lac"]
 length = 0.001
@@ -100,54 +101,54 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dd06"]
-size = Vector2(7.5, 6.75)
+size = Vector2(7, 6.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50d87"]
-size = Vector2(7, 16)
+size = Vector2(12, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wyb7m"]
 size = Vector2(6, 7)
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=542372235 groups=["player"]]
 collision_mask = 384
 script = ExtResource("1_7dd06")
 speed = 80.0
 
-[node name="PlayerAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player_controller", "animation_player", "sprite")]
+[node name="PlayerAnimator" type="Node2D" parent="." unique_id=313131200 node_paths=PackedStringArray("player_controller", "animation_player", "sprite")]
 script = ExtResource("2_38rej")
 player_controller = NodePath("..")
 animation_player = NodePath("AnimationPlayer")
 sprite = NodePath("Sprite2D")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimator"]
-libraries = {
-&"": SubResource("AnimationLibrary_t1xgp")
-}
-autoplay = "move_right"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimator" unique_id=32846958]
+libraries/ = SubResource("AnimationLibrary_t1xgp")
+autoplay = &"move_right"
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerAnimator"]
+[node name="Sprite2D" type="Sprite2D" parent="PlayerAnimator" unique_id=1928557210]
 texture = ExtResource("2_7dd06")
 hframes = 16
 frame = 4
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="CollisionWithWorld" type="CollisionShape2D" parent="."]
+[node name="CollisionWithWorld" type="CollisionShape2D" parent="." unique_id=1888302701]
 position = Vector2(-0.5, 4.375)
 shape = SubResource("RectangleShape2D_7dd06")
 
-[node name="HitBox" type="Area2D" parent="."]
-visible = false
+[node name="HitBox" type="Area2D" parent="." unique_id=1618122396]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(-0.5, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=768208791]
 shape = SubResource("RectangleShape2D_50d87")
 debug_color = Color(0.907973, 0.000119749, 0.738268, 0.42)
 
-[node name="DetectPickups" type="Area2D" parent="."]
+[node name="DetectPickups" type="Area2D" parent="." unique_id=1640095551]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPickups"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPickups" unique_id=1389464597]
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_wyb7m")
 debug_color = Color(0.699859, 0.360334, 0.850746, 0.42)
+
+[node name="InteractRay" type="RayCast2D" parent="." unique_id=1699693255]
+target_position = Vector2(0, 16)
+script = ExtResource("4_onl36")
 
 [connection signal="area_entered" from="DetectPickups" to="." method="_on_detect_pickups_area_entered"]

@@ -5,6 +5,9 @@ class_name PlayerController
 @export var speed: float = 120.0  # movement speed in pixels per second
 @export var max_health: int = 100
 @export var max_ammo: int = 300
+
+@onready var interact_ray := $InteractRay
+
 var health = 10 # max_health
 var ammo = 50
 var keys = 0
@@ -18,6 +21,15 @@ var muzzle_offsets = {
 	Direction.LEFT: Vector2(-8, -2),
 	Direction.RIGHT: Vector2(8, -2)
 }
+
+var facing = {
+	Direction.UP: Vector2.UP,
+	Direction.DOWN: Vector2.DOWN,
+	Direction.LEFT: Vector2.LEFT,
+	Direction.RIGHT: Vector2.RIGHT
+}
+
+const INTERACT_RAY_LENGTH = 9
 
 const TILE_SIZE = 16
 const SCREEN_TILES = Vector2i(20, 10)
@@ -34,7 +46,18 @@ signal ammo_changed(value)
 signal keys_changed(value)
 signal screen_transition(direction: Vector2)
 
+func _ready() -> void:
+	interact_ray.target_position = facing[player_direction] * INTERACT_RAY_LENGTH
+
+func _draw():
+	if interact_ray.enabled:
+		draw_line(Vector2.ZERO, interact_ray.target_position, Color.RED, 2)
+
 func _physics_process(delta: float) -> void:
+	# update ray cast to point in direction that the player is facing
+	interact_ray.target_position = facing[player_direction] * INTERACT_RAY_LENGTH
+	queue_redraw()
+
 	if Input.is_action_pressed("fire"):
 		shoot()
 		

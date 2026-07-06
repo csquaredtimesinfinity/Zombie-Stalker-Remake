@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7wgho6jkmirr"]
+[gd_scene format=3 uid="uid://c7wgho6jkmirr"]
 
-[ext_resource type="Texture2D" uid="uid://w3gpv7k2r8p" path="res://Game/LevelMarkers/EndOfLevel/end_tile.png" id="1_n004s"]
+[ext_resource type="Texture2D" uid="uid://w3gpv7k2r8p" path="res://Game/LevelMarkers/EndOfLevel/EndOfLevel.png" id="1_n004s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_osg6s"]
 size = Vector2(16.6481, 17.3913)

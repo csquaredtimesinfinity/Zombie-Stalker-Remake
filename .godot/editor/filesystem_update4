@@ -1,10 +1,6 @@
-res://Editor/LevelEditor/LevelEditorUI.tscn
+res://Game/Entities/Player/Player.tscn
 res://Assets/scenes/tileset.tres
-res://Core/GameManager.gd
-res://Assets/Levels/Level1.json
-res://Core/WorldState.gd
-res://Core/Level/LevelBuilder.gd
-res://Game/Entities/Pickups/Pickup.gd
-res://UI/MainMenu/MainMenu.gd
-res://Game/Entities/Door/door.gd
-res://SplashScreen/SplashScreen.tscn
+res://Game/Entities/Player/PlayerController.gd
+res://Game/Entities/Door/Door.tscn
+res://Game/Entities/Door/Door.gd
+res://Game/Entities/Player/InteractRay.gd

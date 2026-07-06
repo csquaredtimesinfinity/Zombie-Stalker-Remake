@@ -21,7 +21,7 @@ func _ready() -> void:
 	
 	# Spawn player controlled character
 	var player_position = LevelUtils.cell_to_world(player_start["cell"])
-	player = preload("res://Assets/scenes/player.tscn").instantiate()
+	player = preload("res://Game/Entities/Player/Player.tscn").instantiate()
 	player.position = Vector2(player_position.x + TILE_SIZE/2, player_position.y + TILE_SIZE/2)
 	add_child(player)
 	

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bhmfi2wjql7v4" path="res://Assets/Sprites/Tiles/grey_wall.png" id="1_v6vf6"]
 [ext_resource type="Texture2D" uid="uid://cr0vlyc7xfytw" path="res://Assets/Sprites/Tiles/blue_wall.png" id="2_xpm8t"]
 [ext_resource type="Texture2D" uid="uid://flxyy20qw1ua" path="res://Assets/Sprites/Tiles/bush.png" id="3_x0526"]
-[ext_resource type="Texture2D" uid="uid://dxntjpr8pgwpy" path="res://Game/Entities/Door/door.png" id="4_712t4"]
+[ext_resource type="Texture2D" uid="uid://dxntjpr8pgwpy" path="res://Game/Entities/Door/Door.png" id="4_712t4"]
 [ext_resource type="Texture2D" uid="uid://d1thi7he8fq4x" path="res://Assets/Sprites/Tiles/floor.png" id="5_etdvl"]
 [ext_resource type="Texture2D" uid="uid://b6k52i0hyc6ig" path="res://Assets/Sprites/Tiles/grass.png" id="6_u14c7"]
 [ext_resource type="Texture2D" uid="uid://cc5k1bxanktbk" path="res://Assets/Sprites/Tiles/health_regenerator.png" id="7_fgvro"]
