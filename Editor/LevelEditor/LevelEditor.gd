@@ -1,5 +1,7 @@
 extends Control
 
+class_name LevelEditor
+
 @onready var tilemap: TileMapLayer = $TileMapLayer
 @onready var markers_layer: TileMapLayer = $MarkersLayer
 @onready var ui: CanvasLayer = $LevelEditorUI
@@ -28,6 +30,28 @@ var current_entity_type: EntityDatabase.EntityType = EntityDatabase.EntityType.E
 var is_painting_tiles := false
 var is_painting_entity := false
 
+var hovered_cell := Vector2i.ZERO
+const TILE_SIZE := 128
+
+	
+
+func _process(_delta):
+	var mouse_pos = get_local_mouse_position()
+
+	hovered_cell = Vector2i(
+		floor(mouse_pos.x / TILE_SIZE),
+		floor(mouse_pos.y / TILE_SIZE)
+	)
+
+	queue_redraw()
+
+#func _draw():
+	#draw_rect(
+		#Rect2(0, 0, 200, 200),
+		#Color.RED,
+		#false,
+		#5
+	#)
 
 """
 1. Initialize level editor dropdowns for selecting tiles and entities.
@@ -46,6 +70,8 @@ func _ready():
 	level_data = LevelSystem.load_level(level_data_file)
 	LevelBuilder.apply_screen_to_layers(
 		level_data, _get_current_screen_coords(), tilemap, markers_layer)
+		
+	queue_redraw()
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("quit"):
@@ -101,17 +127,19 @@ func _place_tile(mouse_pos: Vector2):
 		if not level_data["screens"].has(screen_coords):
 			_init_screen(screen_coords)
 
-		var current_screen_tiles = level_data["screens"][screen_coords]["tiles"]
 		# Store tile directly in array
-		current_screen_tiles[cell.y][cell.x] = int(current_tile_id)
+		_set_tile(cell, current_tile_id)
 
 func _place_entity(mouse_pos: Vector2i) -> void:
-	var local_pos: Vector2i = tilemap.to_local(mouse_pos)
+	var local_pos: Vector2i = markers_layer.to_local(mouse_pos)
 	var cell: Vector2i = markers_layer.local_to_map(local_pos)
 
 	var screen_coords = _get_current_screen_coords()
 	if not level_data["screens"].has(screen_coords):
 		_init_screen(screen_coords)
+	
+	if !_can_place_entity(cell):
+		return
 
 	# Remove old entity in this cell (if any)
 	var entities = level_data["screens"][screen_coords].get("entities", [])
@@ -228,7 +256,7 @@ func _on_fill_screen_button_pressed() -> void:
 	# Update level_data Dictionary
 	for y in range(SCREEN_SIZE.y): # e.g. 10
 		for x in range(SCREEN_SIZE.x): # e.g. 20
-			level_data["screens"][screen_coords]["tiles"][y][x] = current_tile_id
+			_set_tile(Vector2i(x, y), current_tile_id)
 		
 	# Update TileMapLayer
 	for y in range(SCREEN_SIZE.y):
@@ -237,3 +265,19 @@ func _on_fill_screen_button_pressed() -> void:
 				
 func _on_save_level() -> void:
 	LevelSerializer.save_level("res://Assets/levels/Level1.json", level_data)
+	
+func _get_tile(cell: Vector2i) -> int:
+	var screen_coords = _get_current_screen_coords()
+	if not level_data["screens"].has(screen_coords):
+		_init_screen(screen_coords)
+	return int(level_data["screens"][screen_coords]["tiles"][cell.y][cell.x])
+
+func _set_tile(cell: Vector2i, tile_id: int) -> void:
+	var screen_coords = _get_current_screen_coords()
+	if not level_data["screens"].has(screen_coords):
+		_init_screen(screen_coords)
+	level_data["screens"][screen_coords]["tiles"][cell.y][cell.x] = tile_id
+	
+	
+func _can_place_entity(cell: Vector2i) -> bool:
+	return _get_tile(cell) not in TileDatabase.get_entities("barrier")

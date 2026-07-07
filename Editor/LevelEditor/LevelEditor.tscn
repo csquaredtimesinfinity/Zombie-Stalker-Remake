@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://d4a1n3u43ew2w" path="res://Editor/LevelEditor/LevelEditor.gd" id="1_luwim"]
 [ext_resource type="TileSet" uid="uid://bmru7gp42os5g" path="res://Assets/scenes/tileset.tres" id="2_1fl8k"]
+[ext_resource type="Script" uid="uid://cwxil86og2aky" path="res://Editor/LevelEditor/LevelEditorOverlay.gd" id="2_fr8fl"]
 [ext_resource type="Texture2D" uid="uid://b0jvato78q0d" path="res://Game/Entities/Pickups/Ammo/AmmoPickup.png" id="3_fr8fl"]
 [ext_resource type="Texture2D" uid="uid://d1qejfrgnqgvd" path="res://Game/Entities/Pickups/Health/HealthPickup.png" id="4_sryu2"]
 [ext_resource type="Texture2D" uid="uid://dxntjpr8pgwpy" path="res://Game/Entities/Door/Door.png" id="5_jsqct"]
 [ext_resource type="Texture2D" uid="uid://bhfv1rnk0u5sf" path="res://Game/Entities/Pickups/Key/KeyPickup.png" id="6_b8eqj"]
 [ext_resource type="Texture2D" uid="uid://c5s1grc76n4oc" path="res://Game/LevelMarkers/PlayerStart/start_tile.png" id="7_xgboj"]
 [ext_resource type="Texture2D" uid="uid://w3gpv7k2r8p" path="res://Game/LevelMarkers/EndOfLevel/EndOfLevel.png" id="8_tk6fe"]
-[ext_resource type="Texture2D" uid="uid://dsaomajis1lco" path="res://Assets/Sprites/zombie2.png" id="9_bgf25"]
+[ext_resource type="Texture2D" uid="uid://digkplenrawq7" path="res://Game/LevelMarkers/EnemySpawn/ZombieSpawn.png" id="9_luwim"]
 [ext_resource type="PackedScene" uid="uid://bfxvlomkte58w" path="res://Editor/LevelEditor/LevelEditorUI.tscn" id="10_luwim"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3ipa"]
@@ -40,7 +41,7 @@ texture = ExtResource("8_tk6fe")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2w8ym"]
 resource_name = "enemy"
-texture = ExtResource("9_bgf25")
+texture = ExtResource("9_luwim")
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_c4u8i"]
@@ -69,5 +70,8 @@ tile_set = ExtResource("2_1fl8k")
 [node name="MarkersLayer" type="TileMapLayer" parent="." unique_id=1846379164]
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_c4u8i")
+
+[node name="LevelEditorOverlay" type="Node2D" parent="." unique_id=1686081079]
+script = ExtResource("2_fr8fl")
 
 [node name="LevelEditorUI" parent="." unique_id=394713096 instance=ExtResource("10_luwim")]

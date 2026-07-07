@@ -1,6 +1,5 @@
-res://Game/Entities/Player/Player.tscn
+res://Editor/LevelEditor/LevelEditor.tscn
 res://Assets/scenes/tileset.tres
-res://Game/Entities/Player/PlayerController.gd
-res://Game/Entities/Door/Door.tscn
-res://Game/Entities/Door/Door.gd
-res://Game/Entities/Player/InteractRay.gd
+res://Editor/LevelEditor/LevelEditor.gd
+res://Editor/LevelEditor/LevelEditorUI.gd
+res://Editor/LevelEditor/Overlay.gd

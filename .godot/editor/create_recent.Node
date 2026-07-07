@@ -1,3 +1,4 @@
+Node2D
 RayCast2D
 Control
 Label
@@ -5,7 +6,6 @@ Button
 ColorRect
 CanvasLayer
 AnimationPlayer
-Node2D
 Node
 HBoxContainer
 BoxContainer

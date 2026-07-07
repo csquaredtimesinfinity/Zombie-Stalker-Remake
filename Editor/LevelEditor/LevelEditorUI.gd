@@ -29,6 +29,7 @@ func _ready() -> void:
 			
 		categories[category].append({"type": type, "data": entity})
 	
+
 	# build UI
 	for category in categories.keys():
 		tile_selector.add_separator(category.capitalize())
