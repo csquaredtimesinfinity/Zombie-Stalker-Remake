@@ -7,7 +7,7 @@
 size = Vector2(15.874903, 16.182556)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udmvg"]
-size = Vector2(16.059498, 16.182558)
+size = Vector2(15.918077, 16)
 
 [node name="Area2D" type="Area2D" unique_id=1385251377]
 collision_layer = 256
@@ -25,7 +25,7 @@ collision_layer = 257
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=468295272]
-position = Vector2(0.11167145, -0.0031347275)
+position = Vector2(0.040961266, 0)
 shape = SubResource("RectangleShape2D_udmvg")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

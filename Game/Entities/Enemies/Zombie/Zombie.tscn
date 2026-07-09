@@ -89,7 +89,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbjo7"]
-size = Vector2(8.93425, 16.416681)
+size = Vector2(5, 6.2083406)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjjlv"]
 radius = 85.399574
@@ -99,6 +99,7 @@ y_sort_enabled = true
 collision_layer = 2
 collision_mask = 388
 script = ExtResource("1_3oey2")
+metadata/_edit_horizontal_guides_ = [-5.0]
 
 [node name="ZombieAnimator" type="Node2D" parent="." unique_id=1951631361 node_paths=PackedStringArray("zombie", "animation_player")]
 script = ExtResource("2_c5rcg")
@@ -114,7 +115,7 @@ hframes = 16
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2080703781]
-position = Vector2(-0.43139648, -0.09155768)
+position = Vector2(-0.5, 5.1041703)
 shape = SubResource("RectangleShape2D_rbjo7")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1082385646]

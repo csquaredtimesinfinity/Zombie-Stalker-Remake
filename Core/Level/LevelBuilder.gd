@@ -61,10 +61,11 @@ static func apply_screen_to_layers(
 				marker_layer.set_cell(cell, type, Vector2i.ZERO)
 		else:
 		
-			for entity in screen["entities"]:
+			for entity in entities:
 				var world_pos: Vector2i = LevelUtils.cell_to_world(entity["cell"])
 				var half_tile = tile_layer.tile_set.tile_size / 2
 				world_pos += half_tile
+				var cell: Vector2i = LevelUtils.str_to_vec2i(entity["cell"])
 				var type := int(entity["type"])
 				
 				var scene := EntityDatabase.get_scene(type)
@@ -72,18 +73,32 @@ static func apply_screen_to_layers(
 					continue
 					
 				# PLAYER
-				if type == EntityDatabase.EntityType.PLAYER_START:
+				if type in [
+					EntityDatabase.EntityType.PLAYER_START,
+					EntityDatabase.EntityType.END_OF_LEVEL,
+					EntityDatabase.EntityType.ENEMY
+					]:
 					var inst := scene.instantiate()
 					inst.position = world_pos
 					entities_parent.add_child(inst)
 					continue
-					
+			
 				# Entities
-				if EntityDatabase.is_entity_in_category(type, "pickup"):
-					if not WorldState.is_pickup_collected(LevelUtils.id_for_entity(screen_key, str(entity["cell"]), str(type))):
-						_setup_entity(scene, entity, world_pos, entities_parent)
+				var entity_id = LevelUtils.id_for_entity(screen_key, LevelUtils.vec2i_to_str(cell), str(type))
+				var is_interactive_entity = (
+					EntityDatabase.is_entity_in_category(type, "pickup") || \
+						EntityDatabase.is_entity_in_category(type, "prop"))
+						
+				if is_interactive_entity:
+					
+					if type == EntityDatabase.EntityType.DOOR:
+						# Add door only if it's not unlocked
+						if not WorldState.is_door_unlocked(entity_id):
+							_setup_entity(scene, entity, world_pos, entities_parent)
+							continue
+					
+							
+					elif not WorldState.is_pickup_collected(entity_id):
+						_setup_entity(scene, entity, world_pos, entities_parent
+						)
 						continue
-				
-				if EntityDatabase.is_entity_in_category(type, "prop"):
-					if not WorldState.is_door_unlocked(LevelUtils.id_for_entity(screen_key, str(entity['cell']), str(type))):
-						_setup_entity(scene, entity, world_pos, entities_parent)

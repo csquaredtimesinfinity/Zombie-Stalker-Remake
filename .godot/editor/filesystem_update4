@@ -1,5 +1,9 @@
-res://Editor/LevelEditor/LevelEditor.tscn
+res://Game/GameSession.tscn
 res://Assets/scenes/tileset.tres
-res://Editor/LevelEditor/LevelEditor.gd
-res://Editor/LevelEditor/LevelEditorUI.gd
-res://Editor/LevelEditor/Overlay.gd
+res://Assets/Shaders/crt_effect.gdshader
+res://Core/Level/LevelBuilder.gd
+res://Game/LevelRuntime.tscn
+res://Core/EntityDatabase.gd
+res://Assets/Levels/Level1.json
+res://Game/Entities/Enemies/Zombie/zombie.gd
+res://Game/Entities/Enemies/Zombie/Zombie.tscn

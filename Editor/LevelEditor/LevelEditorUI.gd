@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal tile_selected(tile_id: int)
+signal fill_screen
 signal entity_selected(entity_id: int)
 signal move_screen(direction: Vector2i)
 signal save_level
@@ -101,3 +102,7 @@ func _on_down_button_pressed() -> void:
 
 func _on_save_level_pressed() -> void:
 	emit_signal("save_level")
+
+
+func _on_fill_screen_button_pressed() -> void:
+	emit_signal("fill_screen")

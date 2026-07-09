@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	zombie_moving = false
 	if player:
 		var direction = (player.global_position - global_position).normalized()
-		velocity = direction * move_speed
+		velocity = direction * move_speed * randf()
 		
 		if direction.x < 0 && abs(direction.x) > abs(direction.y):
 			_set_zombie_moving(Direction.LEFT)
@@ -39,6 +39,8 @@ func _physics_process(delta: float) -> void:
 			_set_zombie_moving(Direction.UP)
 		elif direction.y > 0  && abs(direction.x) < abs(direction.y):
 			_set_zombie_moving(Direction.DOWN)
+			
+	move_and_slide()
 		
 func _set_zombie_moving(direction) -> void:
 	zombie_direction = direction

@@ -30,29 +30,6 @@ var current_entity_type: EntityDatabase.EntityType = EntityDatabase.EntityType.E
 var is_painting_tiles := false
 var is_painting_entity := false
 
-var hovered_cell := Vector2i.ZERO
-const TILE_SIZE := 128
-
-	
-
-func _process(_delta):
-	var mouse_pos = get_local_mouse_position()
-
-	hovered_cell = Vector2i(
-		floor(mouse_pos.x / TILE_SIZE),
-		floor(mouse_pos.y / TILE_SIZE)
-	)
-
-	queue_redraw()
-
-#func _draw():
-	#draw_rect(
-		#Rect2(0, 0, 200, 200),
-		#Color.RED,
-		#false,
-		#5
-	#)
-
 """
 1. Initialize level editor dropdowns for selecting tiles and entities.
 2. Loads level data and updates the TileMapLayers for tiles and entities.
@@ -62,6 +39,7 @@ func _ready():
 	ui.entity_selected.connect(_on_entity_selected)
 	ui.move_screen.connect(_on_move_screen)
 	ui.save_level.connect(_on_save_level)
+	ui.fill_screen.connect(_on_fill_screen)
 	
 #	%CurrentScreenCoords.text = _get_current_screen_coords()
 	_update_screen_buttons()
@@ -157,7 +135,7 @@ func _place_entity(mouse_pos: Vector2i) -> void:
 			"cell": str(cell),
 			"type": str(current_entity_type),
 			"id": LevelUtils.id_for_entity(
-				screen_coords, str(cell), str(current_entity_type))
+				screen_coords, LevelUtils.vec2i_to_str(cell), str(current_entity_type))
 		}
 
 		match current_entity_type:
@@ -244,7 +222,7 @@ func _on_move_screen(dir: Vector2i) -> void:
 	_load_current_screen()
 	_update_screen_buttons()
 	
-func _on_fill_screen_button_pressed() -> void:
+func _on_fill_screen() -> void:
 	if current_tile_id == -1:
 		return
 

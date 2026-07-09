@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://wqxcwvlplk2" path="res://Game/LevelRuntime.tscn" id="2_b6a7w"]
 [ext_resource type="Shader" uid="uid://bwb3ivg58dkut" path="res://Assets/Shaders/crt_effect.gdshader" id="3_68ry6"]
 [ext_resource type="PackedScene" uid="uid://d3inxql4qwd84" path="res://UI/HUD/HUD.tscn" id="4_0muv8"]
+[ext_resource type="Script" uid="uid://cbop4sfb0i7ae" path="res://Game/GameScreen.gd" id="4_8njj7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bbet6"]
 resource_local_to_scene = true
@@ -35,6 +36,7 @@ offset_bottom = 200.0
 scale = Vector2(4, 4)
 texture = SubResource("ViewportTexture_bbet6")
 stretch_mode = 5
+script = ExtResource("4_8njj7")
 
 [node name="HUD" parent="." unique_id=128126339 instance=ExtResource("4_0muv8")]
 unique_name_in_owner = true

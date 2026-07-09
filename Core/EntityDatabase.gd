@@ -65,7 +65,8 @@ const DATA := {
 	EntityType.ENEMY: {
 		&"name": "ZombieSpawn",
 		&"category": "marker",
-		&"icon": preload("res://Game/LevelMarkers/EnemySpawn/ZombieSpawn.png")
+		&"icon": preload("res://Game/LevelMarkers/EnemySpawn/ZombieSpawn.png"),
+		&"scene": preload("res://Game/Entities/Enemies/Zombie/Zombie.tscn")
 	}
 }
 

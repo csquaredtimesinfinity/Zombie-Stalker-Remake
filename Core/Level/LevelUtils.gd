@@ -14,4 +14,4 @@ static func cell_to_world(cell: String) -> Vector2:
 	return Vector2(vec.x * TILE_SIZE, vec.y * TILE_SIZE)
 
 static func id_for_entity(screen, cell, type) -> String:
-	return "%s%s%s" % [screen, cell, type]
+	return "%s_%s_%s" % [screen, cell, type]

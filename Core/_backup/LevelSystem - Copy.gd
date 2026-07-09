@@ -19,18 +19,6 @@ extends Node
 
 const TILE_SIZE = 16
 
-
-
-#static var entity_scenes := {
-	#EntityType.HEALTH_PICKUP: preload("res://Assets/Pickups/Health/health.tscn"),
-	#EntityType.AMMO_PICKUP: preload("res://Assets/Pickups/Ammo/ammo.tscn"),
-	#EntityType.KEY_PICKUP: preload("res://Assets/Pickups/Key/key.tscn"),
-	#EntityType.DOOR: preload("res://Assets/scenes/door.tscn"),
-	#EntityType.PLAYER_START: preload("res://Assets/scenes/player_start.tscn"),
-	#EntityType.END_OF_LEVEL: preload("res://Assets/scenes/level_end_portal.tscn"),
-	#EntityType.ENEMY: preload("res://Assets/scenes/enemies/zombie.tscn")
-#}
-
 var current_level_data: Dictionary = {}
 
 ############################################################
