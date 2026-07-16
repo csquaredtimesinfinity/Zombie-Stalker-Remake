@@ -1,24 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://bduwf7mqsftxq"]
+[gd_scene format=3 uid="uid://bduwf7mqsftxq"]
 
 [ext_resource type="Script" uid="uid://b8t2sj8owfsj6" path="res://Game/Entities/Projectiles/Bullet/Bullet.gd" id="1_gbjpl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uhfex"]
 radius = 1.2081648
 
-[node name="Bullet" type="Area2D" groups=["Projectiles"]]
+[node name="Bullet" type="Area2D" unique_id=772716513 groups=["Projectiles"]]
 collision_layer = 4
 collision_mask = 258
 script = ExtResource("1_gbjpl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=124103860]
 shape = SubResource("CircleShape2D_uhfex")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1412297586]
 visible = false
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=2005669067]
 offset_left = -1.0
 offset_top = -1.0
 offset_right = 1.0
 offset_bottom = 1.0
 color = Color(0.17305729, 0.084485285, 0.052044936, 1)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

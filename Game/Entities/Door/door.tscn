@@ -9,7 +9,7 @@ size = Vector2(15.874903, 16.182556)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udmvg"]
 size = Vector2(15.918077, 16)
 
-[node name="Area2D" type="Area2D" unique_id=1385251377]
+[node name="Area2D" type="Area2D" unique_id=1385251377 groups=["prop"]]
 collision_layer = 256
 script = ExtResource("1_yrdty")
 

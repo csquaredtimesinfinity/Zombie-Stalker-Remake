@@ -37,6 +37,7 @@ WorldState="*uid://dqo1orqdxy2ea"
 
 window/size/viewport_width=1280
 window/size/viewport_height=800
+window/size/mode=4
 window/size/window_width_override=1280
 window/size/window_height_override=800
 window/subwindows/embed_subwindows=false
@@ -48,6 +49,7 @@ window/stretch/scale_mode="integer"
 
 projectile=""
 enemy=""
+prop=""
 
 [input]
 
@@ -126,6 +128,7 @@ toggle_crt_effect={
 2d_physics/layer_2="enemies"
 2d_physics/layer_3="projectiles"
 2d_physics/layer_5="pickups"
+2d_physics/layer_6="EnemyDetection"
 2d_physics/layer_8="bush"
 2d_physics/layer_9="wall"
 

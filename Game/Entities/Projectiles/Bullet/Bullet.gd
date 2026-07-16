@@ -37,11 +37,22 @@ func _tile_is_solid(world_pos: Vector2) -> bool:
 	return tile_data.get_collision_polygons_count(0) > 0
 
 func _on_area_entered(area: Area2D) -> void:
+	print(area.name)
+		
+	var zombie = area.get_parent()
 	# Hit zombie
-	if area.is_in_group("enemies"):
-		if area.has_method("take_damage"):
-			area.take_damage(1)
+	if zombie.is_in_group("enemies"):
+		print("hit")
+		if zombie.has_method("take_damage"):
+			var blood = preload("res://Game/Effects/BloodEffect.tscn").instantiate()
+			zombie.get_parent().get_parent().add_child(blood)
+			blood.global_position = global_position
+			print(str(global_position))
+			blood.start()
+			zombie.take_damage()
+		
+		queue_free()
 
-		## Spawn blood effect IF you add one later
-		if area and area.collider.is_in_group("enemies"):
-			area.collider.spawn_blood(area.position)
+		### Spawn blood effect IF you add one later
+		#if area and area.collider.is_in_group("enemies"):
+			#area.collider.spawn_blood(area.position)

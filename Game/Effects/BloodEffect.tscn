@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://disswyx2pmm6r"]
+
+[ext_resource type="Script" uid="uid://c3jfgtfb5toc" path="res://Game/Effects/BloodEffect.gd" id="1_13qv1"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qxoom"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.0
+color = Color(0.8495599, 3.2969565e-06, 1.540184e-06, 1)
+
+[node name="BloodEffect" type="Node2D" unique_id=1688042186]
+z_index = 300
+script = ExtResource("1_13qv1")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=776057781]
+emitting = false
+amount = 300
+lifetime = 0.5
+one_shot = true
+collision_base_size = 128.0
+process_material = SubResource("ParticleProcessMaterial_qxoom")

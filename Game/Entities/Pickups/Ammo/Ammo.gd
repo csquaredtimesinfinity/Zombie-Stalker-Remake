@@ -3,8 +3,6 @@ extends Pickup
 func _ready() -> void:
 	pickup_type = "ammo"
 	amount = 15
-	
-	
 
 func _can_pickup(player: PlayerController) -> bool:
 	var can_pickup = player.ammo < player.max_ammo

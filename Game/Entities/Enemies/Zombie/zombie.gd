@@ -6,12 +6,14 @@ class_name Zombie
 @export var damage: int = 10
 @export var detection_radius: float = 100.0
 
+var id: String
 var health: int
 var player: Node2D = null
 
 @onready var anim: AnimationPlayer = $ZombieAnimator/AnimationPlayer
 @onready var attack_timer: Timer = $"Timer (for attacks)"
 @onready var detect_area: Area2D = $Area2D
+@onready var health_label: Label = $Label
 
 enum Direction { LEFT, RIGHT, UP, DOWN }
 var zombie_direction = Direction.RIGHT
@@ -19,10 +21,12 @@ var zombie_moving = false
 
 func _ready() -> void:
 	health = max_health
-	
+	health_label.text = "Health: " + str(health)
 	detect_area.connect("body_entered", _on_body_entered)
 	detect_area.connect("body_exited", _on_body_exited)
 	attack_timer.connect("timeout", _on_attack_timeout)
+	
+	add_to_group("enemies")
 	
 	
 func _physics_process(delta: float) -> void:
@@ -64,17 +68,23 @@ func _on_body_exited(body: Node):
 		attack_timer.stop()
 	
 func _on_attack_timeout():
-	return
 	if player:
 		player.take_damage(damage)
 		
-func take_damage(amount: int) -> void:
+func take_damage() -> void:
+	modulate = Color.RED
+
+	await get_tree().create_timer(0.05).timeout
+
+	modulate = Color.WHITE
 	health -= damage
 	if health <= 0:
 		die()
 	else:
 		anim.play("hit")
+	health_label.text = "Health: " + str(health)
 
 func die() -> void:
 	anim.play("die")
+	WorldState.mark_zombie_killed(id)
 	queue_free()

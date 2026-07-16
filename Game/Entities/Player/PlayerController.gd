@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name PlayerController
 
-@export var speed: float = 120.0  # movement speed in pixels per second
+@export var speed2: float = 120.0  # movement speed in pixels per second
 @export var max_health: int = 100
 @export var max_ammo: int = 300
 
@@ -14,7 +14,7 @@ var keys = 0
 
 const BULLET_SCENE: PackedScene = preload("res://Game/Entities/Projectiles/Bullet/Bullet.tscn")
 @export var fire_rate: float = 0.25
-var shoot_cooldown: float = 0.25
+var shoot_cooldown: float = 0.15
 var muzzle_offsets = {
 	Direction.UP: Vector2(0, -8),
 	Direction.DOWN: Vector2(0, 8),
@@ -48,6 +48,8 @@ signal screen_transition(direction: Vector2)
 
 func _ready() -> void:
 	interact_ray.target_position = facing[player_direction] * INTERACT_RAY_LENGTH
+	
+	add_to_group("player")
 
 func _draw():
 	if interact_ray.enabled:
@@ -97,7 +99,10 @@ func handle_input() -> void:
 		player_moving = true
 	
 	input_vector = input_vector.normalized()
-	velocity = input_vector * speed
+	velocity = input_vector * speed2
+	
+	
+	print(str(velocity))
 			
 	move_and_slide()
 
@@ -163,3 +168,8 @@ func _on_detect_pickups_area_entered(pickup: Area2D) -> void:
 		# remove pickup if player was able to pickup item
 		if should_pickup:
 			pickup.queue_free()
+
+func take_damage(damage: int):
+	health -= damage
+	emit_signal("health_changed", health
+	)

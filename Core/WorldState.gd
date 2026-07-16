@@ -3,6 +3,7 @@ extends Node
 # Track pickups and doors unlocked
 var collected_pickups: Dictionary = {}
 var doors_unlocked: Dictionary = {}
+var zombies_killed: Dictionary = {}
 
 func is_pickup_collected(id: String) -> bool:
 	return collected_pickups.has(id)
@@ -22,3 +23,18 @@ func unlock_door(id: String) -> void:
 
 func clear_doors_unlocked() -> void:
 	doors_unlocked.clear()
+
+func clear_zombies_killed() -> void:
+	zombies_killed.clear()
+	
+func mark_zombie_killed(id: String) -> void:
+	zombies_killed[id] = true
+
+func is_zombie_killed(id: String) -> bool:
+	return zombies_killed.has(id)
+	
+func reset_world() -> void:
+	clear_collected_pickups()
+	clear_doors_unlocked()
+	clear_zombies_killed()
+	

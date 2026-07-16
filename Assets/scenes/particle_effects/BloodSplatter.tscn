@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfwv4pxbghmf7"]
+[gd_scene format=3 uid="uid://bfwv4pxbghmf7"]
 
 [sub_resource type="Gradient" id="Gradient_f40xk"]
 colors = PackedColorArray(1, 0, 0, 1, 0.46666667, 0, 0, 1)
@@ -18,11 +18,10 @@ scale_over_velocity_max = 0.35
 color = Color(0.6666667, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_nuqey")
 
-[node name="BloodSplatter" type="GPUParticles2D"]
+[node name="BloodSplatter" type="GPUParticles2D" unique_id=603524653]
 emitting = false
-amount = 30
+amount = 300
 lifetime = 0.7
-one_shot = true
 explosiveness = 1.0
 randomness = 0.8
 process_material = SubResource("ParticleProcessMaterial_ij4l2")

@@ -14,6 +14,8 @@ var level_data
 var player
 
 func _ready() -> void:
+	WorldState.reset_world()
+	
 	level_data = LevelSystem.load_level("res://Assets/levels/Level1.json")
 	var player_start = level_data["player_start"]
 	LevelSystem.apply_screen(
@@ -42,24 +44,10 @@ func _on_player_screen_transition(direction: Vector2):
 	if not level_data["screens"].has(screen_key):
 		return # hit boundary with no screen, ignore
 		
-	# Remove all transient entities at once
-	get_tree().call_group("temporary", "queue_free")
-
 	current_screen = new_screen
 	
 	# Remove Enemies from previous screen
-	var enemies = get_tree().get_nodes_in_group("Enemy")
-	for enemy in enemies:
-		enemy.queue_free()
-		
-	# Remove projectiles
-	var projectiles = get_tree().get_nodes_in_group("projectile")
-	for projectile in projectiles:
-		projectile.queue_free()
-	
-	var entities_to_remove = entities.get_children()
-	for entity in entities_to_remove:
-		entity.queue_free()
+	_remove_all_entities()
 	
 	LevelSystem.apply_screen(
 		screen_key, tilemap, null, entities, game_scene_root)
@@ -74,3 +62,14 @@ func _on_player_screen_transition(direction: Vector2):
 			player.position.y = SCREEN_SIZE.y - (TILE_SIZE / 2)
 		Vector2.DOWN:
 			player.position.y = (TILE_SIZE / 2)
+
+func _remove_all_entities() -> void:
+	# Remove each group of entity
+	get_tree().call_group("enemies", "queue_free")
+	get_tree().call_group("projectiles", "queue_free")
+	get_tree().call_group("prop", "queue_free")
+	
+	# Remove any other entities remaining
+	var entities_to_remove = entities.get_children()
+	for entity in entities_to_remove:
+		entity.queue_free()

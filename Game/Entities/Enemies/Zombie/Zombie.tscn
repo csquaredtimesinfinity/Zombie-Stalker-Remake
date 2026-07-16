@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bblckldggbqt5"]
 
-[ext_resource type="Script" uid="uid://bpmu2ko0nyfp5" path="res://Game/Entities/Enemies/Zombie/zombie.gd" id="1_3oey2"]
+[ext_resource type="Script" uid="uid://bpmu2ko0nyfp5" path="res://Game/Entities/Enemies/Zombie/Zombie.gd" id="1_3oey2"]
 [ext_resource type="Script" uid="uid://tul1mfttl17l" path="res://Game/Entities/Enemies/Zombie/zombie_animator.gd" id="2_c5rcg"]
 [ext_resource type="Texture2D" uid="uid://jgttjqs0ga6y" path="res://Assets/Sprites/zombie.png" id="3_qu5h3"]
 
@@ -91,6 +91,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbjo7"]
 size = Vector2(5, 6.2083406)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxoom"]
+size = Vector2(7, 15)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjjlv"]
 radius = 85.399574
 
@@ -114,16 +117,35 @@ texture = ExtResource("3_qu5h3")
 hframes = 16
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2080703781]
+[node name="CollisionWithWorld" type="CollisionShape2D" parent="." unique_id=2080703781]
 position = Vector2(-0.5, 5.1041703)
 shape = SubResource("RectangleShape2D_rbjo7")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1082385646]
-visible = false
+[node name="HitBox" type="Area2D" parent="." unique_id=14442723]
+unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=848900090]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_qxoom")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1082385646]
+visible = false
+y_sort_enabled = true
+collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2004157757]
 shape = SubResource("CircleShape2D_wjjlv")
 
 [node name="Timer (for attacks)" type="Timer" parent="." unique_id=2115305003]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1592889536]
+
+[node name="Label" type="Label" parent="." unique_id=1960906639]
+offset_left = -20.0
+offset_top = -24.0
+offset_right = 20.0
+offset_bottom = -16.0
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1

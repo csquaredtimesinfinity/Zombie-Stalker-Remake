@@ -12,8 +12,8 @@ static func _setup_entity(
 	if data.has("id"):
 		if "id" in instance:
 			instance.id = data["id"]
-		elif "pickup_id" in instance:
-			instance.pickup_id = data["id"]
+		#elif "pickup_id" in instance:
+			#instance.pickup_id = data["id"]
 	
 	parent.add_child(instance)
 
@@ -75,16 +75,20 @@ static func apply_screen_to_layers(
 				# PLAYER
 				if type in [
 					EntityDatabase.EntityType.PLAYER_START,
-					EntityDatabase.EntityType.END_OF_LEVEL,
-					EntityDatabase.EntityType.ENEMY
+					EntityDatabase.EntityType.END_OF_LEVEL
 					]:
 					var inst := scene.instantiate()
 					inst.position = world_pos
 					entities_parent.add_child(inst)
 					continue
-			
-				# Entities
+				
 				var entity_id = LevelUtils.id_for_entity(screen_key, LevelUtils.vec2i_to_str(cell), str(type))
+				
+				if type == EntityDatabase.EntityType.ENEMY && not WorldState.is_zombie_killed(entity_id):
+					_setup_entity(scene, entity, world_pos, entities_parent)
+					continue
+					
+				# Entities
 				var is_interactive_entity = (
 					EntityDatabase.is_entity_in_category(type, "pickup") || \
 						EntityDatabase.is_entity_in_category(type, "prop"))
