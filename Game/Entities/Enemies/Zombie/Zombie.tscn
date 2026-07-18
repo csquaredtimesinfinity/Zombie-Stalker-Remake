@@ -100,7 +100,7 @@ radius = 85.399574
 [node name="Zombie" type="CharacterBody2D" unique_id=939648593 groups=["enemies", "zombie"]]
 y_sort_enabled = true
 collision_layer = 2
-collision_mask = 388
+collision_mask = 391
 script = ExtResource("1_3oey2")
 metadata/_edit_horizontal_guides_ = [-5.0]
 

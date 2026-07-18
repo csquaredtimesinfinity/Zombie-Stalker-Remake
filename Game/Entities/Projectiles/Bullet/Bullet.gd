@@ -44,12 +44,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if zombie.is_in_group("enemies"):
 		print("hit")
 		if zombie.has_method("take_damage"):
-			var blood = preload("res://Game/Effects/BloodEffect.tscn").instantiate()
-			zombie.get_parent().get_parent().add_child(blood)
-			blood.global_position = global_position
-			print(str(global_position))
-			blood.start()
-			zombie.take_damage()
+			zombie.take_damage(33, global_position)
 		
 		queue_free()
 

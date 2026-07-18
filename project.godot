@@ -32,6 +32,7 @@ SteamController="*res://Core/Steam/SteamController.gd"
 LevelSystem="*res://Core/Level/LevelSystem.gd"
 GameManager="*res://Core/GameManager.gd"
 WorldState="*uid://dqo1orqdxy2ea"
+EffectsManager="*uid://lyc8lkws0a66"
 
 [display]
 

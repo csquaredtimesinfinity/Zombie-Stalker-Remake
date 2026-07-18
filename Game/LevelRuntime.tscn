@@ -13,6 +13,8 @@ script = ExtResource("1_jmlx1")
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2100518937 groups=["bullet_block"]]
 tile_set = ExtResource("2_jwkpx")
 
+[node name="EffectsLayer" type="Node2D" parent="." unique_id=1733963539]
+
 [node name="Entities" type="Node2D" parent="." unique_id=1992728482]
 
 [node name="Area2D" type="Area2D" parent="." unique_id=345359831]

@@ -53,7 +53,7 @@ func _ready() -> void:
 
 func _draw():
 	if interact_ray.enabled:
-		draw_line(Vector2.ZERO, interact_ray.target_position, Color.RED, 2)
+		pass# draw_line(Vector2.ZERO, interact_ray.target_position, Color.RED, 2)
 
 func _physics_process(delta: float) -> void:
 	# update ray cast to point in direction that the player is facing

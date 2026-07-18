@@ -4,6 +4,7 @@ extends Node2D
 @onready var entities :Node2D = $Entities
 @onready var game_scene_root :Node2D = $"."
 @onready var hud :CanvasLayer = %HUD
+@onready var effects_layer: Node2D = $EffectsLayer
 
 const TILE_SIZE = 16
 const SCREEN_TILES = Vector2i(20, 10)
@@ -15,6 +16,7 @@ var player
 
 func _ready() -> void:
 	WorldState.reset_world()
+	EffectsManager.effects_layer = effects_layer
 	
 	level_data = LevelSystem.load_level("res://Assets/levels/Level1.json")
 	var player_start = level_data["player_start"]
@@ -73,3 +75,8 @@ func _remove_all_entities() -> void:
 	var entities_to_remove = entities.get_children()
 	for entity in entities_to_remove:
 		entity.queue_free()
+	
+	# remove all effects from effects layer
+	var effects_to_remove = effects_layer.get_children()
+	for effect in effects_to_remove:
+		effect.queue_free()

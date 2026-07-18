@@ -21,7 +21,7 @@ var zombie_moving = false
 
 func _ready() -> void:
 	health = max_health
-	health_label.text = "Health: " + str(health)
+	#health_label.text = "Health: " + str(health)
 	detect_area.connect("body_entered", _on_body_entered)
 	detect_area.connect("body_exited", _on_body_exited)
 	attack_timer.connect("timeout", _on_attack_timeout)
@@ -49,13 +49,6 @@ func _physics_process(delta: float) -> void:
 func _set_zombie_moving(direction) -> void:
 	zombie_direction = direction
 	zombie_moving = true
-	
-func spawn_blood(global_pos: Vector2) -> void:
-	var blood: GPUParticles2D = preload(
-		"res://Assets/scenes/particle_effects/BloodSplatter.tscn").instantiate()
-	blood.global_position = global_pos
-	get_tree().current_scene.add_child(blood)
-	blood.emitting = true
 
 func _on_body_entered(body: Node):
 	if body.is_in_group("player"):
@@ -71,20 +64,28 @@ func _on_attack_timeout():
 	if player:
 		player.take_damage(damage)
 		
-func take_damage() -> void:
+func take_damage(amount, hit_position) -> void:
+	
+	# Modulate zombie to red
 	modulate = Color.RED
-
 	await get_tree().create_timer(0.05).timeout
-
 	modulate = Color.WHITE
-	health -= damage
+	
+	# Spawn blood
+	EffectsManager.spawn_blood(hit_position)
+	await get_tree().create_timer(0.2).timeout
+	EffectsManager.spawn_blood_splatter(hit_position)
+	
+	SoundLibrary.play_zombie_hit_sound()
+	
+	health -= amount
 	if health <= 0:
 		die()
 	else:
-		anim.play("hit")
-	health_label.text = "Health: " + str(health)
+		pass #anim.play("hit")
+	#health_label.text = "Health: " + str(health)
 
 func die() -> void:
-	anim.play("die")
+	#anim.play("die")
 	WorldState.mark_zombie_killed(id)
 	queue_free()

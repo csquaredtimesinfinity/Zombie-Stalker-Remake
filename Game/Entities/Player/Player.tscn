@@ -113,7 +113,6 @@ size = Vector2(6, 7)
 y_sort_enabled = true
 collision_mask = 384
 script = ExtResource("1_7dd06")
-speed = 80.0
 
 [node name="PlayerAnimator" type="Node2D" parent="." unique_id=313131200 node_paths=PackedStringArray("player_controller", "animation_player", "sprite")]
 script = ExtResource("2_38rej")
