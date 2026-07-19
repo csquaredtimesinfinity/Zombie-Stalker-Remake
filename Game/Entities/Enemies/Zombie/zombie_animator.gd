@@ -15,5 +15,5 @@ func _process(delta: float) -> void:
 				animation_player.play("move_down")
 			zombie.Direction.UP:
 				animation_player.play("move_up")
-	else:
+	elif !zombie.dying:
 		animation_player.stop()

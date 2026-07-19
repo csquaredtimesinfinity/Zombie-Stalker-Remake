@@ -8,6 +8,6 @@ script = ExtResource("1_5ad54")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1952805307]
 modulate = Color(1, 1, 1, 0.6313726)
-position = Vector2(-3.8146973e-06, 0)
-scale = Vector2(0.047607422, 0.020621331)
+position = Vector2(-3.8146973e-06, -0.031959534)
+scale = Vector2(0.047607422, 0.063914776)
 texture = ExtResource("1_lxn7h")

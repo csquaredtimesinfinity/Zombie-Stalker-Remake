@@ -18,6 +18,7 @@ var player: Node2D = null
 enum Direction { LEFT, RIGHT, UP, DOWN }
 var zombie_direction = Direction.RIGHT
 var zombie_moving = false
+var dying = false
 
 func _ready() -> void:
 	health = max_health
@@ -30,6 +31,11 @@ func _ready() -> void:
 	
 	
 func _physics_process(delta: float) -> void:
+	if dying:
+		await anim.animation_finished
+		queue_free()
+		return
+	
 	zombie_moving = false
 	if player:
 		var direction = (player.global_position - global_position).normalized()
@@ -61,10 +67,13 @@ func _on_body_exited(body: Node):
 		attack_timer.stop()
 	
 func _on_attack_timeout():
-	if player:
-		player.take_damage(damage)
+	pass
+	#if player:
+	#	player.take_damage(damage)
 		
 func take_damage(amount, hit_position) -> void:
+	if dying:
+		return
 	
 	# Modulate zombie to red
 	modulate = Color.RED
@@ -86,6 +95,8 @@ func take_damage(amount, hit_position) -> void:
 	#health_label.text = "Health: " + str(health)
 
 func die() -> void:
-	#anim.play("die")
+	dying = true
+	zombie_moving = false
+	anim.play("die")
 	WorldState.mark_zombie_killed(id)
-	queue_free()
+	#queue_free()

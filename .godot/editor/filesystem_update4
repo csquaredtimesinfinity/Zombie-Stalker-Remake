@@ -13,3 +13,5 @@ res://Game/Effects/BloodSplatter.gd
 res://Game/GameSession.tscn
 res://Game/Entities/Enemies/Zombie/Zombie.tscn
 res://Game/Effects/BloodEffect.tscn
+res://Game/Entities/Player/PlayerController.gd
+res://Game/Entities/Enemies/Zombie/zombie_animator.gd

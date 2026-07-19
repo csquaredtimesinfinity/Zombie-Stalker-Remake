@@ -34,11 +34,14 @@ GameManager="*res://Core/GameManager.gd"
 WorldState="*uid://dqo1orqdxy2ea"
 EffectsManager="*uid://lyc8lkws0a66"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=800
-window/size/mode=4
 window/size/window_width_override=1280
 window/size/window_height_override=800
 window/subwindows/embed_subwindows=false

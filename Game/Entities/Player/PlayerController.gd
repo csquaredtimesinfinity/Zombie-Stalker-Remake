@@ -101,9 +101,6 @@ func handle_input() -> void:
 	input_vector = input_vector.normalized()
 	velocity = input_vector * speed2
 	
-	
-	print(str(velocity))
-			
 	move_and_slide()
 
 func shoot() -> void:

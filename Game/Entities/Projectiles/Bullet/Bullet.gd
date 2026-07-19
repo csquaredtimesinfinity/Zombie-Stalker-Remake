@@ -16,6 +16,7 @@ func _physics_process(delta: float) -> void:
 	var next_position = position + direction * speed * delta
 
 	if _tile_is_solid(next_position):
+		SoundLibrary.play_bullet_hitting_wall_sound()
 		queue_free()
 		return
 	
@@ -41,13 +42,9 @@ func _on_area_entered(area: Area2D) -> void:
 		
 	var zombie = area.get_parent()
 	# Hit zombie
-	if zombie.is_in_group("enemies"):
+	if zombie.is_in_group("enemies") && !zombie.dying:
 		print("hit")
 		if zombie.has_method("take_damage"):
 			zombie.take_damage(33, global_position)
 		
 		queue_free()
-
-		### Spawn blood effect IF you add one later
-		#if area and area.collider.is_in_group("enemies"):
-			#area.collider.spawn_blood(area.position)
