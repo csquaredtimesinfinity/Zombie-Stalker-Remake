@@ -19,37 +19,37 @@ const DATA := {
 	TileType.GREY_WALL: {
 		&"name": "GreyWall",
 		&"category": "barrier",
-		&"icon": preload("res://Assets/Sprites/Tiles/grey_wall.png")
+		&"icon": preload("res://Assets/Sprites/Tiles/GreyWall.png")
 	},
 	TileType.BLUE_WALL: {
 		&"name": "BlueWall",
 		&"category": "barrier",
-		&"icon": preload("res://Assets/Sprites/Tiles/blue_wall.png")
+		&"icon": preload("res://Assets/Sprites/Tiles/BlueWall.png")
 	},
 	
 	TileType.BUSH: {
 		&"name": "Bush",
 		&"category": "barrier",
-		&"icon": preload("res://Assets/Sprites/Tiles/bush.png")
+		&"icon": preload("res://Assets/Sprites/Tiles/Bush.png")
 	},
 	
 	# Non-pickup Entities
 	TileType.TILE_FLOOR: {
 		&"name": "TileFloor",
 		&"category": "ground",
-		&"icon": preload("res://Assets/Sprites/Tiles/floor.png")
+		&"icon": preload("res://Assets/Sprites/Tiles/Floor.png")
 	},
 	
 	TileType.GRASS: {
 		&"name": "Grass",
 		&"category": "ground",
-		&"icon": preload("res://Assets/Sprites/Tiles/grass.png")
+		&"icon": preload("res://Assets/Sprites/Tiles/Grass.png")
 	},
 	
 	TileType.HEALTH_REGENERATOR: {
 		&"name": "HealthRegenerator",
 		&"category": "ground",
-		&"icon": preload("res://Assets/Sprites/Tiles/health_regenerator.png")
+		&"icon": preload("res://Assets/Sprites/Tiles/HealthRegenerators.png")
 	}
 }
 

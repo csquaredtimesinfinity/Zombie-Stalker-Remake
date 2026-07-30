@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cg1pr74wnxbng"
-path="res://.godot/imported/ammo_pickup.wav-a7da9f1995cb75343cfc1c1057b32033.sample"
+path="res://.godot/imported/AmmoPickup.wav-58476f3dfcb60e7f8364ef7c6a13aa87.sample"
 
 [deps]
 
-source_file="res://Assets/Audio/SoundEffects/ammo_pickup.wav"
-dest_files=["res://.godot/imported/ammo_pickup.wav-a7da9f1995cb75343cfc1c1057b32033.sample"]
+source_file="res://Assets/Audio/SoundEffects/AmmoPickup.wav"
+dest_files=["res://.godot/imported/AmmoPickup.wav-58476f3dfcb60e7f8364ef7c6a13aa87.sample"]
 
 [params]
 

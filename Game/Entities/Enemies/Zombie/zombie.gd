@@ -85,12 +85,14 @@ func take_damage(amount, hit_position) -> void:
 	await get_tree().create_timer(0.2).timeout
 	EffectsManager.spawn_blood_splatter(hit_position)
 	
-	SoundLibrary.play_zombie_hit_sound()
+	
 	
 	health -= amount
 	if health <= 0:
 		die()
+		SoundLibrary.play_zombie_kill_sound()
 	else:
+		SoundLibrary.play_zombie_hit_sound()
 		pass #anim.play("hit")
 	#health_label.text = "Health: " + str(health)
 

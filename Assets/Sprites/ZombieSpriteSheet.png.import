@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr0vlyc7xfytw"
-path="res://.godot/imported/blue_wall.png-29f067d6bd58bb8ad02528a069c7ecd5.ctex"
+uid="uid://35mcb3xcrp41"
+path="res://.godot/imported/ZombieSpriteSheet.png-58dc43603bf3a44cb212fc27489dc296.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Tiles/blue_wall.png"
-dest_files=["res://.godot/imported/blue_wall.png-29f067d6bd58bb8ad02528a069c7ecd5.ctex"]
+source_file="res://Assets/Sprites/ZombieSpriteSheet.png"
+dest_files=["res://.godot/imported/ZombieSpriteSheet.png-58dc43603bf3a44cb212fc27489dc296.ctex"]
 
 [params]
 
-compress/mode=3
-compress/high_quality=true
+compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

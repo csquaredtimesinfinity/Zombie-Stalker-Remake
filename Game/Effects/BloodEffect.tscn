@@ -19,7 +19,7 @@ script = ExtResource("1_13qv1")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=776057781]
 emitting = false
 amount = 100
-lifetime = 0.5
+lifetime = 0.6
 one_shot = true
 collision_base_size = 128.0
 process_material = SubResource("ParticleProcessMaterial_qxoom")

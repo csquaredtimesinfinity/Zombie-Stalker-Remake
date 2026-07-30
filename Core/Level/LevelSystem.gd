@@ -15,14 +15,17 @@ func set_tile(screen_key: String, x: int, y: int, tile_id: int) -> void:
 func get_entities(screen_key: String) -> Array:
 	return current_level_data["screens"][screen_key].get("entities", [])
 
-func apply_screen(screen_key: String, tile_layer, marker_layer, entities_parent, root_node) -> void:
+func apply_screen(
+	screen_key: String, tile_layer, marker_layer, 
+	entities_parent, root_node, characters_parent) -> void:
 	LevelBuilder.apply_screen_to_layers(
 		current_level_data,
 		screen_key,
 		tile_layer,
 		marker_layer,
 		entities_parent,
-		root_node
+		root_node,
+		characters_parent
 	)
 
 func get_player_start() -> Dictionary:

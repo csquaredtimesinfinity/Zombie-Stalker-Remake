@@ -2,14 +2,14 @@ extends CharacterBody2D
 
 class_name PlayerController
 
-@export var speed2: float = 120.0  # movement speed in pixels per second
+@export var speed2: float = 90.0  # movement speed in pixels per second
 @export var max_health: int = 100
 @export var max_ammo: int = 300
 
 @onready var interact_ray := $InteractRay
 
 var health = 10 # max_health
-var ammo = 50
+var ammo = 100
 var keys = 0
 
 const BULLET_SCENE: PackedScene = preload("res://Game/Entities/Projectiles/Bullet/Bullet.tscn")

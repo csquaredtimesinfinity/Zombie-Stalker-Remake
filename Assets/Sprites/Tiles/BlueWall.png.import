@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck6v547n23qk6"
-path="res://.godot/imported/player_anim.png-8d981c52b467f21efa774e274a811c1b.ctex"
+uid="uid://cr0vlyc7xfytw"
+path="res://.godot/imported/BlueWall.png-ec8437f57543aa0c20b6267ff35cfef9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/player_anim.png"
-dest_files=["res://.godot/imported/player_anim.png-8d981c52b467f21efa774e274a811c1b.ctex"]
+source_file="res://Assets/Sprites/Tiles/BlueWall.png"
+dest_files=["res://.godot/imported/BlueWall.png-ec8437f57543aa0c20b6267ff35cfef9.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
+compress/mode=3
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

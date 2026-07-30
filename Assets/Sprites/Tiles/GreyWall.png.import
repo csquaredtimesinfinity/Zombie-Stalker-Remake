@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc5k1bxanktbk"
-path="res://.godot/imported/health_regenerator.png-aa93ec8d7807660c9f8410374c7c4fc9.ctex"
+uid="uid://bhmfi2wjql7v4"
+path="res://.godot/imported/GreyWall.png-b2dc2db4eca198516f5486d67c03e086.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Tiles/health_regenerator.png"
-dest_files=["res://.godot/imported/health_regenerator.png-aa93ec8d7807660c9f8410374c7c4fc9.ctex"]
+source_file="res://Assets/Sprites/Tiles/GreyWall.png"
+dest_files=["res://.godot/imported/GreyWall.png-b2dc2db4eca198516f5486d67c03e086.ctex"]
 
 [params]
 

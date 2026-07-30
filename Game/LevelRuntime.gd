@@ -5,6 +5,7 @@ extends Node2D
 @onready var game_scene_root :Node2D = $"."
 @onready var hud :CanvasLayer = %HUD
 @onready var effects_layer: Node2D = $EffectsLayer
+@onready var characters: Node2D = $Characters
 
 const TILE_SIZE = 16
 const SCREEN_TILES = Vector2i(20, 10)
@@ -21,13 +22,13 @@ func _ready() -> void:
 	level_data = LevelSystem.load_level("res://Assets/levels/Level1.json")
 	var player_start = level_data["player_start"]
 	LevelSystem.apply_screen(
-		player_start["screen"], tilemap, null, $Entities, game_scene_root)
+		player_start["screen"], tilemap, null, entities, game_scene_root, characters)
 	
 	# Spawn player controlled character
 	var player_position = LevelUtils.cell_to_world(player_start["cell"])
 	player = preload("res://Game/Entities/Player/Player.tscn").instantiate()
 	player.position = Vector2(player_position.x + TILE_SIZE/2, player_position.y + TILE_SIZE/2)
-	add_child(player)
+	characters.add_child(player)
 	
 	# Initialize starting screen
 	current_screen = LevelUtils.str_to_vec2i(player_start["screen"])
@@ -52,7 +53,7 @@ func _on_player_screen_transition(direction: Vector2):
 	_remove_all_entities()
 	
 	LevelSystem.apply_screen(
-		screen_key, tilemap, null, entities, game_scene_root)
+		screen_key, tilemap, null, entities, game_scene_root, characters)
 
 	# Warp player to opposite edge
 	match direction:

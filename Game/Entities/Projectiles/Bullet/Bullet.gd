@@ -10,6 +10,7 @@ var time_alive: float = 0.0
 
 func _ready() -> void:
 	connect("area_entered", _on_area_entered)
+	add_to_group("projectiles")
 
 func _physics_process(delta: float) -> void:
 	# Move

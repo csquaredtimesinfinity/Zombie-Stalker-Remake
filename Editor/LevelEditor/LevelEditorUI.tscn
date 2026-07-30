@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bfxvlomkte58w"]
 
 [ext_resource type="Script" uid="uid://bpt1xjxv8mmwh" path="res://Editor/LevelEditor/LevelEditorUI.gd" id="1_q0sek"]
-[ext_resource type="Texture2D" uid="uid://bhmfi2wjql7v4" path="res://Assets/Sprites/Tiles/grey_wall.png" id="2_j6dda"]
-[ext_resource type="Texture2D" uid="uid://cr0vlyc7xfytw" path="res://Assets/Sprites/Tiles/blue_wall.png" id="3_gpu0f"]
-[ext_resource type="Texture2D" uid="uid://flxyy20qw1ua" path="res://Assets/Sprites/Tiles/bush.png" id="4_pbrno"]
-[ext_resource type="Texture2D" uid="uid://d1thi7he8fq4x" path="res://Assets/Sprites/Tiles/floor.png" id="5_rhl1y"]
-[ext_resource type="Texture2D" uid="uid://b6k52i0hyc6ig" path="res://Assets/Sprites/Tiles/grass.png" id="6_s4kwl"]
+[ext_resource type="Texture2D" uid="uid://bhmfi2wjql7v4" path="res://Assets/Sprites/Tiles/GreyWall.png" id="2_j6dda"]
+[ext_resource type="Texture2D" uid="uid://cr0vlyc7xfytw" path="res://Assets/Sprites/Tiles/BlueWall.png" id="3_gpu0f"]
+[ext_resource type="Texture2D" uid="uid://flxyy20qw1ua" path="res://Assets/Sprites/Tiles/Bush.png" id="4_pbrno"]
+[ext_resource type="Texture2D" uid="uid://d1thi7he8fq4x" path="res://Assets/Sprites/Tiles/Floor.png" id="5_rhl1y"]
+[ext_resource type="Texture2D" uid="uid://b6k52i0hyc6ig" path="res://Assets/Sprites/Tiles/Grass.png" id="6_s4kwl"]
 
 [node name="LevelEditorUI" type="CanvasLayer" unique_id=394713096]
 script = ExtResource("1_q0sek")

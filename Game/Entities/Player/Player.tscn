@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://f8702suistek"]
 
 [ext_resource type="Script" uid="uid://biyvhiq4bwjbn" path="res://Game/Entities/Player/PlayerController.gd" id="1_7dd06"]
-[ext_resource type="Texture2D" uid="uid://ck6v547n23qk6" path="res://Assets/Sprites/player_anim.png" id="2_7dd06"]
+[ext_resource type="Texture2D" uid="uid://ck6v547n23qk6" path="res://Assets/Sprites/PlayerSpriteSheet.png" id="2_7dd06"]
 [ext_resource type="Script" uid="uid://cfgnijtir2yee" path="res://Game/Entities/Player/PlayerAnimator.gd" id="2_38rej"]
-[ext_resource type="Script" uid="uid://dy3ho5fogdxki" path="res://Game/Entities/Player/InteractRay.gd" id="4_onl36"]
+[ext_resource type="Script" uid="uid://dy3ho5fogdxki" path="res://Game/Entities/Player/PlayerInteractRay.gd" id="4_onl36"]
 
 [sub_resource type="Animation" id="Animation_23lac"]
 length = 0.001
@@ -110,6 +110,7 @@ size = Vector2(12, 17)
 size = Vector2(6, 7)
 
 [node name="Player" type="CharacterBody2D" unique_id=542372235 groups=["player"]]
+z_index = 1
 y_sort_enabled = true
 collision_mask = 384
 script = ExtResource("1_7dd06")

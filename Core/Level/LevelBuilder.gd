@@ -23,7 +23,8 @@ static func apply_screen_to_layers(
 	tile_layer: TileMapLayer,
 	marker_layer: TileMapLayer = null,
 	entities_parent: Node = null,
-	root_node: Node2D = null) -> void:
+	root_node: Node2D = null,
+	characters_parent: Node2D = null) -> void:
 	
 	if not level_data.has("screens"):
 		push_error("No screens in level_data")
@@ -85,7 +86,7 @@ static func apply_screen_to_layers(
 				var entity_id = LevelUtils.id_for_entity(screen_key, LevelUtils.vec2i_to_str(cell), str(type))
 				
 				if type == EntityDatabase.EntityType.ENEMY && not WorldState.is_zombie_killed(entity_id):
-					_setup_entity(scene, entity, world_pos, entities_parent)
+					_setup_entity(scene, entity, world_pos, characters_parent)
 					continue
 					
 				# Entities
