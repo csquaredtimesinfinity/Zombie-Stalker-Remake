@@ -14,6 +14,24 @@ func set_tile(screen_key: String, x: int, y: int, tile_id: int) -> void:
 
 func get_entities(screen_key: String) -> Array:
 	return current_level_data["screens"][screen_key].get("entities", [])
+	
+func get_barriers(screen_key: String) -> Array[Vector2i]:
+	var barriers : Array[Vector2i] = []
+	print(TileDatabase.get_entities("barrier"))
+	print(current_level_data["screens"][screen_key]["tiles"])
+	for y in range(10):
+		for x in range(20):
+			var tile = int(current_level_data["screens"][screen_key]["tiles"][y][x])
+			print(tile)
+			if (tile == TileDatabase.TileType.GREY_WALL || 
+					tile == TileDatabase.TileType.BLUE_WALL || 
+					tile == TileDatabase.TileType.BUSH):
+				barriers.append(Vector2i(x, y))
+			#if (int(current_level_data["screens"][screen_key]["tiles"][y][x]) in 
+					#TileDatabase.get_entities("barrier")):
+				#barriers.append(Vector2i(x, y))
+	print("Number of barriers: %d" % barriers.size())
+	return barriers
 
 func apply_screen(
 	screen_key: String, tile_layer, marker_layer, 

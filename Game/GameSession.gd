@@ -6,7 +6,7 @@ extends Node2D
 
 func _ready() -> void:
 	await get_tree().process_frame
-	var player = $SubViewport.get_node_or_null("Level/Player")
+	var player = $SubViewport.get_node_or_null("Level/Characters/Player")
 	if player:
 		player.connect("health_changed", hud.update_health)
 		player.connect("ammo_changed", hud.update_ammo)

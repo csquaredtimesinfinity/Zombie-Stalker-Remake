@@ -5,10 +5,7 @@ class_name LevelEditor
 @onready var tilemap: TileMapLayer = $TileMapLayer
 @onready var markers_layer: TileMapLayer = $MarkersLayer
 @onready var ui: CanvasLayer = $LevelEditorUI
-
-
-const SCREEN_SIZE = Vector2i(20, 10)
-const MAP_SCREENS := Vector2i(4, 6)  # 6 across, 4 down
+ # 6 across, 4 down
 
 var current_screen := Vector2i(0, 0)
 
@@ -57,7 +54,8 @@ func _input(event: InputEvent):
 		
 	if event is InputEventMouseButton:
 		# Restrict painting to the tile area (exclude HUD)
-		if event.position.y < SCREEN_SIZE.y * LevelUtils.TILE_SIZE * 4 && event.position.x < SCREEN_SIZE.x * LevelUtils.TILE_SIZE * 4:
+		if (event.position.y < LevelUtils.SCREEN_SIZE.y * LevelUtils.TILE_SIZE * 4  
+			&& event.position.x < LevelUtils.SCREEN_SIZE.x * LevelUtils.TILE_SIZE * 4):
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				is_painting_tiles = event.pressed
 				_place_tile(event.position)
@@ -80,9 +78,9 @@ func _init_screen(screen :String) -> void:
 		"tiles": [],
 		"entities": []
 	}
-	for y in range(SCREEN_SIZE.y): # e.g. 10
+	for y in range(LevelUtils.SCREEN_SIZE.y): # e.g. 1L0
 		var row = []
-		for x in range(SCREEN_SIZE.x): # e.g. 20
+		for x in range(LevelUtils.SCREEN_SIZE.x): # e.g. 20
 			row.append(-1)
 		level_data["screens"][screen]["tiles"].append(row)
 
@@ -93,7 +91,7 @@ func _place_tile(mouse_pos: Vector2):
 	var local_pos = tilemap.to_local(mouse_pos)
 	var cell: Vector2i = tilemap.local_to_map(local_pos)
 	
-	if cell.y >= SCREEN_SIZE.y || cell.x >= SCREEN_SIZE.x:
+	if cell.y >= LevelUtils.SCREEN_TILES.y || cell.x >= LevelUtils.SCREEN_TILES.x:
 		return
 
 	if current_tile_id >= 0:
@@ -111,6 +109,9 @@ func _place_tile(mouse_pos: Vector2):
 func _place_entity(mouse_pos: Vector2i) -> void:
 	var local_pos: Vector2i = markers_layer.to_local(mouse_pos)
 	var cell: Vector2i = markers_layer.local_to_map(local_pos)
+	
+	if cell.y >= LevelUtils.SCREEN_TILES.y || cell.x >= LevelUtils.SCREEN_TILES.x:
+		return
 
 	var screen_coords = _get_current_screen_coords()
 	if not level_data["screens"].has(screen_coords):
@@ -191,7 +192,7 @@ func pickup_type_to_name(t: EntityDatabase.EntityType) -> String:
 		_: return "unknown"
 
 func _update_screen_buttons() -> void:
-	ui.set_screen_button_states(current_screen, MAP_SCREENS)	
+	ui.set_screen_button_states(current_screen, LevelUtils.MAP_SCREENS)	
 
 func _get_current_screen_coords() -> String:
 	return str(current_screen.x) + "," + str(current_screen.y)
@@ -212,9 +213,9 @@ func _on_entity_selected(id: int) -> void:
 func _on_move_screen(dir: Vector2i) -> void:
 	var new_screen = current_screen + dir
 
-	if new_screen.x < 0 or new_screen.x >= SCREEN_SIZE.x:
+	if new_screen.x < 0 or new_screen.x >= LevelUtils.SCREEN_SIZE.x:
 		return
-	if new_screen.y < 0 or new_screen.y >= SCREEN_SIZE.y:
+	if new_screen.y < 0 or new_screen.y >= LevelUtils.SCREEN_SIZE.y:
 		return
 
 	current_screen = new_screen
@@ -232,13 +233,13 @@ func _on_fill_screen() -> void:
 		_init_screen(screen_coords)
 		
 	# Update level_data Dictionary
-	for y in range(SCREEN_SIZE.y): # e.g. 10
-		for x in range(SCREEN_SIZE.x): # e.g. 20
+	for y in range(LevelUtils.SCREEN_SIZE.y): # e.g. 10
+		for x in range(LevelUtils.SCREEN_SIZE.x): # e.g. 20
 			_set_tile(Vector2i(x, y), current_tile_id)
 		
 	# Update TileMapLayer
-	for y in range(SCREEN_SIZE.y):
-		for x in range(SCREEN_SIZE.x):
+	for y in range(LevelUtils.SCREEN_SIZE.y):
+		for x in range(LevelUtils.SCREEN_SIZE.x):
 			tilemap.set_cell(Vector2i(x,y), current_tile_id, Vector2i(0,0))
 				
 func _on_save_level() -> void:

@@ -7,6 +7,7 @@ class_name Bullet
 @export var lifetime: float = 5.0
 
 var time_alive: float = 0.0
+var hit: bool = false
 
 func _ready() -> void:
 	connect("area_entered", _on_area_entered)
@@ -39,13 +40,16 @@ func _tile_is_solid(world_pos: Vector2) -> bool:
 	return tile_data.get_collision_polygons_count(0) > 0
 
 func _on_area_entered(area: Area2D) -> void:
+	if hit:
+		return
 	print(area.name)
 		
 	var zombie = area.get_parent()
 	# Hit zombie
 	if zombie.is_in_group("enemies") && !zombie.dying:
+		hit = true
 		print("hit")
 		if zombie.has_method("take_damage"):
-			zombie.take_damage(33, global_position)
+			zombie.take_damage(33, global_position, direction.normalized())
 		
 		queue_free()

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://chl88mwxh27hw" path="res://Game/LevelRuntime.gd" id="1_jmlx1"]
 [ext_resource type="TileSet" uid="uid://bmru7gp42os5g" path="res://Assets/scenes/tileset.tres" id="2_jwkpx"]
+[ext_resource type="Script" uid="uid://uqwuap1n0h40" path="res://Game/PathFindingManager.gd" id="3_i5cdd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rvm4"]
 size = Vector2(17.21, 61.3739)
@@ -25,3 +26,6 @@ shape = SubResource("RectangleShape2D_0rvm4")
 
 [node name="Characters" type="Node2D" parent="." unique_id=1260669779]
 y_sort_enabled = true
+
+[node name="Navigation" type="Node" parent="." unique_id=1867297322]
+script = ExtResource("3_i5cdd")

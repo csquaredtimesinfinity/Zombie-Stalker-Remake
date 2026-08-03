@@ -1,4 +1,7 @@
+Node
 Node2D
+NavigationAgent2D
+NavigationRegion2D
 Sprite2D
 GPUParticles2D
 Label
@@ -9,6 +12,3 @@ CollisionShape2D
 RayCast2D
 Control
 Button
-ColorRect
-AnimationPlayer
-Node

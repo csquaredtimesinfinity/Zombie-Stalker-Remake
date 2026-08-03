@@ -7,9 +7,7 @@ extends Node2D
 @onready var effects_layer: Node2D = $EffectsLayer
 @onready var characters: Node2D = $Characters
 
-const TILE_SIZE = 16
-const SCREEN_TILES = Vector2i(20, 10)
-const SCREEN_SIZE = SCREEN_TILES * TILE_SIZE
+@onready var navigation: Node = $Navigation
 
 var current_screen: Vector2 = Vector2.ZERO
 var level_data
@@ -24,14 +22,22 @@ func _ready() -> void:
 	LevelSystem.apply_screen(
 		player_start["screen"], tilemap, null, entities, game_scene_root, characters)
 	
+	
 	# Spawn player controlled character
 	var player_position = LevelUtils.cell_to_world(player_start["cell"])
 	player = preload("res://Game/Entities/Player/Player.tscn").instantiate()
-	player.position = Vector2(player_position.x + TILE_SIZE/2, player_position.y + TILE_SIZE/2)
+	player.position = Vector2(
+		player_position.x + LevelUtils.TILE_SIZE/2, 
+		player_position.y + LevelUtils.TILE_SIZE/2)
 	characters.add_child(player)
 	
 	# Initialize starting screen
 	current_screen = LevelUtils.str_to_vec2i(player_start["screen"])
+	
+	var screen_key = "%d,%d" % [current_screen.x, current_screen.y]
+	var barriers = LevelSystem.get_barriers(screen_key)
+	print(barriers)
+	navigation.setup(barriers)
 
 	# Connect player signal
 	player.screen_transition.connect(_on_player_screen_transition)
@@ -48,6 +54,9 @@ func _on_player_screen_transition(direction: Vector2):
 		return # hit boundary with no screen, ignore
 		
 	current_screen = new_screen
+	var barriers = LevelSystem.get_barriers(screen_key)
+	print(barriers)
+	navigation.setup(barriers)
 	
 	# Remove Enemies from previous screen
 	_remove_all_entities()
@@ -58,13 +67,13 @@ func _on_player_screen_transition(direction: Vector2):
 	# Warp player to opposite edge
 	match direction:
 		Vector2.LEFT:
-			player.position.x = SCREEN_SIZE.x - (TILE_SIZE / 2)
+			player.position.x = LevelUtils.SCREEN_SIZE.x - (LevelUtils.TILE_SIZE / 2)
 		Vector2.RIGHT:
-			player.position.x = (TILE_SIZE / 2)
+			player.position.x = (LevelUtils.TILE_SIZE / 2)
 		Vector2.UP:
-			player.position.y = SCREEN_SIZE.y - (TILE_SIZE / 2)
+			player.position.y = LevelUtils.SCREEN_SIZE.y - (LevelUtils.TILE_SIZE / 2)
 		Vector2.DOWN:
-			player.position.y = (TILE_SIZE / 2)
+			player.position.y = (LevelUtils.TILE_SIZE / 2)
 
 func _remove_all_entities() -> void:
 	# Remove each group of entity

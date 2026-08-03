@@ -1,6 +1,9 @@
 class_name LevelUtils
 
 const TILE_SIZE := 16
+const SCREEN_TILES = Vector2i(20, 10)
+const MAP_SCREENS := Vector2i(4, 6) 
+const SCREEN_SIZE = SCREEN_TILES * TILE_SIZE
 
 static func vec2i_to_str(v: Vector2i) -> String:
 	return "%d,%d" % [v.x, v.y]

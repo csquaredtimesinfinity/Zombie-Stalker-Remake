@@ -121,6 +121,12 @@ y_sort_enabled = true
 collision_layer = 2
 collision_mask = 390
 script = ExtResource("1_3oey2")
+move_speed = null
+detection_radius = null
+max_health = null
+damage = null
+path_update_interval = null
+waypoint_reach_distance = null
 metadata/_edit_horizontal_guides_ = [-5.0]
 
 [node name="ZombieAnimator" type="Node2D" parent="." unique_id=1951631361 node_paths=PackedStringArray("zombie", "animation_player")]
