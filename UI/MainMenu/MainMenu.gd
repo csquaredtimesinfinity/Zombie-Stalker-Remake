@@ -8,8 +8,8 @@ extends Control
 @onready var exit_button :Button = $CanvasLayer/VBoxContainer/ExitButton
 
 
-
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	playgame_button.pressed.connect(_on_menu_button_pressed.bind("playgame"))
 	campaign_editor_button.pressed.connect(_on_menu_button_pressed.bind("campaigneditor"))
 	level_editor_button.pressed.connect(_on_menu_button_pressed.bind("leveleditor"))

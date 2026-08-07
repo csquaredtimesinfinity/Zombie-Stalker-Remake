@@ -42,7 +42,6 @@ func fade_in(duration := 0.5) -> void:
 
 	await tween.finished
 
-
 func change_scene(scene: Variant, duration := 0.4) -> void:
 	if is_transitioning:
 		return
@@ -53,7 +52,6 @@ func change_scene(scene: Variant, duration := 0.4) -> void:
 	await fade_out(duration)
 
 	call_deferred("_do_scene_change", scene, duration)
-
 
 func _do_scene_change(scene: Variant, duration: float) -> void:
 	if scene is String:

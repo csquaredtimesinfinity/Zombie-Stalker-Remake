@@ -1,0 +1,347 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://addons/pixel_editor/ui/editor_dock.gd" id="1_dock"]
+[ext_resource type="Script" path="res://addons/pixel_editor/canvas/pixel_canvas.gd" id="2_canvas"]
+[ext_resource type="Script" path="res://addons/pixel_editor/ui/timeline_panel.gd" id="3_timeline"]
+[ext_resource type="Script" path="res://addons/pixel_editor/ui/donation_dialog.gd" id="4_donation"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fzcgy"]
+
+[node name="EditorDock" type="Control"]
+custom_minimum_size = Vector2(256, 256)
+# Clip every descendant to the dock rect so an oversized/overflowing child can
+# never be painted outside the panel and bleed over neighbouring editor windows.
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dock")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Toolbar" type="HFlowContainer" parent="VBox"]
+# HFlowContainer (not HBoxContainer) so toolbar buttons wrap onto extra rows
+# instead of overflowing the panel's right edge when the dock is narrowed.
+layout_mode = 2
+
+[node name="NewButton" type="Button" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New"
+
+[node name="OpenButton" type="Button" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Open"
+
+[node name="SaveButton" type="Button" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save"
+
+[node name="UndoButton" type="Button" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Undo"
+
+[node name="RedoButton" type="Button" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Redo"
+
+[node name="Separator" type="VSeparator" parent="VBox/Toolbar"]
+layout_mode = 2
+
+# Each mouse-button slot is a self-contained group: its own colour picker + tool
+# dropdown. Colours are independent so, e.g., the left slot paints red while the
+# right slot paints blue — even when both bind the Pencil. Colour-less tools
+# (Eraser) simply ignore the slot's colour.
+
+[node name="Separator2" type="VSeparator" parent="VBox/Toolbar"]
+layout_mode = 2
+
+[node name="LeftColorButton" type="ColorPickerButton" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+tooltip_text = "Left mouse tool color"
+
+[node name="LeftLabel" type="TextureRect" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+tooltip_text = "Left mouse button"
+
+[node name="LeftSlot" type="OptionButton" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 0)
+fit_to_longest_item = false
+layout_mode = 2
+tooltip_text = "Tool bound to the left mouse button"
+
+[node name="RightColorButton" type="ColorPickerButton" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+color = Color(1, 1, 1, 1)
+tooltip_text = "Right mouse tool color"
+
+[node name="RightLabel" type="TextureRect" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+tooltip_text = "Right mouse button"
+
+[node name="RightSlot" type="OptionButton" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 0)
+fit_to_longest_item = false
+layout_mode = 2
+tooltip_text = "Tool bound to the right mouse button"
+
+[node name="Separator3" type="VSeparator" parent="VBox/Toolbar"]
+layout_mode = 2
+
+[node name="ZoomOutButton" type="Button" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-"
+
+[node name="ZoomLabel" type="Button" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+# Reads like a label but is clickable: toggles between 100% and the previous
+# zoom level (a quick "actual pixels" preview). All StyleBox states are emptied
+# so no background is drawn, even on hover/press.
+flat = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fzcgy")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fzcgy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fzcgy")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fzcgy")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_fzcgy")
+tooltip_text = "Click to toggle between 100% and previous zoom level"
+text = "100%"
+mouse_default_cursor_shape = 2
+
+[node name="ZoomInButton" type="Button" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+"
+
+[node name="FitButton" type="Button" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Fit"
+
+[node name="Separator4" type="VSeparator" parent="VBox/Toolbar"]
+layout_mode = 2
+
+[node name="GridButton" type="Button" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Grid"
+toggle_mode = true
+button_pressed = true
+
+[node name="MirrorButton" type="MenuButton" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+# MenuButton (not OptionButton): the mirror modes are independent toggles, so the
+# popup keeps its checkbox items in sync with the canvas state instead of picking
+# one exclusive entry.
+layout_mode = 2
+text = "Mirror"
+tooltip_text = "Mirror painting\nHorizontal / Vertical mirroring"
+item_count = 0
+switch_on_hover = true
+
+[node name="Separator5" type="VSeparator" parent="VBox/Toolbar"]
+layout_mode = 2
+
+[node name="DonateButton" type="Button" parent="VBox/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "♥ Donate"
+tooltip_text = "Support this plugin"
+
+[node name="PixelCanvas" type="Control" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_canvas")
+
+[node name="TimelinePanel" type="PanelContainer" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_timeline")
+
+[node name="Margin" type="MarginContainer" parent="VBox/TimelinePanel"]
+layout_mode = 2
+
+[node name="Column" type="VBoxContainer" parent="VBox/TimelinePanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="FilmstripScroll" type="ScrollContainer" parent="VBox/TimelinePanel/Margin/Column"]
+unique_name_in_owner = true
+# Sized to the 32px thumbnails plus just enough room for the horizontal scrollbar
+# that appears when the filmstrip overflows, so thumbs sit tight above the controls.
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="Filmstrip" type="HBoxContainer" parent="VBox/TimelinePanel/Margin/Column/FilmstripScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="ControlsRow" type="HFlowContainer" parent="VBox/TimelinePanel/Margin/Column"]
+# HFlowContainer (not HBoxContainer) so the transport/frame controls wrap onto a
+# second row instead of overflowing the panel's right edge when the dock narrows.
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="PrevFrameButton" type="Button" parent="VBox/TimelinePanel/Margin/Column/ControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "◀"
+
+[node name="PlayButton" type="Button" parent="VBox/TimelinePanel/Margin/Column/ControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "▶"
+
+[node name="NextFrameButton" type="Button" parent="VBox/TimelinePanel/Margin/Column/ControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "▶"
+
+[node name="LoopButton" type="Button" parent="VBox/TimelinePanel/Margin/Column/ControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+text = "Loop"
+
+[node name="OnionButton" type="Button" parent="VBox/TimelinePanel/Margin/Column/ControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Onion"
+
+[node name="Sep2" type="VSeparator" parent="VBox/TimelinePanel/Margin/Column/ControlsRow"]
+layout_mode = 2
+
+[node name="AddFrameButton" type="Button" parent="VBox/TimelinePanel/Margin/Column/ControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+"
+
+[node name="DuplicateFrameButton" type="Button" parent="VBox/TimelinePanel/Margin/Column/ControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Dup"
+
+[node name="DeleteFrameButton" type="Button" parent="VBox/TimelinePanel/Margin/Column/ControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Del"
+
+[node name="Sep1" type="VSeparator" parent="VBox/TimelinePanel/Margin/Column/ControlsRow"]
+layout_mode = 2
+
+[node name="FPSSpin" type="SpinBox" parent="VBox/TimelinePanel/Margin/Column/ControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 60.0
+value = 12.0
+suffix = "fps"
+
+[node name="FrameLabel" type="Label" parent="VBox/TimelinePanel/Margin/Column/ControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 2
+text = "1 / 1"
+
+[node name="OpenDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open Animation / Image"
+file_mode = 0
+filters = PackedStringArray("*.png ; Pixel Art / Animation")
+access = 2
+
+[node name="SaveDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Save Animation"
+file_mode = 2
+access = 2
+current_file = "sprite.png"
+filters = PackedStringArray("*.png ; Pixel Animation")
+
+[node name="DonationDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_donation")
+
+[node name="Margin" type="MarginContainer" parent="DonationDialog"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Column" type="VBoxContainer" parent="DonationDialog/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="NewSizeDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "New Image"
+size = Vector2i(320, 240)
+
+[node name="Content" type="VBoxContainer" parent="NewSizeDialog"]
+
+[node name="Grid" type="GridContainer" parent="NewSizeDialog/Content"]
+columns = 2
+
+[node name="WidthLabel" type="Label" parent="NewSizeDialog/Content/Grid"]
+text = "Width"
+
+[node name="WidthSpin" type="SpinBox" parent="NewSizeDialog/Content/Grid"]
+unique_name_in_owner = true
+min_value = 1.0
+max_value = 512.0
+value = 32.0
+
+[node name="HeightLabel" type="Label" parent="NewSizeDialog/Content/Grid"]
+text = "Height"
+
+[node name="HeightSpin" type="SpinBox" parent="NewSizeDialog/Content/Grid"]
+unique_name_in_owner = true
+min_value = 1.0
+max_value = 512.0
+value = 32.0
+
+[node name="PresetsLabel" type="Label" parent="NewSizeDialog/Content"]
+text = "Presets"
+
+[node name="PresetsGrid" type="GridContainer" parent="NewSizeDialog/Content"]
+unique_name_in_owner = true
+columns = 3

@@ -13,12 +13,19 @@ class_name Zombie
 @export var path_update_interval: float = 0.35
 @export var waypoint_reach_distance: float = 3.0
 
+@export_category("Knockback")
+@export var knockback_strength: float = 160.0
+@export var knockback_decay: float = 500.0
+
 enum Direction { 
 	LEFT, 
 	RIGHT,
 	UP, 
 	DOWN 
 }
+
+var current_state: ZombieState
+var states := {}
 
 var id: String
 var health: int
@@ -37,13 +44,20 @@ var path_update_timer := 0.0
 @onready var detect_area: Area2D = $Area2D
 @onready var pathfinder = $"../../Navigation"
 
-@export var knockback_strength: float = 160.0
-@export var knockback_decay: float = 500.0
-
 var knockback_velocity := Vector2.ZERO
 var direction
 
 func _ready():
+	# Zombie States
+	states["chase"] = ChaseState.new()
+	states["lunge"] = LungeState.new()
+	states["windup"] = LungeWindupState.new()
+	
+	for state in states.values():
+		state.zombie = self
+	
+	change_state("chase")
+
 	health = max_health
 	
 	# wait to make sure player is in scene first
@@ -53,6 +67,13 @@ func _ready():
 	add_to_group("enemies")
 	
 	anim.animation_finished.connect(_on_animation_finished)
+
+func change_state(name: String):
+	if current_state:
+		current_state.exit()
+	
+	current_state = states[name]
+	current_state.enter()
 	
 func chase_player(player):
 	var start_cell = pathfinder.world_to_cell(global_position)
@@ -69,19 +90,16 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		return
 
-	zombie_moving = false
-
-	var movement_velocity := Vector2.ZERO
-
-	if player:
-		movement_velocity = get_chase_velocity(delta)
+	
+	
+	current_state.physics_update(delta)
 
 	knockback_velocity = knockback_velocity.move_toward(
 		Vector2.ZERO,
 		knockback_decay * delta
 	)
 
-	velocity = movement_velocity + knockback_velocity
+	velocity += knockback_velocity
 
 	move_and_slide()
 	
@@ -225,66 +243,3 @@ func die() -> void:
 func _on_animation_finished(animation_name: StringName) -> void:
 	if animation_name == &"die":
 		queue_free()
-
-		##navigation_agent.target_position = player.global_position
-##
-		##print("Reachable: ", navigation_agent.is_target_reachable()," | Finished: ", navigation_agent.is_navigation_finished())
-		##navigation_agent.target_position = player.global_position
-		#
-		#if path.size() < 2:
-			#return
-		#
-		#var target_cell = path[path_index]
-		##print(global_position)
-		#var target_position = pathfinder.cell_to_world(target_cell)
-		##print(target_position)
-		#var direction = global_position.direction_to(target_position)
-		##print(direction)
-		##var next_position = navigation_agent.get_next_path_position()
-		##next_position.y -= 1
-		##print(str(next_position))
-		##var direction = (player.global_position - global_position).normalized()
-		##var direction = global_position.direction_to(next_position)
-		#velocity = direction * move_speed
-		#
-		#if global_position.distance_to(target_position) < 0:
-			#path_index += 1
-			#
-			#if path_index > path.size():
-				#path.clear()
-		#
-		#if direction.x < 0 && abs(direction.x) > abs(direction.y):
-			#_set_zombie_moving(Direction.LEFT)
-		#elif direction.x > 0  && abs(direction.x) > abs(direction.y):
-			#_set_zombie_moving(Direction.RIGHT)
-		#elif direction.y < 0 && abs(direction.x) < abs(direction.y):
-			#_set_zombie_moving(Direction.UP)
-		#elif direction.y > 0  && abs(direction.x) < abs(direction.y):
-			#_set_zombie_moving(Direction.DOWN)
-			#
-	#move_and_slide()
-#
-#
-#func _set_zombie_moving(direction) -> void:
-	#zombie_direction = direction
-	#zombie_moving = true
-#
-#func _on_body_entered(body: Node):
-	#if body.is_in_group("player"):
-		#player = body
-		#attack_timer.start()
-	#
-#func _on_body_exited(body: Node):
-	#if body == player:
-		#player = null
-		#attack_timer.stop()
-	#
-#func _on_attack_timeout():
-	#pass
-	##if player:
-	##	player.take_damage(damage)
-		#
-#
-#
-#
-	##queue_free()

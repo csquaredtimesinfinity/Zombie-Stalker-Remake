@@ -5,6 +5,7 @@ extends Node2D
 @onready var screen: TextureRect = $Screen
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	await get_tree().process_frame
 	var player = $SubViewport.get_node_or_null("Level/Characters/Player")
 	if player:
