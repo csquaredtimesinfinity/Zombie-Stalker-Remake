@@ -32,16 +32,8 @@ func setup(wall_cells: Array[Vector2i]) -> void:
 #func find_path(start: Vector2i, end: Vector2i) -> Array[Vector2i]:
 #	return astar.get_id_path(start, end, true)
 func find_path(start_cell: Vector2i, end_cell: Vector2i) -> Array[Vector2i]:
-	print("START: ", start_cell)
-	print("END: ", end_cell)
-
-	print("Start solid: ", astar.is_point_solid(start_cell))
-	print("End solid: ", astar.is_point_solid(end_cell))
 
 	var astar_path := astar.get_id_path(start_cell, end_cell)
-
-	print("PATH: ", astar_path)
-	print("PATH SIZE: ", astar_path.size())
 
 	var path: Array[Vector2i] = []
 
@@ -59,5 +51,3 @@ func world_to_cell(world_pos: Vector2) -> Vector2i:
 func cell_to_world(cell_pos: Vector2i) -> Vector2:
 	return Vector2(cell_pos) * LevelUtils.TILE_SIZE \
 		+ Vector2.ONE * LevelUtils.TILE_SIZE / 2.0
-#func get_path(start: Vector2i, end: Vector2i) -> Array[Vector2i]:
-#	return astar.get_id_path(start, end)

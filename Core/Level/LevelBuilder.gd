@@ -36,12 +36,12 @@ static func apply_screen_to_layers(
 		
 	var screen: Dictionary = level_data["screens"][screen_key]
 	
-	# clear
+	# Clear tilemaps
 	tile_layer.clear()
 	if marker_layer:
 		marker_layer.clear()
 		
-	# tiles
+	# Fill out tilemap for current screen
 	if screen.has("tiles"):
 		var tiles: Array = screen["tiles"]
 		for y in range(tiles.size()):
@@ -50,16 +50,19 @@ static func apply_screen_to_layers(
 				if id >= 0:
 					tile_layer.set_cell(Vector2i(x, y), id, Vector2i.ZERO)
 					
-	# entities
+	# Add screen entities for current screen
 	if screen.has("entities"):
 		var entities = screen["entities"]
 		
+		# If marker layer is present add entities to marker layer tilemap (Level Editor)
 		if marker_layer:
 			for entity in entities:
 				var cell: Vector2i = LevelUtils.str_to_vec2i(entity["cell"])
 				var type: int = int(entity["type"])
 				# use entity type enum mapping here if needed
 				marker_layer.set_cell(cell, type, Vector2i.ZERO)
+		
+		# If marker layer is not present, add entity scenes for gameplay
 		else:
 		
 			for entity in entities:
@@ -85,11 +88,12 @@ static func apply_screen_to_layers(
 				
 				var entity_id = LevelUtils.id_for_entity(screen_key, LevelUtils.vec2i_to_str(cell), str(type))
 				
+				# Add enemy only if it hasn't been killed
 				if type == EntityDatabase.EntityType.ENEMY && not WorldState.is_zombie_killed(entity_id):
 					_setup_entity(scene, entity, world_pos, characters_parent)
 					continue
 					
-				# Entities
+				# Interative Entities i.e Doors or Pickups
 				var is_interactive_entity = (
 					EntityDatabase.is_entity_in_category(type, "pickup") || \
 						EntityDatabase.is_entity_in_category(type, "prop"))
@@ -102,8 +106,9 @@ static func apply_screen_to_layers(
 							_setup_entity(scene, entity, world_pos, entities_parent)
 							continue
 					
-							
+					# Add pickup only if it hasn't already been collected		
 					elif not WorldState.is_pickup_collected(entity_id):
+						
 						_setup_entity(scene, entity, world_pos, entities_parent
 						)
 						continue

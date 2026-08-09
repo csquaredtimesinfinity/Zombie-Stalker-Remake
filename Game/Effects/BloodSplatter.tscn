@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dn3ximjpy3jhd"]
 
 [ext_resource type="Script" uid="uid://cdgddb54fue62" path="res://Game/Effects/BloodSplatter.gd" id="1_5ad54"]
-[ext_resource type="Texture2D" uid="uid://evj1gvo7icb4" path="res://Game/Effects/blood-png-7140.png" id="1_lxn7h"]
+[ext_resource type="Texture2D" uid="uid://evj1gvo7icb4" path="res://Game/Effects/BloodSplatter.png" id="1_lxn7h"]
 
 [node name="BloodSplatter" type="Node2D" unique_id=1995612399]
 script = ExtResource("1_5ad54")

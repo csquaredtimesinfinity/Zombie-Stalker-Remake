@@ -1,7 +1,7 @@
 class_name ZombieState
 extends RefCounted
 
-var zombie: CharacterBody2D
+var zombie: Zombie
 
 func enter():
 	pass

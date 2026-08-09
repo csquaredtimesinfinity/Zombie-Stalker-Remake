@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bblckldggbqt5"]
 
 [ext_resource type="Script" uid="uid://bpmu2ko0nyfp5" path="res://Game/Entities/Enemies/Zombie/Zombie.gd" id="1_3oey2"]
-[ext_resource type="Script" uid="uid://tul1mfttl17l" path="res://Game/Entities/Enemies/Zombie/zombie_animator.gd" id="2_c5rcg"]
+[ext_resource type="Script" uid="uid://tul1mfttl17l" path="res://Game/Entities/Enemies/Zombie/ZombieAnimator.gd" id="2_c5rcg"]
 [ext_resource type="Texture2D" uid="uid://35mcb3xcrp41" path="res://Assets/Sprites/ZombieSpriteSheet.png" id="3_3oey2"]
 [ext_resource type="Script" uid="uid://nwxe6p2sp17d" path="res://Game/Entities/Enemies/Zombie/PathFinding.gd" id="4_c5rcg"]
 

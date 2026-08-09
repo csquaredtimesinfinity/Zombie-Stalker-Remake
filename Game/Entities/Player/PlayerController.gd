@@ -66,17 +66,17 @@ func _physics_process(delta: float) -> void:
 	handle_input()
 	
 	# Edge check
-	if position.x < TILE_SIZE / 2:
+	if position.x < TILE_SIZE / 2 - 8:
 		emit_signal("screen_transition", Vector2.LEFT)
-	elif position.x >= SCREEN_SIZE.x - TILE_SIZE / 2:
+	elif position.x >= SCREEN_SIZE.x - TILE_SIZE / 2 + 8:
 		emit_signal("screen_transition", Vector2.RIGHT)
-	elif position.y < TILE_SIZE / 2:
+	elif position.y < TILE_SIZE / 2 - 8:
 		emit_signal("screen_transition", Vector2.UP)
-	elif position.y >= SCREEN_SIZE.y - TILE_SIZE / 2:
+	elif position.y >= SCREEN_SIZE.y - TILE_SIZE / 2 + 8:
 		emit_signal("screen_transition", Vector2.DOWN)
 		
-	position.x = clamp(position.x, TILE_SIZE / 2, SCREEN_SIZE.x - TILE_SIZE / 2)
-	position.y = clamp(position.y, TILE_SIZE / 2, SCREEN_SIZE.y - TILE_SIZE / 2)
+	position.x = clamp(position.x, TILE_SIZE / 2 - 8, SCREEN_SIZE.x - TILE_SIZE / 2 + 8)
+	position.y = clamp(position.y, TILE_SIZE / 2 - 8, SCREEN_SIZE.y - TILE_SIZE / 2 + 8)
 
 func handle_input() -> void:
 	var input_vector = Vector2.ZERO

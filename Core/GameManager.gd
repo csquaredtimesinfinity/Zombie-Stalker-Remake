@@ -23,7 +23,6 @@ const SETTINGS_SCENE: PackedScene = preload("res://UI/Settings/Settings.tscn")
 
 const CAMPAIGN_EDITOR_ROOT_SCENE: PackedScene = preload("res://Editor/CampaignEditor/CampaignEditorRoot.tscn")
 
-
 func _ready() -> void:
 	transition_layer.layer = 100  # ensure it's always on top
 	
@@ -33,7 +32,7 @@ func _input(event: InputEvent) -> void:
 		if current_mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		else:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
 func change_scene_to_main_menu() -> void:
 	await SceneTransition.change_scene(MAIN_MENU_SCENE, 0.35)

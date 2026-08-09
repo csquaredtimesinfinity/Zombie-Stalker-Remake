@@ -9,6 +9,13 @@ class_name Zombie
 @export var max_health: int = 100
 @export var damage: int = 10
 
+@export_category("Lunge")
+@export var lunge_range: float = 24.0
+@export var lunge_speed: float = 100.0
+@export var lunge_windup_time: float = 0.35
+@export var lunge_duration: float = 0.25
+@export var lunge_cooldown: float = 1.5
+
 @export_category("Pathfinding")
 @export var path_update_interval: float = 0.35
 @export var waypoint_reach_distance: float = 3.0
@@ -35,6 +42,10 @@ var zombie_direction = Direction.RIGHT
 var zombie_moving = false
 var dying = false
 
+var lunge_direction := Vector2.ZERO
+var lunge_timer := 0.0
+var lunge_cooldown_timer := 0.0
+
 var path: Array[Vector2i] = []
 var path_index := 0
 var path_update_timer := 0.0
@@ -49,9 +60,10 @@ var direction
 
 func _ready():
 	# Zombie States
-	states["chase"] = ChaseState.new()
-	states["lunge"] = LungeState.new()
-	states["windup"] = LungeWindupState.new()
+	states["chase"] = ZombieChaseState.new()
+	states["lunge"] = ZombieLungeState.new()
+	states["windup"] = ZombieLungeWindupState.new()
+	states["idle"] = ZombieIdleState.new()
 	
 	for state in states.values():
 		state.zombie = self
@@ -68,30 +80,14 @@ func _ready():
 	
 	anim.animation_finished.connect(_on_animation_finished)
 
-func change_state(name: String):
-	if current_state:
-		current_state.exit()
-	
-	current_state = states[name]
-	current_state.enter()
-	
-func chase_player(player):
-	var start_cell = pathfinder.world_to_cell(global_position)
-	print(start_cell)
-	var end_cell = pathfinder.world_to_cell(player.global_position)
-	print(end_cell)
-	
-	path = pathfinder.find_path(start_cell, end_cell)
-	path_index = 1
-	print(path)
-	
 func _physics_process(delta: float) -> void:
 	if dying:
 		velocity = Vector2.ZERO
 		return
 
-	
-	
+	if lunge_cooldown_timer > 0.0:
+		lunge_cooldown_timer -= delta
+		
 	current_state.physics_update(delta)
 
 	knockback_velocity = knockback_velocity.move_toward(
@@ -102,6 +98,13 @@ func _physics_process(delta: float) -> void:
 	velocity += knockback_velocity
 
 	move_and_slide()
+
+func change_state(name: String):
+	if current_state:
+		current_state.exit()
+	
+	current_state = states[name]
+	current_state.enter()
 	
 func get_chase_velocity(delta: float) -> Vector2:
 	path_update_timer -= delta
@@ -243,3 +246,13 @@ func die() -> void:
 func _on_animation_finished(animation_name: StringName) -> void:
 	if animation_name == &"die":
 		queue_free()
+
+func can_lunge() -> bool:
+	if player == null:
+		return false
+		
+	if lunge_cooldown_timer > 0.0:
+		return false
+	
+	return global_position.distance_to(player.global_position) <= lunge_range
+	
