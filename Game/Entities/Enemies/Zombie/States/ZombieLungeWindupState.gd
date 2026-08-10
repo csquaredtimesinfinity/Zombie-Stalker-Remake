@@ -8,7 +8,7 @@ func enter():
 	
 	zombie.stop_moving()
 	
-	zombie.lunge_timer = zombie.lunge_windup_time
+	zombie.lunge_timer = zombie.lunge_windup_time + randf_range(0.0, 0.25)
 	pulse_time = 0.0
 	
 	if zombie.player:

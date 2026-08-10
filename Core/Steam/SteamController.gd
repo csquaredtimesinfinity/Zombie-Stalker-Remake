@@ -1,5 +1,7 @@
 extends Node
 
+# TODO: Initialize Steam before accessing Steam API
+# TODO: Support running game outside of Steam
 
 func _init() -> void:
 	var response : Dictionary = Steam.steamInitEx(480)

@@ -32,7 +32,7 @@ func _input(event: InputEvent) -> void:
 		if current_mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		else:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func change_scene_to_main_menu() -> void:
 	await SceneTransition.change_scene(MAIN_MENU_SCENE, 0.35)

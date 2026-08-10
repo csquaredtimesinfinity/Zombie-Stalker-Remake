@@ -41,6 +41,30 @@ func find_path(start_cell: Vector2i, end_cell: Vector2i) -> Array[Vector2i]:
 		path.append(cell)
 
 	return path
+
+func get_chase_path(
+	start: Vector2, 
+	target: Vector2, 
+	zombies: Array[Node2D]
+) -> Array[Vector2]:
+	#TODO: A
+	return []
+
+func get_crowd_cost(cell: Vector2i, zombies: Array[Node2D]) -> float:
+	var cost := 0.0
+	
+	for zombie in zombies:
+		var zombie_cell := world_to_cell(zombie.global_position)
+		var distance := cell.distance_to(zombie_cell)
+		
+		if distance < 1.0:
+			cost += 10.0
+		elif distance < 2.0:
+			cost += 5.0
+		elif distance < 3.0:
+			cost += 2.0
+	
+	return cost
 	
 func world_to_cell(world_pos: Vector2) -> Vector2i:
 	return Vector2i(

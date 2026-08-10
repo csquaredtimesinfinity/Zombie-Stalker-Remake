@@ -10,11 +10,14 @@ class_name Zombie
 @export var damage: int = 10
 
 @export_category("Lunge")
-@export var lunge_range: float = 24.0
-@export var lunge_speed: float = 100.0
-@export var lunge_windup_time: float = 0.35
-@export var lunge_duration: float = 0.25
+@export var lunge_range: float = 32.0
+@export var lunge_speed: float = 250.0
+@export var lunge_windup_time: float = 0.55
+@export var lunge_duration: float = 0.2
 @export var lunge_cooldown: float = 1.5
+
+@export_category("idle")
+@export var idle_time: float = 1.0
 
 @export_category("Pathfinding")
 @export var path_update_interval: float = 0.35
@@ -36,7 +39,7 @@ var states := {}
 
 var id: String
 var health: int
-var player: Node2D
+var player: PlayerController
 
 var zombie_direction = Direction.RIGHT
 var zombie_moving = false
@@ -54,6 +57,7 @@ var path_update_timer := 0.0
 @onready var attack_timer: Timer = $"Timer (for attacks)"
 @onready var detect_area: Area2D = $Area2D
 @onready var pathfinder = $"../../Navigation"
+@onready var hitbox: Area2D = $HitBox
 
 var knockback_velocity := Vector2.ZERO
 var direction
@@ -68,7 +72,7 @@ func _ready():
 	for state in states.values():
 		state.zombie = self
 	
-	change_state("chase")
+	change_state("idle")
 
 	health = max_health
 	
@@ -79,6 +83,7 @@ func _ready():
 	add_to_group("enemies")
 	
 	anim.animation_finished.connect(_on_animation_finished)
+	hitbox.area_entered.connect(_on_hitbox_area_entered)
 
 func _physics_process(delta: float) -> void:
 	if dying:
@@ -105,30 +110,6 @@ func change_state(name: String):
 	
 	current_state = states[name]
 	current_state.enter()
-	
-func get_chase_velocity(delta: float) -> Vector2:
-	path_update_timer -= delta
-
-	if path_update_timer <= 0.0:
-		request_path()
-		path_update_timer = path_update_interval
-
-	if path.is_empty() or path_index >= path.size():
-		return Vector2.ZERO
-
-	var target_cell := path[path_index]
-	var target_position : Vector2i = pathfinder.cell_to_world(target_cell)
-
-	if global_position.distance_to(target_position) <= waypoint_reach_distance:
-		path_index += 1
-		return Vector2.ZERO
-
-	var direction := global_position.direction_to(target_position)
-
-	update_facing(direction)
-	zombie_moving = true
-
-	return direction * move_speed
 
 func update_chase(delta: float) -> void:
 	path_update_timer -= delta
@@ -255,4 +236,13 @@ func can_lunge() -> bool:
 		return false
 	
 	return global_position.distance_to(player.global_position) <= lunge_range
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if current_state != states["lunge"]:
+		return
 	
+	if area.is_in_group("player_hitbox"):
+		player.take_damage(damage)
+		await EffectsManager.spawn_blood(player.global_position)
+		EffectsManager.spawn_blood_splatter(player.global_position)
+		change_state("chase")

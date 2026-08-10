@@ -7,8 +7,9 @@ class_name PlayerController
 @export var max_ammo: int = 300
 
 @onready var interact_ray := $InteractRay
+@onready var hitbox: Area2D = $HitBox
 
-var health = 10 # max_health
+var health = max_health # max_health
 var ammo = 100
 var keys = 0
 
@@ -50,6 +51,7 @@ func _ready() -> void:
 	interact_ray.target_position = facing[player_direction] * INTERACT_RAY_LENGTH
 	
 	add_to_group("player")
+	hitbox.add_to_group("player_hitbox")
 
 func _draw():
 	if interact_ray.enabled:
@@ -166,7 +168,7 @@ func _on_detect_pickups_area_entered(pickup: Area2D) -> void:
 		if should_pickup:
 			pickup.queue_free()
 
-func take_damage(damage: int):
+func take_damage(damage: int) -> void:
 	health -= damage
-	emit_signal("health_changed", health
-	)
+	emit_signal("health_changed", health)
+	
