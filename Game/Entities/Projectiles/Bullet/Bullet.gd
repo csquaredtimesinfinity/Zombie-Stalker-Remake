@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	var next_position = position + direction * speed * delta
 
 	if _tile_is_solid(next_position):
-		SoundLibrary.play_bullet_hitting_wall_sound()
+		SoundLibrary.play_bullet_hitting_wall_sfx()
 		queue_free()
 		return
 	

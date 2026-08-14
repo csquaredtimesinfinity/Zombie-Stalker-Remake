@@ -24,8 +24,8 @@ class_name Zombie
 @export var waypoint_reach_distance: float = 3.0
 
 @export_category("Knockback")
-@export var knockback_strength: float = 160.0
-@export var knockback_decay: float = 500.0
+@export var knockback_strength: float = 60.0
+@export var knockback_decay: float = 3000.0
 
 enum Direction { 
 	LEFT, 
@@ -209,7 +209,7 @@ func take_damage(amount, hit_position, direction) -> void:
 	if health <= 0:
 		die()
 	else:
-		SoundLibrary.play_zombie_hit_sound()
+		SoundLibrary.play_zombie_hit_sfx()
 
 func die() -> void:
 	if dying:
@@ -222,7 +222,7 @@ func die() -> void:
 
 	anim.play("die")
 	WorldState.mark_zombie_killed(id)
-	SoundLibrary.play_zombie_kill_sound()
+	SoundLibrary.play_zombie_kill_sfx()
 		
 func _on_animation_finished(animation_name: StringName) -> void:
 	if animation_name == &"die":

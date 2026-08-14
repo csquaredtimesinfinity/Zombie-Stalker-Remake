@@ -9,5 +9,5 @@ func _can_pickup(player: PlayerController) -> bool:
 
 func _do_pickup(player: PlayerController) -> bool:
 	player.add_key()
-	SoundLibrary.play_key_pickup_sound()
+	SoundLibrary.play_key_pickup_sfx()
 	return true

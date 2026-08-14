@@ -8,7 +8,6 @@
 size = Vector2(17.21, 61.3739)
 
 [node name="Level" type="Node2D" unique_id=1580465020]
-y_sort_enabled = true
 script = ExtResource("1_jmlx1")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2100518937 groups=["bullet_block"]]

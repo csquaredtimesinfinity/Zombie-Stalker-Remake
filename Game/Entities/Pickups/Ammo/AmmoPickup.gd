@@ -13,6 +13,6 @@ func _do_pickup(player: PlayerController) -> bool:
 		return false
 		
 	player.add_ammo(amount)
-	SoundLibrary.play_ammo_pickup_sound()
+	SoundLibrary.play_ammo_pickup_sfx()
 	
 	return true

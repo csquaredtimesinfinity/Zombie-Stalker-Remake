@@ -13,6 +13,12 @@ var current_screen: Vector2 = Vector2.ZERO
 var level_data
 var player
 
+@export_category("Screen Transition")
+@export var screen_transition_time := 3.0
+var screen_transition_timer := 0.0
+var can_transition_to_another_screen := false
+
+
 func _ready() -> void:
 	WorldState.reset_world()
 	EffectsManager.effects_layer = effects_layer
@@ -45,8 +51,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("quit"):
 		GameManager.change_scene_to_main_menu()
+	
+	if can_transition_to_another_screen:
+		return
+		
+	screen_transition_timer -= delta
+	if screen_transition_timer <= 0.0:
+		can_transition_to_another_screen = true
 
 func _on_player_screen_transition(direction: Vector2):
+	if !can_transition_to_another_screen:
+		return
+	
+	can_transition_to_another_screen = false
+	screen_transition_timer = screen_transition_time
+	
 	var new_screen = current_screen + direction
 	var screen_key = "%d,%d" % [new_screen.x, new_screen.y]
 

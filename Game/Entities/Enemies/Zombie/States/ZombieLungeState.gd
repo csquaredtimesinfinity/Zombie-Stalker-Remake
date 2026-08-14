@@ -12,6 +12,8 @@ func enter():
 		)
 		
 		zombie.update_facing(zombie.lunge_direction)
+		
+	SoundLibrary.play_zombie_moan_sfx()
 
 func exit():
 	print("%s: Exiting Lunge" % zombie.id)
@@ -27,4 +29,3 @@ func physics_update(delta):
 	
 	if zombie.lunge_timer <= 0.0:
 		zombie.change_state("chase")
-	

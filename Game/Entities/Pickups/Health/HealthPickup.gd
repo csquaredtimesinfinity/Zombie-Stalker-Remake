@@ -13,5 +13,5 @@ func _do_pickup(player: PlayerController) -> bool:
 		return false
 		
 	player.add_health(amount)
-	SoundLibrary.play_coke_pickup_sound()
+	SoundLibrary.play_coke_pickup_sfx()
 	return true

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d1txos3t0hrp"]
+
+[ext_resource type="Texture2D" uid="uid://c5s1grc76n4oc" path="res://Game/LevelMarkers/PlayerStart/PlayerStartTile.png" id="1_p3g4v"]
+[ext_resource type="Script" uid="uid://dybsxp57bw4sa" path="res://Game/LevelMarkers/PlayerStart/PlayerStart.gd" id="2_enc02"]
+
+[node name="PlayerStart" type="Sprite2D" unique_id=468527408]
+texture = ExtResource("1_p3g4v")
+script = ExtResource("2_enc02")

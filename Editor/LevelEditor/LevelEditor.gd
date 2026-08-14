@@ -256,7 +256,6 @@ func _set_tile(cell: Vector2i, tile_id: int) -> void:
 	if not level_data["screens"].has(screen_coords):
 		_init_screen(screen_coords)
 	level_data["screens"][screen_coords]["tiles"][cell.y][cell.x] = tile_id
-	
-	
+
 func _can_place_entity(cell: Vector2i) -> bool:
 	return _get_tile(cell) not in TileDatabase.get_entities("barrier")

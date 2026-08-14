@@ -65,7 +65,6 @@ func format_campaign_filename(name: String) -> String:
 
 	return result + ".json"
 
-
 func _on_campaign_name_text_edit_text_changed() -> void:
 	if campaign_name.text.strip_edges() == "":
 		file_name_preview.text = ""

@@ -10,6 +10,7 @@ enum EntityType {
 	
 	# Door
 	DOOR = 10,
+	EXPLOSIVE_BARREL = 11,
 	
 	# Entities
 	PLAYER_START = 20,
@@ -24,20 +25,20 @@ const DATA := {
 		&"name": "Health",
 		&"category": "pickup",
 		&"icon": preload("res://Game/Entities/Pickups/Health/HealthPickup.png"),
-		&"scene": preload("res://Game/Entities/Pickups/Health/Health.tscn")
+		&"scene": preload("res://Game/Entities/Pickups/Health/HealthPickup.tscn")
 	},
 	EntityType.AMMO_PICKUP: {
 		&"name": "Ammo",
 		&"category": "pickup",
 		&"icon": preload("res://Game/Entities/Pickups/Ammo/AmmoPickup.png"),
-		&"scene": preload("res://Game/Entities/Pickups/Ammo/Ammo.tscn")
+		&"scene": preload("res://Game/Entities/Pickups/Ammo/AmmoPickup.tscn")
 	},
 	
 	EntityType.KEY_PICKUP: {
 		&"name": "Key",
 		&"category": "pickup",
 		&"icon": preload("res://Game/Entities/Pickups/Key/KeyPickup.png"),
-		&"scene": preload("res://Game/Entities/Pickups/Key/Key.tscn")
+		&"scene": preload("res://Game/Entities/Pickups/Key/KeyPickup.tscn")
 	},
 	
 	# Non-pickup Entities
@@ -48,11 +49,17 @@ const DATA := {
 		&"scene": preload("res://Game/Entities/Door/Door.tscn")
 	},
 	
+	# TODO: implement explosive barrel as a prop
+	EntityType.EXPLOSIVE_BARREL : {
+		&"name": "ExplosiveBarrel",
+		&"category": "prop"
+	},
+	
 	EntityType.PLAYER_START: {
 		&"name": "PlayerStart",
 		&"category": "marker",
-		&"icon": preload("res://Game/LevelMarkers/PlayerStart/start_tile.png"),
-		&"scene": preload("res://Game/LevelMarkers/PlayerStart/player_start.tscn")
+		&"icon": preload("res://Game/LevelMarkers/PlayerStart/PlayerStartTile.png"),
+		&"scene": preload("res://Game/LevelMarkers/PlayerStart/PlayerStart.tscn")
 	},
 	
 	EntityType.END_OF_LEVEL: {

@@ -14,4 +14,3 @@ func physics_update(delta):
 
 func update(delta):
 	pass
-	

@@ -19,8 +19,8 @@ var shoot_cooldown: float = 0.15
 var muzzle_offsets = {
 	Direction.UP: Vector2(0, -8),
 	Direction.DOWN: Vector2(0, 8),
-	Direction.LEFT: Vector2(-8, -2),
-	Direction.RIGHT: Vector2(8, -2)
+	Direction.LEFT: Vector2(-8, 0),
+	Direction.RIGHT: Vector2(8, 0)
 }
 
 var facing = {
@@ -122,7 +122,7 @@ func shoot() -> void:
 	bullet.position = position + spawn_offset
 	
 	# Play gun fire sound effect
-	SoundLibrary.play_gun_fire_sound()
+	SoundLibrary.play_gun_fire_sfx()
 	
 	match player_direction:
 		Direction.UP:
@@ -157,10 +157,7 @@ func has_keys() -> bool:
 	return keys > 0
 	
 func _on_detect_pickups_area_entered(pickup: Area2D) -> void:
-	#print("area entered: " + area.name)
 	var should_pickup = false
-	#if area.is_in_group("pickups"):
-	#	print("is in group pickups: " + area.name)
 	if pickup.has_method("apply_pickup"):
 		print("has apply_pickup method: " + pickup.name)
 		should_pickup = pickup.apply_pickup(self)

@@ -14,4 +14,3 @@ func physics_update(delta):
 		return
 		
 	zombie.update_chase(delta)
-	

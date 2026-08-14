@@ -29,7 +29,6 @@ func _ready() -> void:
 			categories[category] = []
 			
 		categories[category].append({"type": type, "data": entity})
-	
 
 	# build UI
 	for category in categories.keys():
@@ -72,37 +71,29 @@ func set_screen_button_states(current: Vector2i, map_screens: Vector2i) -> void:
 	up_button.disabled = current.y <= 0
 	down_button.disabled = current.y >= map_screens.y - 1
 	current_screen_label.text = "%d, %d" % [current.x, current.y]
-	
 
 func _on_tile_selector_item_selected(index: int) -> void:
 	var tile_id = tile_selector.get_item_id(index)
 	emit_signal("tile_selected", tile_id)
 
-
 func _on_entity_selector_item_selected(index: int) -> void:
 	var entity_id = entity_selector.get_item_id(index)
 	emit_signal("entity_selected", entity_id)
 
-
 func _on_left_button_pressed() -> void:
 	emit_signal("move_screen", Vector2i(-1, 0))
-
 
 func _on_right_button_pressed() -> void:
 	emit_signal("move_screen", Vector2i(1, 0))
 
-
 func _on_up_button_pressed() -> void:
 	emit_signal("move_screen", Vector2i(0, -1))
-
 
 func _on_down_button_pressed() -> void:
 	emit_signal("move_screen", Vector2i(0, 1))
 
-
 func _on_save_level_pressed() -> void:
 	emit_signal("save_level")
-
 
 func _on_fill_screen_button_pressed() -> void:
 	emit_signal("fill_screen")

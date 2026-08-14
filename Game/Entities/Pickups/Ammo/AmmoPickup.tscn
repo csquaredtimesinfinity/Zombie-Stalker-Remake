@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cxdc7wj4eu7nx"]
+
+[ext_resource type="Script" uid="uid://ppwi814g64pl" path="res://Game/Entities/Pickups/Ammo/AmmoPickup.gd" id="1_1xet0"]
+[ext_resource type="Texture2D" uid="uid://b0jvato78q0d" path="res://Game/Entities/Pickups/Ammo/AmmoPickup.png" id="2_d0d7o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y56md"]
+size = Vector2(15.0267, 7.78032)
+
+[node name="PickupAmmo" type="Area2D" unique_id=35718420]
+script = ExtResource("1_1xet0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=387160574]
+texture = ExtResource("2_d0d7o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1437548079]
+position = Vector2(0.139587, -0.406566)
+shape = SubResource("RectangleShape2D_y56md")

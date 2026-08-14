@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d1qejfrgnqgvd" path="res://Game/Entities/Pickups/Health/HealthPickup.png" id="4_sryu2"]
 [ext_resource type="Texture2D" uid="uid://dxntjpr8pgwpy" path="res://Game/Entities/Door/Door.png" id="5_jsqct"]
 [ext_resource type="Texture2D" uid="uid://bhfv1rnk0u5sf" path="res://Game/Entities/Pickups/Key/KeyPickup.png" id="6_b8eqj"]
-[ext_resource type="Texture2D" uid="uid://c5s1grc76n4oc" path="res://Game/LevelMarkers/PlayerStart/start_tile.png" id="7_xgboj"]
+[ext_resource type="Texture2D" uid="uid://c5s1grc76n4oc" path="res://Game/LevelMarkers/PlayerStart/PlayerStartTile.png" id="7_xgboj"]
 [ext_resource type="Texture2D" uid="uid://w3gpv7k2r8p" path="res://Game/LevelMarkers/EndOfLevel/EndOfLevel.png" id="8_tk6fe"]
 [ext_resource type="Texture2D" uid="uid://digkplenrawq7" path="res://Game/LevelMarkers/EnemySpawn/ZombieSpawn.png" id="9_luwim"]
 [ext_resource type="PackedScene" uid="uid://bfxvlomkte58w" path="res://Editor/LevelEditor/LevelEditorUI.tscn" id="10_luwim"]

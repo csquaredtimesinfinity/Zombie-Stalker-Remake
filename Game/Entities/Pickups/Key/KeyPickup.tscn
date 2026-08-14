@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bxdbwfwwb34tq"]
+
+[ext_resource type="Script" uid="uid://be3t6eat1ecbt" path="res://Game/Entities/Pickups/Key/KeyPickup.gd" id="1_3c5gc"]
+[ext_resource type="Texture2D" uid="uid://bhfv1rnk0u5sf" path="res://Game/Entities/Pickups/Key/KeyPickup.png" id="2_7clms"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y56md"]
+size = Vector2(12, 9.29673)
+
+[node name="PickupKey" type="Area2D" unique_id=1139341884]
+script = ExtResource("1_3c5gc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1408881142]
+texture = ExtResource("2_7clms")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1090498615]
+position = Vector2(5.96046e-08, 0.351637)
+shape = SubResource("RectangleShape2D_y56md")

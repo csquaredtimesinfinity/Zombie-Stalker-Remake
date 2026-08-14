@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1txos3t0hrp"]
-
-[ext_resource type="Texture2D" uid="uid://c5s1grc76n4oc" path="res://Game/LevelMarkers/PlayerStart/start_tile.png" id="1_jet8k"]
-[ext_resource type="Script" uid="uid://dybsxp57bw4sa" path="res://Game/LevelMarkers/PlayerStart/player_start.gd" id="2_p5j3q"]
-
-[node name="PlayerStart" type="Sprite2D"]
-texture = ExtResource("1_jet8k")
-script = ExtResource("2_p5j3q")

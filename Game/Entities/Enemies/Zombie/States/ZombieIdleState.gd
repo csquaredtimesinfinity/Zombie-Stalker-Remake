@@ -18,4 +18,3 @@ func physics_update(delta):
 	
 	if timer >= zombie.idle_time:
 		zombie.change_state("chase")
-	

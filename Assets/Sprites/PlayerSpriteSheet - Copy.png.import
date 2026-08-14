@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5s1grc76n4oc"
-path="res://.godot/imported/start_tile.png-95ba78e1068b87d8f9841b0cac0b3311.ctex"
+uid="uid://drr4pbn1up4j3"
+path="res://.godot/imported/PlayerSpriteSheet - Copy.png-bb380719e3c51f83c834b829739f16be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/LevelMarkers/PlayerStart/start_tile.png"
-dest_files=["res://.godot/imported/start_tile.png-95ba78e1068b87d8f9841b0cac0b3311.ctex"]
+source_file="res://Assets/Sprites/PlayerSpriteSheet - Copy.png"
+dest_files=["res://.godot/imported/PlayerSpriteSheet - Copy.png-bb380719e3c51f83c834b829739f16be.ctex"]
 
 [params]
 

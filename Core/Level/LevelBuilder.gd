@@ -12,8 +12,6 @@ static func _setup_entity(
 	if data.has("id"):
 		if "id" in instance:
 			instance.id = data["id"]
-		#elif "pickup_id" in instance:
-			#instance.pickup_id = data["id"]
 	
 	parent.add_child(instance)
 

@@ -33,5 +33,3 @@ func _init() -> void:
 	
 	# language of the game - e.g. "english", "french"
 	var game_language : String = Steam.getCurrentGameLanguage()
-	
-	

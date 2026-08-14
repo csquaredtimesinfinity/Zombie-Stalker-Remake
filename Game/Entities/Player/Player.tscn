@@ -101,7 +101,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dd06"]
-size = Vector2(7, 6.75)
+size = Vector2(7, 8.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50d87"]
 size = Vector2(12, 17)
@@ -132,25 +132,30 @@ frame = 4
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionWithWorld" type="CollisionShape2D" parent="." unique_id=1888302701]
-position = Vector2(-0.5, 4.375)
+position = Vector2(-0.5, 3.375)
 shape = SubResource("RectangleShape2D_7dd06")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=1618122396]
+visible = false
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=768208791]
+visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_50d87")
 debug_color = Color(0.907973, 0.000119749, 0.738268, 0.42)
 
 [node name="DetectPickups" type="Area2D" parent="." unique_id=1640095551]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPickups" unique_id=1389464597]
+visible = false
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_wyb7m")
 debug_color = Color(0.699859, 0.360334, 0.850746, 0.42)
 
 [node name="InteractRay" type="RayCast2D" parent="." unique_id=1699693255]
+visible = false
 target_position = Vector2(0, 16)
 script = ExtResource("4_onl36")
 
