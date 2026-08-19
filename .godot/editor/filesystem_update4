@@ -1,14 +1,6 @@
-res://Game/LevelRuntime.tscn
+res://UI/MainMenu/MainMenu.tscn
 res://Assets/scenes/tileset.tres
 res://Assets/Shaders/crt_effect.gdshader
-res://Game/LevelRuntime.gd
-res://Game/Entities/Enemies/Zombie/Zombie.gd
-res://Core/Audio/SoundLibrary.gd
-res://Game/Entities/Pickups/Health/HealthPickup.gd
-res://Game/Entities/Pickups/Ammo/AmmoPickup.gd
-res://Game/Entities/Projectiles/Bullet/Bullet.gd
-res://Game/Entities/Pickups/Key/KeyPickup.gd
 res://Game/Entities/Player/PlayerController.gd
-res://Game/Entities/Enemies/Zombie/States/ZombieLungeState.gd
-res://Game/Entities/Door/Door.gd
-res://Game/GameSession.gd
+res://Game/Entities/Enemies/Zombie/Zombie.gd
+res://Game/LevelRuntime.tscn

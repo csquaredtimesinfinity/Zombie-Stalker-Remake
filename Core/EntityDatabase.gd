@@ -90,7 +90,8 @@ static func get_entities(category := ""):
 		var entity = DATA[e]
 		
 		if entity.get("category", "") == category:
-			filtered[e] = entity
+			if "icon" in entity:
+				filtered[e] = entity
 			
 	return filtered
 

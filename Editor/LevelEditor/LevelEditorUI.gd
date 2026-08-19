@@ -50,8 +50,10 @@ func _ready() -> void:
 		
 		if not categories.has(category):
 			categories[category] = []
-			
-		categories[category].append({"type": type, "data": entity})
+		
+		# Only add entity if an icon has been defined for it in the EntityDatabase
+		if "icon" in entity:	
+			categories[category].append({"type": type, "data": entity})
 	
 	# build UI
 	for category in categories.keys():

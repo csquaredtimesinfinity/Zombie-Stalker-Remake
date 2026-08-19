@@ -14,8 +14,8 @@ var ammo = 100
 var keys = 0
 
 const BULLET_SCENE: PackedScene = preload("res://Game/Entities/Projectiles/Bullet/Bullet.tscn")
-@export var fire_rate: float = 0.75
-var shoot_cooldown: float = 0.15
+#@export var fire_rate: float = 0.75
+var shoot_cooldown: float = 0.05
 var muzzle_offsets = {
 	Direction.UP: Vector2(0, -8),
 	Direction.DOWN: Vector2(0, 8),

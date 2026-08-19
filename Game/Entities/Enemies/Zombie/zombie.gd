@@ -24,8 +24,8 @@ class_name Zombie
 @export var waypoint_reach_distance: float = 3.0
 
 @export_category("Knockback")
-@export var knockback_strength: float = 60.0
-@export var knockback_decay: float = 3000.0
+@export var knockback_strength: float = 160.0
+@export var knockback_decay: float = 300.0
 
 enum Direction { 
 	LEFT, 
@@ -233,6 +233,18 @@ func can_lunge() -> bool:
 		return false
 		
 	if lunge_cooldown_timer > 0.0:
+		return false
+	
+	var space_state = get_world_2d().direct_space_state
+
+	var query = PhysicsRayQueryParameters2D.create(global_position, player.global_position)
+
+	query.collision_mask = get_collision_mask_value(9)
+	query.exclude = [self]
+
+	var result = space_state.intersect_ray(query)
+
+	if not result.is_empty():
 		return false
 	
 	return global_position.distance_to(player.global_position) <= lunge_range
