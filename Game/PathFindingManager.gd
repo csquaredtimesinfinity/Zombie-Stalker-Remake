@@ -32,14 +32,13 @@ func setup(wall_cells: Array[Vector2i]) -> void:
 #func find_path(start: Vector2i, end: Vector2i) -> Array[Vector2i]:
 #	return astar.get_id_path(start, end, true)
 func find_path(start_cell: Vector2i, end_cell: Vector2i) -> Array[Vector2i]:
-
 	var astar_path := astar.get_id_path(start_cell, end_cell)
-
+	
 	var path: Array[Vector2i] = []
-
+	
 	for cell in astar_path:
 		path.append(cell)
-
+	
 	return path
 
 func get_chase_path(

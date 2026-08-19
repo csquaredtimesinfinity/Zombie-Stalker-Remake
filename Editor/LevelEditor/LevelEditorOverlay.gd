@@ -20,8 +20,17 @@ func _draw():
 			Rect2(
 				hovered_cell * 64,
 				Vector2(64, 64)
-		),
-		Color.WHITE,
-		false,
-		2.0
-	)
+			),
+			Color.from_rgba8(255,255,155,50),
+			true
+		
+		)
+		draw_rect(
+			Rect2(
+				hovered_cell * 64,
+				Vector2(64, 64)
+			),
+			Color.WHITE,
+			false,
+			4.0
+		)

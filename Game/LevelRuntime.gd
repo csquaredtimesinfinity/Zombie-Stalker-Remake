@@ -6,7 +6,6 @@ extends Node2D
 @onready var hud :CanvasLayer = %HUD
 @onready var effects_layer: Node2D = $EffectsLayer
 @onready var characters: Node2D = $Characters
-
 @onready var navigation: Node = $Navigation
 
 var current_screen: Vector2 = Vector2.ZERO
@@ -18,7 +17,6 @@ var player
 var screen_transition_timer := 0.0
 var can_transition_to_another_screen := false
 
-
 func _ready() -> void:
 	WorldState.reset_world()
 	EffectsManager.effects_layer = effects_layer
@@ -27,7 +25,6 @@ func _ready() -> void:
 	var player_start = level_data["player_start"]
 	LevelSystem.apply_screen(
 		player_start["screen"], tilemap, null, entities, game_scene_root, characters)
-	
 	
 	# Spawn player controlled character
 	var player_position = LevelUtils.cell_to_world(player_start["cell"])

@@ -62,6 +62,8 @@ var path_update_timer := 0.0
 var knockback_velocity := Vector2.ZERO
 var direction
 
+const WALL_LAYER := 1 << 7
+
 func _ready():
 	# Zombie States
 	states["chase"] = ZombieChaseState.new()
@@ -239,7 +241,7 @@ func can_lunge() -> bool:
 
 	var query = PhysicsRayQueryParameters2D.create(global_position, player.global_position)
 
-	query.collision_mask = get_collision_mask_value(9)
+	query.collision_mask = WALL_LAYER
 	query.exclude = [self]
 
 	var result = space_state.intersect_ray(query)

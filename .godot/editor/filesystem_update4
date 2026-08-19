@@ -4,3 +4,7 @@ res://Assets/Shaders/crt_effect.gdshader
 res://Game/Entities/Player/PlayerController.gd
 res://Game/Entities/Enemies/Zombie/Zombie.gd
 res://Game/LevelRuntime.tscn
+res://Game/Entities/Pickups/Key/KeyPickup.tscn
+res://Editor/LevelEditor/LevelEditorOverlay.gd
+res://Game/LevelRuntime.gd
+res://Game/PathFindingManager.gd
