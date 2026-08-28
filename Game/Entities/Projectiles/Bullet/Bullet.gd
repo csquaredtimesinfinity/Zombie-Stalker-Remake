@@ -50,6 +50,6 @@ func _on_area_entered(area: Area2D) -> void:
 		hit = true
 		print("hit")
 		if zombie.has_method("take_damage"):
-			zombie.take_damage(33, global_position, direction.normalized())
+			zombie.take_damage(13, global_position, direction.normalized())
 		
 		queue_free()

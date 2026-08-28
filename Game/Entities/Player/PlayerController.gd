@@ -15,7 +15,7 @@ var keys = 0
 
 const BULLET_SCENE: PackedScene = preload("res://Game/Entities/Projectiles/Bullet/Bullet.tscn")
 #@export var fire_rate: float = 0.75
-var shoot_cooldown: float = 0.05
+var shoot_cooldown: float = 0.10
 var muzzle_offsets = {
 	Direction.UP: Vector2(0, -8),
 	Direction.DOWN: Vector2(0, 8),
@@ -46,6 +46,7 @@ signal health_changed(value)
 signal ammo_changed(value)
 signal keys_changed(value)
 signal screen_transition(direction: Vector2)
+signal player_died
 
 func _ready() -> void:
 	interact_ray.target_position = facing[player_direction] * INTERACT_RAY_LENGTH
@@ -61,10 +62,7 @@ func _physics_process(delta: float) -> void:
 	# update ray cast to point in direction that the player is facing
 	interact_ray.target_position = facing[player_direction] * INTERACT_RAY_LENGTH
 	queue_redraw()
-
-	if Input.is_action_pressed("fire"):
-		shoot()
-		
+	
 	handle_input()
 	
 	# Edge check
@@ -83,6 +81,10 @@ func _physics_process(delta: float) -> void:
 func handle_input() -> void:
 	var input_vector = Vector2.ZERO
 	player_moving = false
+	
+	if Input.is_action_pressed("fire"):
+		shoot()
+
 	if Input.is_action_pressed("move_up"):
 		input_vector.y -= 1
 		player_direction = Direction.UP
@@ -109,6 +111,7 @@ func shoot() -> void:
 	if not can_shoot || ammo <= 0:
 		return
 	
+	# update ammo count
 	ammo -= 1
 	ammo_changed.emit(ammo)
 		
@@ -167,5 +170,19 @@ func _on_detect_pickups_area_entered(pickup: Area2D) -> void:
 
 func take_damage(damage: int) -> void:
 	health -= damage
+	
+	if health <= 0:
+		player_died.emit()
+		return
+		
+	# Modulate red when taking damage
+	modulate = Color.RED
+	await get_tree().create_timer(0.5).timeout
+	modulate = Color.WHITE
+	
+	# spawn blood effect
+	EffectsManager.spawn_blood_effect(position)
+	
+	# emit signal that health has changed so HUD will be updated
 	emit_signal("health_changed", health)
 	

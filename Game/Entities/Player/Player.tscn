@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://f8702suistek"]
 
 [ext_resource type="Script" uid="uid://biyvhiq4bwjbn" path="res://Game/Entities/Player/PlayerController.gd" id="1_7dd06"]
-[ext_resource type="Texture2D" uid="uid://ck6v547n23qk6" path="res://Assets/Sprites/PlayerSpriteSheet.png" id="2_7dd06"]
 [ext_resource type="Script" uid="uid://cfgnijtir2yee" path="res://Game/Entities/Player/PlayerAnimator.gd" id="2_38rej"]
+[ext_resource type="Texture2D" uid="uid://ce5e4u0ye87he" path="res://Assets/Sprites/PlayerSpriteSheet.png" id="3_onl36"]
 [ext_resource type="Script" uid="uid://dy3ho5fogdxki" path="res://Game/Entities/Player/PlayerInteractRay.gd" id="4_onl36"]
 
 [sub_resource type="Animation" id="Animation_23lac"]
@@ -126,7 +126,7 @@ libraries/ = SubResource("AnimationLibrary_t1xgp")
 autoplay = &"move_right"
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerAnimator" unique_id=1928557210]
-texture = ExtResource("2_7dd06")
+texture = ExtResource("3_onl36")
 hframes = 16
 frame = 4
 region_rect = Rect2(0, 0, 16, 16)

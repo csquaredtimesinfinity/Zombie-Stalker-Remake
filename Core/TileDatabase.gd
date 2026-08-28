@@ -53,17 +53,17 @@ const DATA := {
 	}
 }
 
-static func get_entities(category := ""):
+static func get_tiles(category := ""):
 	if category == "":
 		return DATA
 		
 	var filtered = {}
 	
 	for e in DATA:
-		var entity = DATA[e]
+		var tile = DATA[e]
 		
-		if entity.get("category", "") == category:
-			filtered[e] = entity
+		if tile.get("category", "") == category:
+			filtered[e] = tile
 			
 	return filtered
 

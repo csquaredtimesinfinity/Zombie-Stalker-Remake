@@ -22,13 +22,13 @@ func _ready() -> void:
 	tile_selector.clear()
 	# group everything by category
 	for type in TileDatabase.DATA:
-		var entity = TileDatabase.DATA[type]
-		var category = entity.get("category", "uncategorized")
+		var tile = TileDatabase.DATA[type]
+		var category = tile.get("category", "uncategorized")
 		
 		if not categories.has(category):
 			categories[category] = []
 			
-		categories[category].append({"type": type, "data": entity})
+		categories[category].append({"type": type, "data": tile})
 
 	# build UI
 	for category in categories.keys():

@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://b6glehh6amf5a" path="res://UI/MainMenu/MainMenu.gd" id="1_i0vvr"]
 [ext_resource type="Texture2D" uid="uid://behdgnfd5ofyt" path="res://Assets/Sprites/title.png" id="2_fvlai"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o1s0"]
+bg_color = Color(0.42745098, 0.5686275, 0.5372549, 0.3372549)
+
 [node name="MainMenu" type="Control" unique_id=889381551]
 layout_mode = 3
 anchors_preset = 15
@@ -26,8 +29,8 @@ color = Color(0, 0, 0, 1)
 
 [node name="Title" type="Sprite2D" parent="CanvasLayer" unique_id=61647477]
 z_index = -1
-position = Vector2(641, 152.00002)
-scale = Vector2(1.957148, 2.3026352)
+position = Vector2(667.5, 176.43413)
+scale = Vector2(3.028125, 2.7913175)
 texture = ExtResource("2_fvlai")
 metadata/_edit_group_ = true
 
@@ -37,6 +40,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -228.5
+offset_top = -461.0
+offset_right = 228.5
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -44,28 +50,33 @@ grow_vertical = 0
 [node name="PlayGameButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=900155559]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_0o1s0")
 text = "PLAY GAME"
 
 [node name="CampaignEditorButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=812101563]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_0o1s0")
 text = "CAMPAIGN EDITOR"
 
 [node name="LevelEditorButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=860204115]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_0o1s0")
 text = "LEVEL EDITOR"
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1228053192]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_0o1s0")
 text = "SETTINGS"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=714590106]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_0o1s0")
 text = "EXIT"

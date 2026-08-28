@@ -1,3 +1,8 @@
+Label
+CanvasLayer
+ColorRect
+CollisionShape2D
+Area2D
 TextureProgressBar
 Node
 Node2D
@@ -5,11 +10,5 @@ NavigationAgent2D
 NavigationRegion2D
 Sprite2D
 GPUParticles2D
-Label
 ProgressBar
-CanvasLayer
-Area2D
-CollisionShape2D
 RayCast2D
-Control
-Button

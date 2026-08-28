@@ -17,7 +17,7 @@ func get_entities(screen_key: String) -> Array:
 	
 func get_barriers(screen_key: String) -> Array[Vector2i]:
 	var barriers : Array[Vector2i] = []
-	print(TileDatabase.get_entities("barrier"))
+	print(TileDatabase.get_tiles("barrier"))
 	print(current_level_data["screens"][screen_key]["tiles"])
 	for y in range(10):
 		for x in range(20):

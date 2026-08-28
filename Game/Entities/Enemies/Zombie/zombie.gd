@@ -10,7 +10,7 @@ class_name Zombie
 @export var damage: int = 10
 
 @export_category("Lunge")
-@export var lunge_range: float = 32.0
+@export var lunge_range: float = 24.0
 @export var lunge_speed: float = 250.0
 @export var lunge_windup_time: float = 0.55
 @export var lunge_duration: float = 0.2
@@ -24,8 +24,8 @@ class_name Zombie
 @export var waypoint_reach_distance: float = 3.0
 
 @export_category("Knockback")
-@export var knockback_strength: float = 160.0
-@export var knockback_decay: float = 300.0
+@export var knockback_strength: float = 140.0
+@export var knockback_decay: float = 600.0
 
 enum Direction { 
 	LEFT, 
@@ -102,9 +102,23 @@ func _physics_process(delta: float) -> void:
 		knockback_decay * delta
 	)
 
+	var base_velocity := velocity
 	velocity += knockback_velocity
 
 	move_and_slide()
+	
+	velocity = base_velocity
+	
+	position.x = clamp(
+		position.x, 
+		LevelUtils.TILE_SIZE / 2, 
+		LevelUtils.SCREEN_SIZE.x - LevelUtils.TILE_SIZE / 2
+	)
+	position.y = clamp(
+		position.y,
+		LevelUtils.TILE_SIZE / 2, 
+		LevelUtils.SCREEN_SIZE.y - LevelUtils.TILE_SIZE / 2
+	)
 
 func change_state(name: String):
 	if current_state:
@@ -194,17 +208,13 @@ func take_damage(amount, hit_position, direction) -> void:
 	
 	# Modulate zombie to red
 	modulate = Color.RED
-	await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(0.15).timeout
 	modulate = Color.WHITE
 	
-	# Spawn blood
-	EffectsManager.spawn_blood(hit_position)
-	await get_tree().create_timer(0.2).timeout
+	EffectsManager.spawn_blood_effect(hit_position, 0.5)
 	
 	if dying:
 		return
-		
-	EffectsManager.spawn_blood_splatter(hit_position)
 	
 	health -= amount
 	
@@ -257,6 +267,4 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	
 	if area.is_in_group("player_hitbox"):
 		player.take_damage(damage)
-		await EffectsManager.spawn_blood(player.global_position)
-		EffectsManager.spawn_blood_splatter(player.global_position)
 		change_state("chase")

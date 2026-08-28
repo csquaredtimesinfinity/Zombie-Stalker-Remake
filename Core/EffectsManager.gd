@@ -12,11 +12,9 @@ func spawn_blood(hit_position):
 	var blood = BLOOD.instantiate()
 	
 	if effects_layer:
-		print("Adding blood to effects layer: %s" % str(effects_layer))
 		effects_layer.add_child(blood)
 	else:
 		var scene_root = get_tree().root
-		print("Adding blood to current scene root: %s" % str(scene_root))
 		scene_root.add_child(blood)
 	
 	blood.global_position = hit_position
@@ -32,3 +30,20 @@ func spawn_blood_splatter(hit_position):
 		scene_root.add_child(blood_splatter)
 	
 	blood_splatter.global_position = Vector2i(hit_position.x, hit_position.y+8)
+
+func spawn_blood_effect(hit_position: Vector2i, splatter_timer: float = 0.5):
+# Spawn blood
+	EffectsManager.spawn_blood(hit_position)
+	
+	var timer := Timer.new()
+	effects_layer.add_child(timer)
+	
+	timer.wait_time = splatter_timer
+	timer.one_shot = true
+	timer.timeout.connect(func():
+		if is_instance_valid(effects_layer):
+			EffectsManager.spawn_blood_splatter(hit_position)
+		timer.queue_free()
+	)
+	
+	timer.start()

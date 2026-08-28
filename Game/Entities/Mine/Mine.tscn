@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bw1yqortod8db"]
+
+[ext_resource type="Script" uid="uid://b323d80aqb81n" path="res://Game/Entities/Mine/Mine.gd" id="1_nphru"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qxoom"]
+
+[node name="Mine" type="Area2D" unique_id=111308499]
+script = ExtResource("1_nphru")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1453319498]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=119526545]
+shape = SubResource("CircleShape2D_qxoom")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

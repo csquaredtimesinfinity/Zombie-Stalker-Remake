@@ -97,11 +97,23 @@ func _place_tile(mouse_pos: Vector2):
 	if current_tile_id >= 0:
 		# Paint visually
 		tilemap.set_cell(cell, current_tile_id, Vector2i(0, 0))
+		
+		print(TileDatabase.get_tiles("barrier"))
 
 		# Initialize screen in level_data if it does not exist yet
 		var screen_coords = _get_current_screen_coords() 
 		if not level_data["screens"].has(screen_coords):
 			_init_screen(screen_coords)
+		
+		# If a tile is barrier, clear out entity if it exists in that cell
+		if _is_tile_barrier(cell):
+			var entities = level_data["screens"][screen_coords].get("entities", [])
+			for i in range(entities.size()):
+				var entity = entities[i]
+				if LevelUtils.str_to_vec2i(entity["cell"]) == cell:
+					entities.remove_at(i)
+					markers_layer.set_cell(cell)
+					break
 
 		# Store tile directly in array
 		_set_tile(cell, current_tile_id)
@@ -117,7 +129,7 @@ func _place_entity(mouse_pos: Vector2i) -> void:
 	if not level_data["screens"].has(screen_coords):
 		_init_screen(screen_coords)
 	
-	if !_can_place_entity(cell):
+	if _is_tile_barrier(cell):
 		return
 
 	# Remove old entity in this cell (if any)
@@ -257,5 +269,5 @@ func _set_tile(cell: Vector2i, tile_id: int) -> void:
 		_init_screen(screen_coords)
 	level_data["screens"][screen_coords]["tiles"][cell.y][cell.x] = tile_id
 
-func _can_place_entity(cell: Vector2i) -> bool:
-	return _get_tile(cell) not in TileDatabase.get_entities("barrier")
+func _is_tile_barrier(cell: Vector2i) -> bool:
+	return _get_tile(cell) in TileDatabase.get_tiles("barrier")

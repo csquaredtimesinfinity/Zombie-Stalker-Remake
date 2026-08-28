@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var lifetime := 10.0
-@export var fade_time := 2.0
+@export var lifetime := 5.0
+@export var fade_time := 0.5
 
 @export var scale_min := 0.9
 @export var scale_max := 1.5

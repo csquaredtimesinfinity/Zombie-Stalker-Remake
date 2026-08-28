@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rvm4"]
 size = Vector2(17.21, 61.3739)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxoom"]
+bg_color = Color(0.7058824, 0, 0, 1)
+
 [node name="Level" type="Node2D" unique_id=1580465020]
 script = ExtResource("1_jmlx1")
 
@@ -28,3 +31,22 @@ y_sort_enabled = true
 
 [node name="Navigation" type="Node" parent="." unique_id=1867297322]
 script = ExtResource("3_i5cdd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1242431656]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=498351514]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -20.25
+offset_right = 145.0
+offset_bottom = 20.25
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_qxoom")
+text = "PLAYER DIED"
+horizontal_alignment = 1
