@@ -42,7 +42,7 @@ func fade_in(duration := 0.5) -> void:
 
 	await tween.finished
 
-func change_scene(scene: Variant, duration := 0.4) -> void:
+func change_scene(scene: Variant, duration := 1.0) -> void:
 	if is_transitioning:
 		return
 	

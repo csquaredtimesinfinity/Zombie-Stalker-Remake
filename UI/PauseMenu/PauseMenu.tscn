@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://nwb3ga50g22"]
+
+[ext_resource type="Script" uid="uid://ykbf2cf3oe0x" path="res://UI/PauseMenu/PauseMenu.gd" id="1_3oydc"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=400659733]
+process_mode = 3
+script = ExtResource("1_3oydc")
+
+[node name="Control" type="Control" parent="." unique_id=836511503]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Control" unique_id=1776417096]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4392157)
+
+[node name="Panel" type="Panel" parent="Control" unique_id=349371587]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.75
+offset_top = -133.25
+offset_right = 136.75
+offset_bottom = 133.25
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Control/Panel" unique_id=1397796589]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.5
+offset_right = 51.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "PAUSE MENU"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Control/Panel" unique_id=1123524028]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -49.0
+offset_right = 46.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 23
+text = "resume"
+
+[node name="QuitButton" type="Button" parent="Control/Panel" unique_id=109947476]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = 24.5
+offset_right = 24.5
+offset_bottom = 64.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 23
+text = "quit"
+
+[connection signal="pressed" from="Control/Panel/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/Panel/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -20,12 +20,12 @@ class_name Zombie
 @export var idle_time: float = 1.0
 
 @export_category("Pathfinding")
-@export var path_update_interval: float = 0.35
+@export var path_update_interval: float = 1.0
 @export var waypoint_reach_distance: float = 3.0
 
 @export_category("Knockback")
-@export var knockback_strength: float = 140.0
-@export var knockback_decay: float = 600.0
+@export var knockback_strength: float = 100.0
+@export var knockback_decay: float = 1000.0
 
 enum Direction { 
 	LEFT, 
@@ -64,6 +64,7 @@ var direction
 
 const WALL_LAYER := 1 << 7
 
+
 func _ready():
 	# Zombie States
 	states["chase"] = ZombieChaseState.new()
@@ -83,6 +84,7 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	
 	add_to_group("enemies")
+	add_to_group("zombies")
 	
 	anim.animation_finished.connect(_on_animation_finished)
 	hitbox.area_entered.connect(_on_hitbox_area_entered)
@@ -135,20 +137,21 @@ func update_chase(delta: float) -> void:
 		path_update_timer = path_update_interval
 	
 	follow_path()
-
 func request_path() -> void:
 	if player == null:
 		return
 	
-	var start_cell: Vector2i = pathfinder.world_to_cell(global_position)
-	var end_cell: Vector2i = pathfinder.world_to_cell(player.global_position)
-	
-	path = pathfinder.find_path(start_cell, end_cell)
+	path = pathfinder.get_chase_path(
+		global_position,
+		player.global_position,
+		self
+	)
 	
 	if path.size() > 1:
 		path_index = 1
 	else:
 		path_index = 0
+
 
 func follow_path() -> void:
 	if path.is_empty():
@@ -202,6 +205,7 @@ func take_damage(amount, hit_position, direction) -> void:
 	if dying:
 		return
 	
+	SoundLibrary.play_zombie_hit_sfx()
 	var knockback_direction :Vector2 = direction
 
 	knockback_velocity = knockback_direction * knockback_strength
@@ -211,7 +215,11 @@ func take_damage(amount, hit_position, direction) -> void:
 	await get_tree().create_timer(0.15).timeout
 	modulate = Color.WHITE
 	
-	EffectsManager.spawn_blood_effect(hit_position, 0.5)
+	var blood_color: Color = Color.from_rgba8(200, 0, 0)
+	EffectsManager.spawn_blood_effect(hit_position, 0.5, blood_color)
+
+	#var blood_color = Color.from_rgba8(randi_range(0,255), randi_range(0, 255), randi_range(0, 255))
+	#EffectsManager.spawn_blood_effect(hit_position, 0.5, blood_color)
 	
 	if dying:
 		return
@@ -220,8 +228,8 @@ func take_damage(amount, hit_position, direction) -> void:
 	
 	if health <= 0:
 		die()
-	else:
-		SoundLibrary.play_zombie_hit_sfx()
+	#else:
+		#SoundLibrary.play_zombie_hit_sfx()
 
 func die() -> void:
 	if dying:

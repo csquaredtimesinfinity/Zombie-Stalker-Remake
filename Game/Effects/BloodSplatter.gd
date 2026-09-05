@@ -1,13 +1,13 @@
 extends Node2D
 
 @export var lifetime := 5.0
-@export var fade_time := 0.5
+@export var fade_time := 10.0
 
-@export var scale_min := 0.9
-@export var scale_max := 1.5
+@export var scale_min := 1.0
+@export var scale_max := 1.4
 
-@export var modulate_alpha_min := 0.6
-@export var modulate_alpha_max := 0.9
+@export var modulate_alpha_min := 1.0
+@export var modulate_alpha_max := 1.0
 
 func _ready():
 	rotation = randf_range(0, TAU)

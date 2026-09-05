@@ -1,7 +1,5 @@
-res://UI/MainMenu/MainMenu.tscn
+res://UI/GameOver/GameOver.tscn
 res://Assets/scenes/tileset.tres
 res://Assets/Shaders/crt_effect.gdshader
-res://Assets/Levels/Level1.json
-res://Game/Entities/Player/PlayerController.gd
-res://Game/LevelRuntime.gd
-res://Game/LevelRuntime.tscn
+res://UI/PauseMenu/PauseMenu.gd
+res://UI/GameOver/GameOver.gd

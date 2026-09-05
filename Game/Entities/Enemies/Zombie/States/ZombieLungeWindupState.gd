@@ -32,7 +32,7 @@ func physics_update(delta):
 	
 	# Pulse between white and red
 	var pulse := (sin(pulse_time * pulse_speed) + 1.0) / 2.0
-	zombie.modulate = Color.WHITE.lerp(Color.GOLDENROD, pulse)
+	zombie.modulate = Color.WHITE.lerp(Color.DARK_ORCHID, pulse)
 	
 	if zombie.lunge_timer <= 0.0:
 		zombie.change_state("lunge")

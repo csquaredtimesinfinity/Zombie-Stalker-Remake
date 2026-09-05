@@ -7,7 +7,6 @@ extends Node2D
 @onready var effects_layer: Node2D = $EffectsLayer
 @onready var characters: Node2D = $Characters
 @onready var navigation: Node = $Navigation
-@onready var canvas_layer: CanvasLayer = $CanvasLayer
 
 var current_screen: Vector2 = Vector2.ZERO
 var level_data
@@ -19,7 +18,7 @@ var screen_transition_timer := 0.0
 var can_transition_to_another_screen := false
 
 func _ready() -> void:
-	canvas_layer.visible = false
+	
 	WorldState.reset_world()
 	EffectsManager.effects_layer = effects_layer
 	
@@ -47,7 +46,6 @@ func _ready() -> void:
 	# Connect player signal
 	player.screen_transition.connect(_on_player_screen_transition)
 	
-	player.player_died.connect(_on_player_died)
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("quit"):
@@ -110,8 +108,3 @@ func _remove_all_entities() -> void:
 	var effects_to_remove = effects_layer.get_children()
 	for effect in effects_to_remove:
 		effect.queue_free()
-
-func _on_player_died():
-	canvas_layer.visible = true
-	await get_tree().create_timer(10.0)
-	GameManager.change_scene_to_main_menu()

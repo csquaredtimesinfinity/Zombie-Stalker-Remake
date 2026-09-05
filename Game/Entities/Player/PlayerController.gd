@@ -23,7 +23,7 @@ var muzzle_offsets = {
 	Direction.RIGHT: Vector2(8, 0)
 }
 
-var facing = {
+var facing := {
 	Direction.UP: Vector2.UP,
 	Direction.DOWN: Vector2.DOWN,
 	Direction.LEFT: Vector2.LEFT,
@@ -48,6 +48,15 @@ signal keys_changed(value)
 signal screen_transition(direction: Vector2)
 signal player_died
 
+const DASH_SPEED := 250.0
+const DASH_DURATION := 0.10
+const DASH_COOLDOWN := 0.5
+
+var dash_timer := 0.0
+var dash_cooldown := 0.0
+var dash_direction := Vector2.ZERO
+var dash_meter := 0.0
+
 func _ready() -> void:
 	interact_ray.target_position = facing[player_direction] * INTERACT_RAY_LENGTH
 	
@@ -57,6 +66,7 @@ func _ready() -> void:
 func _draw():
 	if interact_ray.enabled:
 		pass# draw_line(Vector2.ZERO, interact_ray.target_position, Color.RED, 2)
+
 
 func _physics_process(delta: float) -> void:
 	# update ray cast to point in direction that the player is facing
@@ -84,6 +94,10 @@ func handle_input() -> void:
 	
 	if Input.is_action_pressed("fire"):
 		shoot()
+	
+	if Input.is_action_just_pressed("add_ammo_debug"):
+		ammo += 100
+		ammo_changed.emit(ammo)
 
 	if Input.is_action_pressed("move_up"):
 		input_vector.y -= 1
@@ -174,15 +188,32 @@ func take_damage(damage: int) -> void:
 	if health <= 0:
 		player_died.emit()
 		return
+	
+	# spawn blood effect
+	EffectsManager.spawn_blood_effect(position)
 		
 	# Modulate red when taking damage
 	modulate = Color.RED
 	await get_tree().create_timer(0.5).timeout
 	modulate = Color.WHITE
 	
-	# spawn blood effect
-	EffectsManager.spawn_blood_effect(position)
+	
 	
 	# emit signal that health has changed so HUD will be updated
 	emit_signal("health_changed", health)
 	
+func try_dash():
+	if dash_cooldown > 0.0:
+		return
+	
+	if dash_meter < 1.0:
+		return
+	
+	dash_direction = facing[player_direction].normalized()
+	
+	if dash_direction == Vector2.ZERO:
+		return
+	
+	dash_timer = DASH_DURATION
+	dash_cooldown = DASH_COOLDOWN
+	dash_meter = 0.0

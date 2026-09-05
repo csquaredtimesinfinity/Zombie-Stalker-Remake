@@ -31,38 +31,112 @@ func setup(wall_cells: Array[Vector2i]) -> void:
 
 #func find_path(start: Vector2i, end: Vector2i) -> Array[Vector2i]:
 #	return astar.get_id_path(start, end, true)
-func find_path(start_cell: Vector2i, end_cell: Vector2i) -> Array[Vector2i]:
-	var astar_path := astar.get_id_path(start_cell, end_cell)
-	
-	var path: Array[Vector2i] = []
-	
-	for cell in astar_path:
-		path.append(cell)
-	
-	return path
+#func find_path(start_cell: Vector2i, end_cell: Vector2i) -> Array[Vector2i]:
+	#for y in LevelUtils.SCREEN_TILES.y:
+		#for x in LevelUtils.SCREEN_TILES.x:
+			#var cell := Vector2i(x, y)
+			#var crowd_cost := get_crowd_cost(cell)
+			#astar.set_point_weight_scale(cell, 1.0 + crowd_cost)
+	#
+	#var astar_path := astar.get_id_path(start_cell, end_cell)
+	#
+	#var path: Array[Vector2i] = []
+	#
+	#for cell in astar_path:
+		#path.append(cell)
+	#
+	#return path
 
 func get_chase_path(
-	start: Vector2, 
-	target: Vector2, 
-	zombies: Array[Node2D]
-) -> Array[Vector2]:
-	#TODO: A
-	return []
+	start: Vector2,
+	target: Vector2,
+	requesting_zombie: Zombie
+) -> Array[Vector2i]:
 
-func get_crowd_cost(cell: Vector2i, zombies: Array[Node2D]) -> float:
+	var zombies : Array[Node] = get_tree().get_nodes_in_group("zombies")
+
+	var start_cell := world_to_cell(start)
+	var target_cell := world_to_cell(target)
+
+	for y in LevelUtils.SCREEN_TILES.y:
+		for x in LevelUtils.SCREEN_TILES.x:
+			var cell := Vector2i(x, y)
+
+			var crowd_cost := get_crowd_cost(
+				cell,
+				zombies,
+				requesting_zombie
+			)
+			astar.set_point_weight_scale(
+					cell,
+					1.0
+				)
+			if crowd_cost > 0.0:
+				astar.set_point_weight_scale(
+					cell,
+					1.0 + crowd_cost
+				)
+				#print("CELL: ", cell, " COST: ", crowd_cost)
+
+	var astar_path := astar.get_id_path(
+		start_cell,
+		target_cell
+	)
+
+	var path: Array[Vector2i] = []
+
+	for cell in astar_path:
+		path.append(cell)
+
+	return path
+#
+#func get_chase_path(
+	#start: Vector2,
+	#target: Vector2,
+	#requesting_zombie: Node2D
+#) -> Array[Vector2i]:
+#
+	#var start_cell := world_to_cell(start)
+	#var target_cell := world_to_cell(target)
+#
+	#for y in LevelUtils.SCREEN_TILES.y:
+		#for x in LevelUtils.SCREEN_TILES.x:
+			#var cell := Vector2i(x, y)
+			#astar.set_point_weight_scale(cell, 1.0)
+#
+	#var test_cell := Vector2i(5, 5)
+	#astar.set_point_weight_scale(test_cell, 2.0)
+	#test_cell = Vector2i(6, 5)
+	#astar.set_point_weight_scale(test_cell, 2.0)
+	#test_cell = Vector2i(7, 5)
+	#astar.set_point_weight_scale(test_cell, 2.0)
+	#
+	#var astar_path := astar.get_id_path(start_cell, target_cell)
+#
+	#return astar_path
+
+func get_crowd_cost(
+	cell: Vector2i,
+	zombies: Array[Node],
+	requesting_zombie: Node2D
+) -> float:
+
 	var cost := 0.0
-	
+
 	for zombie in zombies:
+		if zombie == requesting_zombie:
+			continue
+
 		var zombie_cell := world_to_cell(zombie.global_position)
 		var distance := cell.distance_to(zombie_cell)
-		
+
 		if distance < 1.0:
-			cost += 10.0
+			cost += 4.0
 		elif distance < 2.0:
-			cost += 5.0
-		elif distance < 3.0:
 			cost += 2.0
-	
+		elif distance < 3.0:
+			cost += 1.0
+
 	return cost
 	
 func world_to_cell(world_pos: Vector2) -> Vector2i:

@@ -11,7 +11,8 @@ enum Effect {
 	BULLET_HITTING_WALL,
 	ZOMBIE_KILL,
 	ZOMBIE_MOAN,
-	OPENING_DOOR
+	OPENING_DOOR,
+	ZOMBIE_BULLET_IMPACT
 }
 
 const BASE_SOUND_EFFECTS_PATH = "res://Assets/Audio/SoundEffects/"
@@ -21,11 +22,12 @@ static var SOUNDS := {
 	Effect.AMMO_PICKUP: preload(BASE_SOUND_EFFECTS_PATH + "AmmoPickup.wav"),
 	Effect.COKE_PICKUP: preload(BASE_SOUND_EFFECTS_PATH + "CokePickup.mp3"),
 	Effect.KEY_PICKUP: preload(BASE_SOUND_EFFECTS_PATH + "KeyPickup.mp3"),
-	Effect.ZOMBIE_HIT: preload(BASE_SOUND_EFFECTS_PATH + "ZombieHit.wav"),
+	Effect.ZOMBIE_HIT: preload(BASE_SOUND_EFFECTS_PATH + "ZombieKill.wav"),
 	Effect.BULLET_HITTING_WALL: preload(BASE_SOUND_EFFECTS_PATH + "BulletHittingWall.mp3"),
-	Effect.ZOMBIE_KILL: preload(BASE_SOUND_EFFECTS_PATH + "ZombieKill.mp3"),
-	Effect.ZOMBIE_MOAN: preload(BASE_SOUND_EFFECTS_PATH + "ZombieMoan.mp3"),
-	Effect.OPENING_DOOR: preload(BASE_SOUND_EFFECTS_PATH + "UnlockingDoor.mp3")
+	Effect.ZOMBIE_KILL: preload(BASE_SOUND_EFFECTS_PATH + "ZombieHit.wav"),
+	Effect.ZOMBIE_MOAN: preload(BASE_SOUND_EFFECTS_PATH + "ZombieMoan.wav"),
+	Effect.OPENING_DOOR: preload(BASE_SOUND_EFFECTS_PATH + "UnlockingDoor.mp3"),
+	Effect.ZOMBIE_BULLET_IMPACT: preload(BASE_SOUND_EFFECTS_PATH + "hit.wav")
 }
 
 static func play_gun_fire_sfx() -> void:
@@ -42,6 +44,7 @@ static func play_key_pickup_sfx() -> void:
 
 static func play_zombie_hit_sfx() -> void:
 	_play(Effect.ZOMBIE_HIT)
+	_play(Effect.ZOMBIE_BULLET_IMPACT)
 
 static func play_bullet_hitting_wall_sfx() -> void:
 	_play(Effect.BULLET_HITTING_WALL)

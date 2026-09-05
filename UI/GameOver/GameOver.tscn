@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://bteb236urgiyx"]
+
+[ext_resource type="Script" uid="uid://c2yyah00k5tgb" path="res://UI/GameOver/GameOver.gd" id="1_l8mub"]
+
+[node name="GameOver" type="CanvasLayer" unique_id=400659733]
+process_mode = 3
+script = ExtResource("1_l8mub")
+
+[node name="Control" type="Control" parent="." unique_id=836511503]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Control" unique_id=1776417096]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4392157)
+
+[node name="Panel" type="Panel" parent="Control" unique_id=349371587]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.75
+offset_top = -133.25
+offset_right = 136.75
+offset_bottom = 133.25
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Control/Panel" unique_id=1397796589]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.5
+offset_right = 51.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 55
+text = "YOU DIED"
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="Control/Panel" unique_id=1123524028]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -25.0
+offset_right = 46.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "retry"
+
+[node name="QuitButton" type="Button" parent="Control/Panel" unique_id=109947476]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = 48.5
+offset_right = 31.5
+offset_bottom = 98.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "quit"
+
+[connection signal="pressed" from="Control/Panel/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Control/Panel/QuitButton" to="." method="_on_quit_button_pressed"]

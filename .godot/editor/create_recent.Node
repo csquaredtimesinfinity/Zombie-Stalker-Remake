@@ -1,6 +1,9 @@
+Button
 Label
-CanvasLayer
+Panel
 ColorRect
+Control
+CanvasLayer
 CollisionShape2D
 Area2D
 TextureProgressBar
@@ -10,5 +13,3 @@ NavigationAgent2D
 NavigationRegion2D
 Sprite2D
 GPUParticles2D
-ProgressBar
-RayCast2D
